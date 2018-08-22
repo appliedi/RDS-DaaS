@@ -1,0 +1,1 @@
+﻿Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias -CommandLineSetting $CommandLineSetting -RequiredCommandLine $RequiredCommandLine -DisplayName $DisplayName -FilePath $FilePath -FolderName $FolderPath

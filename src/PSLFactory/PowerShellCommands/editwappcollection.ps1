@@ -1,0 +1,1 @@
+﻿Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $ApplicationName -DisplayName $DisplayName

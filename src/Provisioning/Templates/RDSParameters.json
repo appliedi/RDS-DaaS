@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dnsLabelPrefix": {
+      "value": "{{deploymentname}}"
+    },
+    "adDomainName": {
+      "value": "{{domainname}}"
+    },
+    "adVnetName": {
+      "value":"{{vnetname}}"
+    },
+    "adSubnetName": {
+      "value": "{{subnetname}}"
+    },
+    "adminUsername": {
+      "value": "{{adminname}}"
+    },
+    "adminPassword": {
+      "value": "{{adminpassword}}"
+    },
+    "imageSKU": {
+      "value": "{{windowsserver}}"
+    },
+    "numberOfRdshInstances": {
+      "value": 1
+    },
+    "rdshVmSize": {
+      "value": "{{vmsize}}"
+    }
+  }
+}

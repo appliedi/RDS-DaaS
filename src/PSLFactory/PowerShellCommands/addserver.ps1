@@ -1,0 +1,1 @@
+Add-RDServer -Server $Server -ConnectionBroker $ConnectionBroker -Role "RDS-RD-SERVER"

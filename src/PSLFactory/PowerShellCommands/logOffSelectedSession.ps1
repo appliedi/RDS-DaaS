@@ -1,0 +1,1 @@
+﻿Invoke-RDUserLogoff -HostServer $HostServer -UnifiedSessionID $UnifiedSessionID -Force

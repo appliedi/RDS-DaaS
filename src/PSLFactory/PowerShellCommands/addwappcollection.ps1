@@ -1,0 +1,1 @@
+﻿New-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -DisplayName $DisplayName -FilePath $FilePath

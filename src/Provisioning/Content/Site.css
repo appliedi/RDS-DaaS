@@ -1,0 +1,371 @@
+﻿body {
+    padding-top: 50px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-right: 15px;
+    margin-top: -9px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.form-control {
+    padding: 0px !important;
+    padding-left: 10px !important;
+}
+
+.left-menu a {
+    color: #fff !important;
+}
+
+    .left-menu a:hover {
+        color: #337AB7 !important;
+    }
+
+.blockUI {
+    display: none;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 21%;
+    right: 0px;
+    background-color: rgba(200,225,225, 0.5);
+    z-index: 1;
+  
+}
+.Firstli {
+    background-color: #0078D7;
+    width: 240px;
+}
+.onlyLoader {
+    display: none;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+   
+}
+
+.nav-list label {
+    width: 100%;
+}
+
+.float-right {
+    float: right;
+}
+
+.nav-list {
+    margin-top: 39px;
+    font-size: 14px;
+}
+.nav-list label {
+        cursor: pointer;
+        padding: 5px;
+        background-color: black;
+        color: #337AB7;
+}
+.nav-list .tree {
+    margin-top: 20px;
+}
+
+.action-buttons {
+    padding: 10px;
+    padding-left: 0px !important;
+}
+
+.action-buttons a {
+   padding-left: 20px;
+}
+
+.right-slide {
+    display: none;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+    bottom: 0px;
+    width: 400px;
+    background-color: #fff;
+    z-index: 4;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left: 2px solid rgb(225,225,255);
+}
+
+    .right-slide .data-field {
+        overflow: auto;
+        height: 90%;
+    }
+
+    .right-slide .action-field {
+        bottom: 0px;
+        height: 100px;
+        height: 10%;
+        padding-top: 15px;
+    }
+
+    .right-slide label {
+        font-size: 12px;
+        font-weight: normal !important;
+    }
+
+.right-slideSHS {
+    display: none;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+    bottom: 0px;
+    width: 400px;
+    background-color: #fff;
+    z-index: 4;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left: 2px solid rgb(225,225,255);
+}
+
+    .right-slideSHS .data-field {
+        overflow: auto;
+        height: 90%;
+    }
+
+    .right-slideSHS .action-field {
+        bottom: 0px;
+        height: 100px;
+        height: 10%;
+        padding-top: 15px;
+    }
+
+    .right-slideSHS label {
+        font-size: 12px;
+        font-weight: normal !important;
+    }
+
+
+
+.table-row-selected {
+    background-color: #252525;
+    color: #fff;
+}
+
+
+.navbar-inverse {
+    background-color: black !important;
+    border-color: black !important;
+}
+
+.well {
+    background: black !important;
+    border: none !important;
+}
+
+.RdsDeployName a {
+    color: white;
+}
+.RdsDeployName span {
+    display: none
+}
+.Redborder {
+    border: 1px solid #ff0000 !important;
+}
+
+
+/*Layoyt*/
+.navbar-login {
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session {
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size {
+    font-size: 87px;
+}
+
+td, th {
+    vertical-align: middle !important;
+}
+
+.left, .right {
+    float: left;
+    height: 100vh;
+}
+
+.left {
+    background: #292727;
+    display: inline-block;
+    white-space: nowrap;
+    width: 50px;
+    transition: width 1s;
+    z-index: 2;
+    position: fixed;
+    top: 40px;
+}
+
+
+    .left:hover {
+        width: 250px;
+    }
+
+.item:hover {
+    background-color: #ccc;
+    color: #337AB7;
+}
+
+.item {
+    height: 50px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.gridicon {
+    background-color: #005A9E;
+    height: 40px;
+    border-right: 1px solid #005A9E;
+}
+
+    .gridicon .icon {
+        color: #fff;
+        font-size: 16px;
+        padding-top: 12px;
+    }
+
+#ListdeploymentsBC {
+    display: none;
+    padding-left: 0px;
+    margin-left: -12px;
+}
+
+#AdddeploymentsBC {
+    display: none;
+    padding-left: 0px;
+    margin-left: -12px;
+}
+
+#AddSHSBC {
+    display: none;
+    padding-left: 0px;
+    margin-left: -12px;
+}
+
+.Paraheading {
+    background-color: #252525;
+    position: absolute;
+    left: 15px;
+    top: 0px;
+    right: 15px;
+    padding: 10px;
+    color: white;
+}
+
+    .Paraheading .icon-people {
+        font-size: 17px;
+    }
+
+#MyCustomers {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.Paraheading .icon-chevron-down {
+    padding-top: 5px;
+    color: #C3C3C6
+}
+.MainContent {
+    padding-left: 10px !important;
+    height: calc(100vh - 41px);
+    width: 77% !important;
+    overflow: auto;
+}
+/*Layoyt*/
+.TopSection {
+    background-color: #DEECF9;
+    padding: 10px;
+}
+.TopSection .btn-default {
+    float: right;
+    margin-top: -6px;
+    margin-left: 10px;
+}
+.TopSection .btn-primary {
+    float: right;
+    margin-top: -6px;
+}
+.AvailableCust {
+    border-bottom: 1px solid #DEECF9;
+    height: 40px;
+}
+.TableDiv {
+    margin-top: 20px;
+}
+
+.Redclr {
+    color: red
+}
+.blurtxt {
+    float: right;
+    font-size: 12px;
+}
+.TxtOnepad {
+    padding: 1px;
+}
+.PrimaryCntct {
+    border-bottom: 1px solid #F5F5F5;
+}
+.ErrorMsgHidden {
+    color: red;
+    font-size: 12px;
+    display: none
+}
+#Name {
+    color: #800080
+}
+.NoLeftPad{
+    padding-left:0px;
+}
+#OpenCreateSHSImage {
+    background: white;
+    border: none;
+    color: #0078d7;
+}
+.AlignRight{
+    text-align: right;
+}
+.DispalyHidden{
+    display: none
+}
+.ExistingDomainAD {
+    margin-left: 10px;
+    position: relative;
+    top: -5px;
+}
+.NewDomain {
+    margin-left: 10px;
+    position: relative;
+    top: -2px;
+}
+.NoteTxtLink{
+    font-size: 11px;
+    text-decoration: underline
+}
+.modal-content {
+    border-radius: 0;
+}
+#AddCustomerFromId .form-group:first-child{
+    border-bottom: 1px solid #F5F5F5
+}
+.glyphicon-th-large{
+    color:white;
+    margin-top:11px;
+}

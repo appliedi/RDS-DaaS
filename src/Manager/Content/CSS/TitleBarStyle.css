@@ -1,0 +1,308 @@
+﻿body {
+    margin: 0px 0px 0px 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.top-bar {
+    height: 40px;
+    position: relative;
+    z-index: 250;
+    flex: 0 0 auto;
+    font-size: 13px;
+    background-color: #202428;
+}
+
+.app-title {
+    width: auto;
+    height: 40px;
+    float: left;
+    padding-left:10px;
+}
+
+    .app-title a {
+        color: #00bcf2;
+        text-decoration: none;
+        flex: auto;
+        font-size: 20px;
+        padding: 0px 10px 0px 10px;
+        line-height: 35px;
+        height: 100%;
+        display: inline-block;
+    }
+
+        .app-title a:hover {
+            background-color: #3d4247;
+            color:#00bcf2;
+        }
+
+.app-breadcrumb {
+     max-width:65%; 
+     overflow:hidden;
+    height: 40px;
+    float: left;
+    color: #FFFFFF;
+}
+
+    .app-breadcrumb a, .app-breadcrumb a:visited{
+        color: #FFFFFF;
+        text-decoration: none;
+        flex: auto;
+        font-size: 13px;
+        padding: 0px;
+        padding: 0px 10px 0px 10px;
+        line-height: 40px;
+        height: 100%;
+        display: inline-block;
+    }
+
+    .app-breadcrumb svg {
+        transform: rotate(90deg);
+        height: 14px;
+        width: 14px;
+        fill: #fff;
+        margin-top: 3px;
+    }
+
+    .app-breadcrumb a:hover,.app-breadcrumb a:active {
+        background-color: #3d4247;
+        color:#FFFFFF;
+    }
+
+.app-right-section {
+    width: auto;
+    height: 40px;
+    float: right;
+    color: #FFFFFF;
+}
+ .app-right-section .notification-drop-menu-opener {
+        background-color: transparent;
+        border: 0px;
+        color: #FFFFFF;
+        height: 100%;
+        cursor: pointer;
+    }
+  .notification-drop-menu-opener .user-picture {
+        float: left;
+        height: 35px;
+    }
+
+        .notification-drop-menu-opener img {
+            border: 0;
+            border-radius: 35px;
+            margin-left: 11px;
+            margin-right: 5px;
+            -webkit-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+        .app-right-section .feedback-drop-menu-opener {
+        background-color: transparent;
+        border: 0px;
+        color: #FFFFFF;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .app-right-section .profile-drop-menu-opener {
+        background-color: transparent;
+        border: 0px;
+        color: #FFFFFF;
+        height: 100%;
+        cursor: pointer;
+    }
+
+        .app-right-section .profile-drop-menu-opener:hover {
+            background-color: #3D4247;
+            color: #FFFFFF;
+        }
+
+        .app-right-section .profile-drop-menu-opener:active {
+            background-color: #FFFFFF;
+            color: #202428;
+        }
+        .app-right-section .notification-drop-menu-opener:hover {
+            background-color: #3D4247;
+            color: #FFFFFF;
+        }
+
+        .app-right-section .notification-drop-menu-opener:active {
+            background-color: #FFFFFF;
+            color: #202428;
+        }
+
+
+    .app-right-section .profile-drop-menu-opener-active {
+        background-color: #FFFFFF;
+        color: #202428;
+    }
+
+        .app-right-section .profile-drop-menu-opener-active:hover {
+            background-color: #E6E6E6;
+            color: #202428;
+        }
+          .app-right-section .notification-drop-menu-opener-active {
+        background-color: #FFFFFF;
+        color: #202428;
+    }
+
+        .app-right-section .notification-drop-menu-opener-active:hover {
+            background-color: #E6E6E6;
+            color: #202428;
+        }
+     
+    .app-right-section .user-name {
+        width:145px;
+        float: left;
+        /*height:30px;
+        line-height: 2px;*/
+        padding-top:0px;
+        font-size: 12px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: right;
+    }
+
+        .app-right-section .user-name .name , .app-right-section .user-name .email{
+            /*text-transform: uppercase;*/
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: nowrap;
+            line-height: 18px;
+            margin-bottom: 0px;
+        }
+
+        #loggerInUserLoginName {
+            text-transform: uppercase;
+        }
+
+    .app-right-section .user-picture {
+        float: left;
+        height: 35px;
+    }
+
+        .app-right-section .user-picture img {
+            width: 35px;
+            border: 0;
+            border-radius: 35px;
+            margin-left: 11px;
+            margin-right: 5px;
+            -webkit-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+
+    .app-right-section .drop-menu {
+        background-color: #FFFFFF;
+        color: #202428;
+        margin-top: -3px;
+        margin-right:0px;
+        display: none;
+    }
+
+        .app-right-section .drop-menu ul {
+            padding: 0px;
+        }
+
+            .app-right-section .drop-menu ul li {
+                padding: 10px;
+                height: 40px;
+            }
+
+                .app-right-section .drop-menu ul li a {
+                    text-decoration: none;
+                    color: #202428;
+                    height: 40px;
+                }
+
+                .app-right-section .drop-menu ul li:hover {
+                    background-color: #E6E6E6;
+                }
+
+        .app-right-section .drop-menu svg {
+            height: 13px;
+            width: 13px;
+        }
+
+.option-icon-red {
+    fill: #e81123;
+}
+
+.app-right-section .drop-menu ul li .option-name {
+    float: left;
+    width: 90%;
+    height: 28px;
+}
+
+.app-right-section .drop-menu ul li .option-icon {
+    float: right;
+    width: 10%;
+    height: 28px;
+}
+.sprite {
+ background: url('../../../Content/Images/connectto.png') no-repeat -1px -2155px;
+ width: 30px;
+ height: 20px;
+ margin-left: 8px;
+ margin-top: -5px;
+ margin-bottom : 2px;
+-webkit-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-ms-transform: rotate(180deg);
+transform: rotate(180deg);
+}
+
+.notificationbell::after{
+content:'\EA8F';
+    font-family:'Segoe MDL2 Assets';
+    font-size:23px;
+}
+/*.feedbackbutton::after{
+content:'\E170';
+    font-family:'Segoe MDL2 Assets';
+    font-size:22px;
+}*/
+.closeNotificationIcon::after{
+content:'\E8BB';
+    font-family:'Segoe MDL2 Assets';
+    font-size:8px;
+    font-weight:bolder;
+    cursor:pointer;
+}
+
+.activethisoption
+    {
+            background-color: #FFFFFF;
+            color: #202428;
+    }
+   .activethisoption:hover {
+        background-color: #E6E6E6;
+        color: #202428;
+    }
+    .blackcolor
+    {
+         color: #202428;
+    }
+     .alternateNotifCount{
+          color: #FFFFFF;
+          background-color:#202428;
+     }
+.instant-notification
+{
+    position:absolute;
+    top:50px; 
+    right:10px;
+    width:350px;
+    height:auto;
+    background-color:#FFFFFF;
+    display:none;
+}
+.notification-drop-menu-opener .SelectedNotificationIcon
+{
+    background-color:#FFFFFF;
+    color:#202428;
+}
+.connectIcon{
+    padding-bottom: 4px;
+    height: 19px;
+    width: 22px;
+    margin-bottom: 0px;
+    margin-top: -2px;
+}

@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B845B44D-A1F3-4CF1-A2CA-B1E80679B1C2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AzureRDSManager</RootNamespace>
+    <AssemblyName>AzureRDSManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\CSS\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\CSS\bootstrap-formhelpers.min.css" />
+    <Content Include="Content\CSS\bootstrap-timepicker.css" />
+    <Content Include="Content\CSS\bootstrap.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.css" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\CSS\dashboard.css" />
+    <Content Include="Content\CSS\deployeadmin.css" />
+    <Content Include="Content\CSS\deploymentStyles.css" />
+    <Content Include="Content\CSS\EditChart.css" />
+    <Content Include="Content\CSS\export.css" />
+    <Content Include="Content\CSS\feedback.css" />
+    <Content Include="Content\CSS\FontSetup.css" />
+    <Content Include="Content\CSS\jquery-ui.css" />
+    <Content Include="Content\CSS\Loader.css" />
+    <Content Include="Content\CSS\RDSStyles.css" />
+    <Content Include="Content\CSS\Site.css" />
+    <Content Include="Content\CSS\Site2222.css" />
+    <Content Include="Content\CSS\TitleBarStyle.css" />
+    <Content Include="Content\CSS\updatelicense.css" />
+    <Content Include="Content\fonts\css\font-awesome-ie7.css" />
+    <Content Include="Content\fonts\css\font-awesome-ie7.min.css" />
+    <Content Include="Content\fonts\css\font-awesome.css" />
+    <Content Include="Content\fonts\css\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\app-publishing-icon.PNG" />
+    <Content Include="Content\Images\appicon1.PNG" />
+    <Content Include="Content\Images\appicon2.PNG" />
+    <Content Include="Content\Images\appicon3.PNG" />
+    <Content Include="Content\Images\appicon4.PNG" />
+    <Content Include="Content\Images\appicon5.PNG" />
+    <Content Include="Content\Images\app_50x50.png" />
+    <Content Include="Content\Images\arrowIcon.png" />
+    <Content Include="Content\Images\audit-icon.PNG" />
+    <Content Include="Content\Images\auditIcon.png" />
+    <Content Include="Content\Images\AvatarMenudefaultAvatarSmall.png" />
+    <Content Include="Content\Images\Azure VM Scale Set.png" />
+    <Content Include="Content\Images\AzureScaleIcon.png" />
+    <Content Include="Content\Images\azure_scale_vm_22x22.png" />
+    <Content Include="Content\Images\azure_scale_vm_50x50.png" />
+    <Content Include="Content\Images\azure_spinner_loader.gif" />
+    <Content Include="Content\Images\banner_01.jpg" />
+    <Content Include="Content\Images\banner_02.jpg" />
+    <Content Include="Content\Images\bar_03.jpg" />
+    <Content Include="Content\Images\bg_globe_01.jpg" />
+    <Content Include="Content\Images\Capture.PNG" />
+    <Content Include="Content\Images\caution-icon.PNG" />
+    <Content Include="Content\Images\clock-icon.PNG" />
+    <Content Include="Content\Images\cnesymbols.png" />
+    <Content Include="Content\Images\collectionsicon_21x21.png" />
+    <Content Include="Content\Images\collectionsicon_50x50.png" />
+    <Content Include="Content\Images\collection_config_icon.png" />
+    <Content Include="Content\Images\collection_icon_100x100.png" />
+    <Content Include="Content\Images\collection_icon_21x21.png" />
+    <Content Include="Content\Images\connect.png" />
+    <Content Include="Content\Images\connectto.png" />
+    <Content Include="Content\Images\copyIcon.png" />
+    <Content Include="Content\Images\db_image.png" />
+    <Content Include="Content\Images\db_image_ico.png" />
+    <Content Include="Content\Images\deployment_21x21.png" />
+    <Content Include="Content\Images\deployment_50x50.png" />
+    <Content Include="Content\Images\disable.png" />
+    <Content Include="Content\Images\enable.png" />
+    <Content Include="Content\Images\error-exclamation.png" />
+    <Content Include="Content\Images\errorIcon.png" />
+    <Content Include="Content\Images\exclamation-button.png" />
+    <Content Include="Content\Images\failed_icon.gif" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\fb-icon.PNG" />
+    <Content Include="Content\Images\googleplus-icon.PNG" />
+    <Content Include="Content\Images\graph-dummy.PNG" />
+    <Content Include="Content\Images\graph-dummy2.PNG" />
+    <Content Include="Content\Images\graph-icon.PNG" />
+    <Content Include="Content\Images\group_50x50.png" />
+    <Content Include="Content\Images\happyIcon.png" />
+    <Content Include="Content\Images\happyIconActive.png" />
+    <Content Include="Content\Images\headerBackground.png" />
+    <Content Include="Content\Images\image_1.PNG" />
+    <Content Include="Content\Images\in-icon.PNG" />
+    <Content Include="Content\Images\info-icon.PNG" />
+    <Content Include="Content\Images\infoblue-icon.PNG" />
+    <Content Include="Content\Images\infoIcon.png" />
+    <Content Include="Content\Images\info_icon.png" />
+    <Content Include="Content\Images\left-arrow-icon-datetimepicker.png" />
+    <Content Include="Content\Images\LinkedResource21x21.png" />
+    <Content Include="Content\Images\LinkedResource_50x50.png" />
+    <Content Include="Content\Images\loader2.gif" />
+    <Content Include="Content\Images\loader3.png" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\loadingold.gif" />
+    <Content Include="Content\Images\loginBG.jpg" />
+    <Content Include="Content\Images\logo_01.png" />
+    <Content Include="Content\Images\logo_02.png" />
+    <Content Include="Content\Images\mail-icon.PNG" />
+    <Content Include="Content\Images\maximize.png" />
+    <Content Include="Content\Images\messageicon.png" />
+    <Content Include="Content\Images\minimize.png" />
+    <Content Include="Content\Images\minmax.png" />
+    <Content Include="Content\Images\ms-icon.PNG" />
+    <Content Include="Content\Images\mslogo_black.png" />
+    <Content Include="Content\Images\notification.png" />
+    <Content Include="Content\Images\Preloader_6.gif" />
+    <Content Include="Content\Images\profile_disk.png" />
+    <Content Include="Content\Images\profile_disk_22x22.png" />
+    <Content Include="Content\Images\profile_disk_50x50.png" />
+    <Content Include="Content\Images\progress_bar.gif" />
+    <Content Include="Content\Images\progress_bar.png" />
+    <Content Include="Content\Images\properties-icon.PNG" />
+    <Content Include="Content\Images\question_mark_icon.png" />
+    <Content Include="Content\Images\refresh_flat_small_icon.jpg" />
+    <Content Include="Content\Images\remoteapp-icon.PNG" />
+    <Content Include="Content\Images\right-arrow-icon-datetimepicker.png" />
+    <Content Include="Content\Images\sadIcon.png" />
+    <Content Include="Content\Images\sadIconActive.png" />
+    <Content Include="Content\Images\ScaleIcon.PNG" />
+    <Content Include="Content\Images\selectArrow.png" />
+    <Content Include="Content\Images\selfhost-icon.PNG" />
+    <Content Include="Content\Images\sessions_100x100.png" />
+    <Content Include="Content\Images\sessions_50x50.png" />
+    <Content Include="Content\Images\setting.png" />
+    <Content Include="Content\Images\setting_50x50.png" />
+    <Content Include="Content\Images\storage-icon.PNG" />
+    <Content Include="Content\Images\success_icon.png" />
+    <Content Include="Content\Images\tag-icon.PNG" />
+    <Content Include="Content\Images\tick-icon.png" />
+    <Content Include="Content\Images\tick-noti.png" />
+    <Content Include="Content\Images\tier-icon.PNG" />
+    <Content Include="Content\Images\tile.PNG" />
+    <Content Include="Content\Images\twitter-icon.PNG" />
+    <Content Include="Content\Images\upload-icon.PNG" />
+    <Content Include="Content\Images\user-blue-icon.PNG" />
+    <Content Include="Content\Images\user-icon.PNG" />
+    <Content Include="Content\Images\userhover-icon.PNG" />
+    <Content Include="Content\Images\users-blue-icon.PNG" />
+    <Content Include="Content\Images\users-icon.PNG" />
+    <Content Include="Content\Images\usersettings_50x50.png" />
+    <Content Include="Content\Images\usersetting_22x22.png" />
+    <Content Include="Content\Images\users_100x100.png" />
+    <Content Include="Content\Images\users_21x21.png" />
+    <Content Include="Content\Images\users_50x50.png" />
+    <Content Include="Content\Images\vm_100x100.png" />
+    <Content Include="Content\Images\vm_21x21.png" />
+    <Content Include="Content\Images\vm_50x50.png" />
+    <Content Include="Content\Images\warningIcon.png" />
+    <Content Include="Content\Images\WS_h_c.png" />
+    <Content Include="Content\Images\yammer-icon.PNG" />
+    <Content Include="Content\JQuery\amcharts.js" />
+    <Content Include="Content\JQuery\AuthLib.js" />
+    <Content Include="Content\JQuery\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\JQuery\bootstrap-formhelpers.min.js" />
+    <Content Include="Content\JQuery\bootstrap-timepicker.min.js" />
+    <Content Include="Content\JQuery\bootstrap.min.js" />
+    <Content Include="Content\JQuery\bootstrap3.3.5.min.js" />
+    <Content Include="Content\JQuery\deployadmin.js" />
+    <Content Include="Content\JQuery\EditChart.js" />
+    <Content Include="Content\JQuery\export.min.js" />
+    <Content Include="Content\JQuery\feedback.js" />
+    <Content Include="Content\JQuery\images\dragIconRoundBig.svg" />
+    <Content Include="Content\JQuery\images\lens.svg" />
+    <Content Include="Content\JQuery\jquery-1.10.2.min.js" />
+    <Content Include="Content\JQuery\jquery.min.js" />
+    <Content Include="Content\JQuery\Jquery1.11.3.min.js" />
+    <Content Include="Content\JQuery\knockout-3.4.0.js" />
+    <Content Include="Content\JQuery\light.js" />
+    <Content Include="Content\JQuery\moment.min.js" />
+    <Content Include="Content\JQuery\RemoteAppCollection.js" />
+    <Content Include="Content\JQuery\serial.js" />
+    <Content Include="Content\JQuery\simple-excel.js" />
+    <Content Include="Content\JQuery\TitleBarjquery.min.js" />
+    <Content Include="Content\JQuery\TitlebarScript.js" />
+    <Content Include="Global.asax" />
+    <Content Include="JsonData\data.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\PartDeploymentAdmin.cshtml" />
+    <Content Include="Views\Home\PartTenantAdmin.cshtml" />
+    <Content Include="Views\Home\PreSettings.cshtml" />
+    <Content Include="Views\Home\UpdateLicense.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap-theme.min.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.css.map" />
+    <Content Include="Content\CSS\Bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\Segoe-MDL2-Assets-MetroUI.ttf" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Properties\PublishProfiles\AzureWeb2.0.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
+    <Folder Include="Content\NewTitleBar\css\" />
+    <Folder Include="Content\NewTitleBar\js\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55752</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56104/RDSManagerWeb</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

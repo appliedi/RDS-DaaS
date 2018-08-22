@@ -1,0 +1,114 @@
+﻿body {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.rds-container {
+    
+    height: calc(100% - 40px);
+    position: relative;
+    min-height: 0;
+    background-color: #2E80AB;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    transition: margin .2s ease;
+    z-index: 1;
+}
+
+.dockFooterElement, #appusersok, #btnShowselected:hover {
+    color: black;
+}
+
+.dockFooter {
+    height: 30px;
+    position: relative;
+    padding-top: 30px;
+}
+
+.dockFooterElement {
+    top: -13px;
+}
+
+.dockContainer {
+    height: 100.5%;
+    top: 0px;
+}
+
+.dockWithFooter {
+    height: calc(100vh - 190px);
+}
+
+#btnSave:hover {
+    color: black;
+}
+
+#allInputFields input {
+    height: 29px;
+}
+
+    #allInputFields input[type='file'] {
+        height: auto;
+    }
+
+.btn:focus {
+    background-color: #27A5DE;
+}
+
+.AppImageName {
+    color: white;
+    background-color: #27A5DE !important;
+}
+
+ #serverlistselectid tbody tr:hover,#imported_SHS tbody tr:hover
+{
+    cursor:pointer;
+    background-color:#B3EBFB;
+}
+.activeTile
+{
+    color:#333;
+    border:3px solid #57B3D9;
+}
+.modal{
+    z-index:999999;
+}
+.modal-content {
+    border-radius: 0px;
+    padding: 0px;
+    font-size: 15px;
+    height: auto;
+}
+
+    .modal-content p {
+        padding:10px;
+    }
+
+.modal-footer {
+    padding: 10px 0px 10px 0px;
+}
+.modal-content button {
+    border-radius: 0px;
+    margin-right: 10px;
+}
+.modal-content .modal-body{
+    min-height: 50px;
+}
+.modal-content .modal-body p {
+    padding: 10px;
+}
+
+.modal .btn-default, .modal .btn-disable {
+    min-width: 60px;
+    height: 30px;
+}
+
+.modal .btn-disable {
+    color: black;
+}

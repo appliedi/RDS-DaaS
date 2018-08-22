@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addappbulkusercollection" xml:space="preserve">
+    <value>$data = Get-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias
+$UserGroups = $UserGroupsStr.Split(",")
+$fullArray = [object[]]($data.UserGroup) +$UserGroups
+Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias -UserGroups $fullArray</value>
+  </data>
+  <data name="addappcollection" xml:space="preserve">
+    <value>$apps = Get-RDAvailableApp -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker
+$wp = $apps | Where-Object {$_.DisplayName -eq $DisplayName}
+$wp | New-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName</value>
+  </data>
+  <data name="addappusercollection" xml:space="preserve">
+    <value>$fullArray = $UserGroup.Split(",")
+Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias -UserGroups $fullArray</value>
+  </data>
+  <data name="addbulkusercollection" xml:space="preserve">
+    <value>$data = Get-RDSessionCollectionConfiguration -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -UserGroup
+$UserGroups = $UserGroupsStr.Split(",")
+$fullArray = [object[]]($data.UserGroup) +$UserGroups
+Set-RDSessionCollectionConfiguration -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -UserGroup $fullArray</value>
+  </data>
+  <data name="adduserapp" xml:space="preserve">
+    <value>adduserapp</value>
+  </data>
+  <data name="addusercollection" xml:space="preserve">
+    <value>$UserGroupArray = $UserGroup.Split(",")
+$UserGroupArray=$UserGroupArray | %{$_.ToLower()} | select -Unique
+$Existingusers = Get-RDSessionCollectionConfiguration -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -UserGroup
+$ExtUniqUsers = $Existingusers.UserGroup 
+$usercount=$ExtUniqUsers.Count
+$ExtUniqUsers=$ExtUniqUsers | %{$_.ToLower()}| select -Unique
+$NewUserArray="";
+if($usercount -eq 1)
+{
+$NewUserArray = New-Object System.Collections.ArrayList
+$NewUserArray.Add($ExtUniqUsers)
+}
+else
+{
+$NewUserArray = (New-Object System.Collections.ArrayList(, $ExtUniqUsers))
+}
+foreach($u in $UserGroupArray)
+{
+$NewUserArray.Add($u)
+}
+$NewUserArray = $NewUserArray | select -Unique
+Set-RDSessionCollectionConfiguration -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -UserGroup $NewUserArray</value>
+  </data>
+  <data name="addwappcollection" xml:space="preserve">
+    <value>New-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -DisplayName $DisplayName -FilePath $FilePath</value>
+  </data>
+  <data name="configurecollection" xml:space="preserve">
+    <value>configurecollection</value>
+  </data>
+  <data name="disconnectAllSessions" xml:space="preserve">
+    <value>$disconnect = Get-RDUserSession -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName
+$disconnect | ForEach-Object {$_ | Disconnect-RDUser -Force}</value>
+  </data>
+  <data name="disconnectSelectedSession" xml:space="preserve">
+    <value>Disconnect-RDUser -HostServer $HostServer -UnifiedSessionID $UnifiedSessionID -Force</value>
+  </data>
+  <data name="getappusercollection" xml:space="preserve">
+    <value>Get-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName</value>
+  </data>
+  <data name="getcollectionconfig" xml:space="preserve">
+    <value>#Input: $CollectionName,$ConnectionBroker
+$collection = Get-WmiObject -Namespace "root\cimv2\rdms" -Query "SELECT * FROM Win32_RDSHCollection WHERE Name='${CollectionName}'" -ComputerName $ConnectionBroker -Authentication PacketPrivacy -ErrorAction Stop
+$shost = [Object[]](Get-WmiObject -Namespace "root\cimv2\rdms" -Query "SELECT * FROM Win32_RDSHServer WHERE CollectionAlias='$($collection.Alias)'" -ComputerName $ConnectionBroker -Authentication PacketPrivacy)
+[PSCustomObject] @{
+    "CollectionName" = $collection.Name;
+    "DisconnectedSessionLimitMin" = ($collection.GetInt32Property("DisconnectedSessionLimit").Value / 60000);
+    "BrokenConnectionAction" = [Microsoft.RemoteDesktopServices.Management.RDBrokenConnectionAction]$collection.GetInt32Property("BrokenConnectionAction").Value;
+    "TemporaryFoldersDeletedOnExit" = [System.Boolean]$collection.GetInt32Property("DeleteTempFoldersOnExit").Value;
+    "AutomaticReconnectionEnabled" = [System.Boolean]$collection.GetInt32Property("EnableAutomaticReconnection").Value;
+    "ActiveSessionLimitMin" = $collection.GetInt32Property("ActiveSessionLimit").Value / 60000;
+    "IdleSessionLimitMin" = $collection.GetInt32Property("IdleSessionLimit").Value / 60000}
+if ($shost.Count -gt 0) {[PSCustomObject] @{
+        "CollectionName" = $collection.Name;
+        "RelativeWeight" = $shost[0].GetInt32Property("RelativeWeight").Value;
+        "SessionLimit" = $shost[0].GetInt32Property("SessionLimit").Value;
+        "SessionHost" = $shost[0].Name}}
+else {[PSCustomObject] @{
+        "CollectionName" = $collection.Name;
+        "RelativeWeight" = 0;
+        "SessionLimit" = 0;
+        "SessionHost" = ""}} 
+</value>
+  </data>
+  <data name="getcollectionserver" xml:space="preserve">
+    <value>Get-RDSessionHost -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker</value>
+  </data>
+  <data name="getparameters" xml:space="preserve">
+    <value>Get-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias</value>
+  </data>
+  <data name="getsessioncollection" xml:space="preserve">
+    <value>$wmidata = Get-WmiObject -Namespace "root\cimv2\rdms" -Query "SELECT * FROM Win32_RDSHCollection" -ComputerName $ConnectionBroker -Authentication PacketPrivacy -ErrorAction SilentlyContinue
+$wmidata | ForEach-Object -Process {[PSCustomObject]@{Alias = $_.Alias;Description = $_.Description;Name = $_.Name}}| Write-Output</value>
+  </data>
+  <data name="getsessionhost" xml:space="preserve">
+    <value>
+      $TimeoutSeconds = 15;
+      $MaxJobCount = 5;
+      $where = @{$false = " WHERE CollectionAlias = '${CollectionAlias}'";$true = ""}[[String]::IsNullOrEmpty($CollectionAlias)]
+$h_query = "SELECT * FROM Win32_RDSHServer${where}";$s_query = "SELECT * FROM Win32_SessionDirectorySessionEx${where}";$Script:jobdata = @{}
+$states = @("STATE_ACTIVE","STATE_DRAIN","STATE_ONLINE","STATE_UNASSIGNED")
+function ProcessJobs {
+    Get-Job -State Completed | ForEach-Object {$d = $Script:jobdata[$_.Id]
+        Add-Member -InputObject $d -MemberType NoteProperty -Name Status -PassThru -Value $states[$d.Stat]
+        $_ | Remove-Job -Force}
+    Get-Job | Where-Object {((Get-Date) - $_.PSBeginTime).TotalSeconds -gt $TimeoutSeconds} | ForEach-Object {$d = $Script:jobdata[$_.Id]
+        Add-Member -InputObject $d -MemberType NoteProperty -Name Status -PassThru -Value "STATE_OFFLINE"
+        $_ | Remove-Job -Force}}
+$user_sessions = [System.Object[]](Get-WmiObject -ComputerName $ConnectionBroker -Authentication PacketPrivacy -Query $s_query)
+
+Get-WmiObject -Namespace "root\cimv2\rdms" -Query $h_query -ComputerName $ConnectionBroker -Authentication PacketPrivacy | ForEach-Object {
+    $start_job = $true
+    while ($start_job){ProcessJobs;if (([object[]](Get-Job)).Count -lt $MaxJobCount){
+        $newjob = Invoke-Command -AsJob -ComputerName $_.Name -ScriptBlock {$True}
+        #Added for displying OS Name --Viswa
+        $d = [PSCustomObject] @{Collection=$_.CollectionAlias;Name=$_.Name;Sessions=([object[]]($user_sessions|Where-Object HostServer -IEQ $_.Name)).Count;Type=([Object[]](Get-CimInstance Win32_OperatingSystem -ComputerName $_.Name).caption)}
+        if ([String]::IsNullOrEmpty($_.CollectionAlias)){Add-Member -InputObject $d -MemberType NoteProperty -Name Stat -Value 3}else{
+            switch ([int]$_.GetInt32Property("DrainMode").Value){
+                0 {Add-Member -InputObject $d -MemberType NoteProperty -Name Stat -Value 0;break;}#Yes
+                1 {Add-Member -InputObject $d -MemberType NoteProperty -Name Stat -Value 1;break;}#NotUntilReboot
+                2 {Add-Member -InputObject $d -MemberType NoteProperty -Name Stat -Value 1;break;}#No
+                default {Add-Member -InputObject $d -MemberType NoteProperty -Name Stat -Value 2;break;}}}
+        $Script:jobdata[$newjob.Id] = $d;$start_job = $false}}}
+while (([object[]](Get-Job)).Count -gt 0) {ProcessJobs}
+</value>
+  </data>
+  <data name="logOffAllSessions" xml:space="preserve">
+    <value>$disconnect = Get-RDUserSession -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName
+$disconnect | ForEach-Object {$_ | Invoke-RDUserLogoff -Force}</value>
+  </data>
+  <data name="logOffSelectedSession" xml:space="preserve">
+    <value>Invoke-RDUserLogoff -HostServer $HostServer -UnifiedSessionID $UnifiedSessionID -Force</value>
+  </data>
+  <data name="publishdesktop" xml:space="preserve">
+    <value> Set-RDRemoteDesktop -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker -ShowInWebAccess $true -Force</value>
+  </data>
+  <data name="removeappcollection" xml:space="preserve">
+    <value>Remove-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName  -Alias $Alias -Force</value>
+  </data>
+  <data name="removeappusercollection" xml:space="preserve">
+    <value>$data = Get-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias
+$data1 = $data.UserGroups | select -Unique
+$fullArray = (New-Object System.Collections.ArrayList(, $data1))
+$fullArray.Remove($UserGroup)
+Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias -UserGroups $fullArray</value>
+  </data>
+  <data name="removeuserapp" xml:space="preserve">
+    <value>removeuserapp</value>
+  </data>
+  <data name="removeusercollection" xml:space="preserve">
+    <value>$UserGroupArray = $UserGroup.Split(",")
+$UserGroupArray=$UserGroupArray | %{$_.ToLower()} | select -Unique
+$Existingusers = Get-RDSessionCollectionConfiguration -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -UserGroup
+$ExtUniqUsers = $Existingusers.UserGroup 
+$usercount=$ExtUniqUsers.Count
+$ExtUniqUsers=$ExtUniqUsers | %{$_.ToLower()}| select -Unique
+$NewUserArray="";
+if($usercount -eq 1)
+{
+$NewUserArray = New-Object System.Collections.ArrayList
+$NewUserArray.Add($ExtUniqUsers)
+}
+else
+{
+$NewUserArray = (New-Object System.Collections.ArrayList(, $ExtUniqUsers))
+}
+foreach($u in $UserGroupArray)
+{
+$NewUserArray.Remove($u)
+}
+$NewUserArray = $NewUserArray | select -Unique
+Set-RDSessionCollectionConfiguration -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -UserGroup $NewUserArray</value>
+  </data>
+  <data name="savecollectionconfig" xml:space="preserve">
+    <value>#Additional values
+if ($EndADisconnectedSession){$break_action = "Logoff"}else{$break_action = "Disconnect"}
+$auto_reconnect = $true
+$encrypt_level = "High"
+$relative_weight = 50
+$lba = Get-RDSessionHost -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker | ForEach-Object {New-Object Microsoft.RemoteDesktopServices.Management.RDSessionHostCollectionLoadBalancingInstance -ArgumentList $CollectionName,$relative_weight,$LoadBalancingConcurrentSessionsPerServer,$_.SessionHost}
+
+#Commit settings
+Set-RDSessionCollectionConfiguration –ActiveSessionLimitMin $ActiveSessionLmit -AutomaticReconnectionEnabled (-not $EndSession) –BrokenConnectionAction $break_action –ConnectionBroker $ConnectionBroker –CollectionName $CollectionName -DisconnectedSessionLimitMin $DisconnectFromSession -EncryptionLevel $encrypt_level –IdleSessionLimitMin $IdleSessionLimit -LoadBalancing $lba</value>
+  </data>
+  <data name="saveparameters" xml:space="preserve">
+    <value>Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $Alias -CommandLineSetting $CommandLineSetting -RequiredCommandLine $RequiredCommandLine -DisplayName $DisplayName -FilePath $FilePath -FolderName $FolderPath</value>
+  </data>
+  <data name="sendmessage" xml:space="preserve">
+    <value>$where = @('CollectionAlias','DomainName','HostServer','UserName','UnifiedSessionID') | ForEach-Object -Process {
+        $val = Get-Variable -Name $_ -ValueOnly
+        if (-Not [String]::IsNullOrEmpty($val)){"${_} = '${val}'"}}
+if ($where)
+{
+    $query = "SELECT * FROM Win32_SessionDirectorySessionEx WHERE $([String]::Join(" AND ",$where))"
+}
+else
+{
+    $query = "SELECT * FROM Win32_SessionDirectorySessionEx"
+}
+Get-WmiObject -Query $query -ComputerName $ConnectionBroker -Authentication PacketPrivacy -Impersonation Impersonate | ForEach-Object -Process {
+    Send-RDUserMessage -HostServer $_.HostServer -MessageTitle $MessageTitle -MessageBody $MessageBody -UnifiedSessionID $_.UnifiedSessionID
+}</value>
+  </data>
+  <data name="sendmessageserver" xml:space="preserve">
+    <value>Get-WmiObject -Query "SELECT * FROM Win32_SessionDirectorySessionEx WHERE HostServer = '${HostServer}'" -ComputerName $ConnectionBroker -Authentication PacketPrivacy -Impersonation Impersonate | ForEach-Object -Process {
+    Send-RDUserMessage -HostServer $_.HostServer -MessageTitle $MessageTitle -MessageBody $MessageBody -UnifiedSessionID $_.UnifiedSessionID
+}</value>
+  </data>
+  <data name="sendmessagesession" xml:space="preserve">
+    <value>Send-RDUserMessage -HostServer $HostServer -MessageTitle $MessageTitle -MessageBody $MessageBody -UnifiedSessionID $UnifiedSessionID</value>
+  </data>
+  <data name="shutdownserver" xml:space="preserve">
+    <value>if ([String]::IsNullOrEmpty($newconnection)){$newconnection = 'NotUntilReboot'}
+Set-RDSessionHost -SessionHost $SessionHost -NewConnectionAllowed $newconnection -ConnectionBroker $ConnectionBroker</value>
+  </data>
+  <data name="editwappcollection" xml:space="preserve">
+    <value>Set-RDRemoteApp -ConnectionBroker $ConnectionBroker -CollectionName $CollectionName -Alias $ApplicationName -DisplayName $DisplayName</value>
+  </data>
+  <data name="readEssentialInfo" xml:space="preserve">
+    <value>Import-Module AzureRM.Profile,AzureRM.Resources
+$encyPass="{password}"
+$azureuser="{username}"
+$secureKey = (33,4,2,3,56,34,254,222,1,1,2,23,42,54,33,233,1,34,2,7,6,5,35,43)
+$securepass= ConvertTo-SecureString -String $encyPass -Key $secureKey 
+
+$MyCredential= New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList($azureuser, $securepass)
+Login-AzureRmAccount -Credential $MyCredential
+Get-AzureRmResourceGroup {resourcegroupname}</value>
+  </data>
+  <data name="getusersandgroups" xml:space="preserve">
+    <value>$collectiondetails = Get-RDSessionCollectionConfiguration -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker -UserGroup
+$array = $collectiondetails.UserGroup
+#$v =$str.split('\',2)
+$users =@()
+foreach ($splt in $array)
+{
+$xyz=$splt.Split('\')
+$users+=($xyz[1])
+}    
+
+foreach($user in $users){
+
+    #Try getting the user
+    $ADUser = Get-ADUser -Filter {SamAccountName -eq $User}
+    #Test to see if the user exists
+    If($ADUser)
+    {
+        
+        $name = $ADUser.GivenName
+        $type = $aduser.ObjectClass
+        $count = 1 
+       # write-host "$username-$user-$u"
+        [PSCustomObject] @{
+        "ConnectionBroker"=$ConnectionBroker;
+        "CollectionName"=$CollectionName;
+        "Name"=$env:USERDOMAIN+"\"+$name;
+        "Type"=$type;
+        "Count"=$count;
+        }
+        
+    }
+   else
+   {
+    $adgroup =Get-ADGroup -Filter {samaccountname -eq $user}
+   if($adgroup)
+    {
+       
+      $name = $adgroup.name 
+      $type = $adgroup.ObjectClass
+      $count = (Get-ADGroupMember $adgroup.objectguid).count
+        if(!$count)
+           {
+             $count=1
+            }
+     # write-host "$groupname-$group-$count"
+      [PSCustomObject] @{
+        "ConnectionBroker"=$ConnectionBroker;
+        "CollectionName"=$CollectionName;
+        "Name"=$env:USERDOMAIN+"\"+$name;;
+        "Type"=$type;
+        "Count"=$count;
+        }
+    }
+  }
+}</value>
+  </data>
+  <data name="getusergroups" xml:space="preserve">
+    <value>$ADGroups=Get-ADGroup -Filter 'GroupCategory -eq "Security" -and GroupScope -ne "DomainLocal"'
+
+foreach($AdGroup in $ADGroups)
+{
+[PSCustomObject] @{
+        "UserGroupName"=$env:USERDOMAIN+"\"+$AdGroup.SamAccountName;
+        "Type"=$AdGroup.ObjectClass;
+        }
+}</value>
+  </data>
+  <data name="userlogin" xml:space="preserve">
+    <value>$ErrorActionPreference = "SilentlyContinue"
+ $UserName = $caUserName
+ $Password = $caPassword
+ # Get current domain using logged-on user's credentials
+ $CurrentDomain = "LDAP://" + ([ADSI]"").distinguishedName
+ $domain = New-Object System.DirectoryServices.DirectoryEntry($CurrentDomain,$UserName,$Password)
+
+if ($domain.name -eq $null)
+{
+ write-host "Authentication failed - please verify your username and password."
+[PSCustomObject] @{"Status"="fail";}
+}
+else
+{
+
+ write-host "Successfully authenticated with domain $domain.name"
+
+ $deploymentcheck=Get-ADGroupMember 'DeploymentAdmins' -Server $UserName.Split('\')[0]  |Where-Object { $_.objectClass -eq 'user' } |
+ Get-ADUser -Properties SamAccountName |Where-Object { $_.givenname -eq $UserName.Split('\')[1]} | select Name
+
+ $tenantcheck=Get-ADGroupMember 'CollectionAdmins' -Server $UserName.Split('\')[0] |Where-Object { $_.objectClass -eq 'user' } |
+ Get-ADUser -Properties SamAccountName |Where-Object { $_.givenname -eq $UserName.Split('\')[1]} | select Name
+
+ if($tenantcheck.Name)
+ {
+ $dmn = $UserName.Split("\")[0]
+#$dmn1 = $env:USERDOMAIN
+$cname = Get-ADComputer -Filter 'ObjectClass -eq "Computer"' -Server $dmn | Select -Expand DNSHostName
+#Import-Module Remotedesktop
+
+foreach($cbname in $cname)
+{
+ $cbroker = Get-RDWorkspace -ConnectionBroker $cbname
+ $cbrokername = $cbroker.WorkspaceID
+ if($cbname -eq $cbrokername)
+ {
+ [PSCustomObject]@{
+ "ConnectionBroker"=$cbroker.WorkspaceID;
+ "Status"="CollectionAdmin";
+ }
+ break
+ }
+}
+ }
+ elseif ($deploymentcheck.Name)
+ {
+ [PSCustomObject] @{"Status"="DeploymentAdmin";}
+ }
+ else
+ {
+ [PSCustomObject] @{"Status"="fail";} 
+ }
+}</value>
+  </data>
+</root>

@@ -1,0 +1,211 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign in to your account</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/CSS/deploymentStyles.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Site.css" rel="stylesheet" />
+    <link href="~/Content/CSS/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Content/JQuery/jquery.min.js"></script>
+    <script src="~/JsonData/data.js"></script>
+
+    @*jquery script*@
+    <script>
+        $(document).ready(function () {
+            $("#loginspinner").hide();
+
+            @*data.ApiUrl = '@ViewBag.ApiPath';
+            data.loginRedirect = '@ViewBag.LoginPath';*@
+
+            localStorage.setItem("data_ApiUrl", data.ApiUrl);
+            localStorage.setItem("data_loginRedirect", data.loginRedirect);
+
+            var rdsloginmodel = {
+                logindetails: null
+            };
+            $('#username,#password').keypress(function (e) {
+                var key = e.which;
+                if (key == 13)  // the enter key code
+                {
+                    $("#signinbtn").trigger("click");
+                }
+            });
+            $("#signinbtn").click(function () {
+                var username = $("#username").val();
+                var password = $("#password").val();
+                $("#ErrorLoginMassege").hide();
+                if(username.trim()=="" || password.trim() == "")
+                {
+                    $("#ErrorLoginMassege").show();
+                    $("#ErrorLoginMassege").text("The user name or password that you entered is not valid. Try typing it again.");
+                }
+                else if (username.indexOf("\\") <= -1)
+                {
+                    $("#ErrorLoginMassege").show();
+                    $("#ErrorLoginMassege").text("You must enter a valid domain name.");
+                }
+                else
+                {
+                    username = username.replace(/\\/g, "\\");
+                    var objCollection = null;
+                    objCollection = { credentials: { username: username, password: password } };
+                    var jsonData = JSON.stringify(objCollection);
+                    $.ajax({
+                        url: data.ApiUrl + "subscriptions/AuthoriseUser/" + data.ApiSubscriptionId,
+                        type: "POST",
+                        crossDomain: true,
+                        dataType: "json",
+                        data: jsonData,
+                        beforeSend: function () {
+                            $("#loginspinner").show();
+                        },
+                        success: function (res) {
+
+                            try {
+                                if (res[0].UserType != "fail") {
+                                    localStorage.setItem("IsValid", res[0].IsValid);
+                                    if (res[0].IsValid == true)
+                                    {
+                                        var userName = res[0].Name;
+                                        var UserNameMod = $("#username").val();
+                                        localStorage.setItem("LoginName", UserNameMod);
+                                        var domainNM = username.split(/\\/g)[0];
+                                        localStorage.setItem("DomainName", domainNM);
+                                        localStorage.setItem("CB", res[0].ConnectionBroker);
+                                        localStorage.setItem("UserType", res[0].UserType);
+                                        //  SetAuthCookie(userName, res[0].UserType);
+                                        localStorage.setItem("Notification", res[0].Message);
+                                        //localStorage.setItem("Notification", "Your trail expired");
+                                        $.ajax({
+                                            url: data.ApiUrl + "admin/GetDBCredentials",
+                                            type: "GET",
+                                            crossDomain: true,
+                                            dataType: "json",
+                                            success: function (res) {
+                                                var url1 = data.loginRedirect + '/Home/Dashboard';
+                                                localStorage.setItem("DashboardPage", url1);
+                                                if (res.serverName.trim() == "" || res.dbName.trim() == "" || res.userId.trim() == "" || res.password.trim() == "") {
+                                                    location.href = data.loginRedirect + "/Home/PreSettings";
+                                                }
+                                                else {
+                                                    location.href = url1;
+                                                }
+                                            },
+                                            error: function (error) {
+                                            },
+                                            complete: function () {
+                                            }
+                                        });
+
+                                    }
+                                    else
+                                    {
+                                        location.href = data.loginRedirect+"/Home/UpdateLicense";
+                                    }
+                                }
+                                else {
+                                    $("#ErrorLoginMassege").show();
+                                    $("#ErrorLoginMassege").text("The user name or password that you entered is not valid. Try typing it again.");
+                                }
+                            }
+                            catch (ex) {
+                                $("#ErrorLoginMassege").show();
+                                $("#ErrorLoginMassege").text("The user name or password that you entered is not valid. Try typing it again.");
+                            }
+
+                        },
+                        complete: function(){
+                            $("#loginspinner").hide();
+                        },
+                        error: function (error) {
+                            // Log any error.
+                            $("#ErrorLoginMassege").show();
+                            $("#ErrorLoginMassege").text("The user name or password that you entered is not valid. Try typing it again.");
+                            console.log("ERROR:", error);
+                        }
+                    });
+                }
+            });
+            function redirectTORemoteAppCollection(unm) {
+                var url1 = data.loginRedirect + '/Home/RemoteAppCollectionNew?lName=' + unm;
+                localStorage.setItem("DashboardPage", url1);
+                location.href = url1;
+            }
+            function redirectTODeployments(unm) {
+                var url1 = data.loginRedirect + '/Home/deployments?lName=' + unm;
+                localStorage.setItem("DashboardPage", url1);
+                location.href = url1;
+            }
+        });
+    </script>
+</head>
+<body class="bgColor">
+
+    <div class="login_container" style="background-image:url('https://secure.aadcdn.microsoftonline-p.com/dbd5a2dd-uymyxxfhpwrbckvwvlxle8radh6vkzaj7cwkqpqixg/appbranding/xwu0tugfjezw-vysvvomliot5uesx9wwph6sekilmfu/1033/heroillustration?ts=635492646418503328'); background-size:contain;">
+        @*<img class="" alt="" title="" src="~/Content/Images/loginBG.jpg" />*@
+    </div>
+
+    <div class="loginSection">
+        <div class="loginspinner" id="loginspinner" style="display:none;">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <table class="login_layout ht100p">
+            <tbody>
+                <tr>
+                    <td id="login_layout_center">
+                        <div class="login_inner">
+                            <div class="col-md-12 padLRnone loginLogo">
+                                <h3 class="loginheadings loginLogoHead">Remote Desktop Services Manager</h3>
+                                <h6 class="loginheadings loginLogoHead1">RemoteApp and Desktop Environment Management Portal</h6>
+                            </div>
+                            <div id="error">
+                                <span id="ErrorLoginMassege"></span>
+                            </div>
+                            <ul class="login_cred_container">
+                                <li class="logincred_container">
+
+                                    <div id="userid_container" class="login_textfield textfield">
+                                        <span class="input_field textfield">
+                                            <input id="username" class="login_textfield textfield" placeholder="Domain\Username" type="text" name="login" spellcheck="false" alt="Domain\Username" aria-label="User account" value="" autocomplete="off" aria-describedby="accessibleError">
+                                        </span>
+                                    </div>
+
+                                    <div id="password_container" class="login_textfield textfield opacityFull">
+                                        <span class="input_field textfield">
+                                            <input id="password" class="login_textfield textfield" placeholder="Password" spellcheck="false" aria-label="Password" alt="Password" type="password" name="passwd" value="" aria-describedby="accessibleError">
+                                        </span>
+                                    </div>
+
+                                    <button id="signinbtn" class="button button_primary">
+                                        Sign in
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="logininfolast">
+                                <hr class="hrLine" />
+                                <p class="logininfoText">
+                                    To protect against unauthorized access, your session will automatically time out after a period of inactivity. If your session ends, refresh your browser and sign in again.
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

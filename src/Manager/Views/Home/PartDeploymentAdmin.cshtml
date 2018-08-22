@@ -1,0 +1,1036 @@
+﻿<td>
+    <div class="dockContainer" id="divRrdDeployment">
+        <div class="dockSet">
+            <div class="dockicons">
+            </div>
+            <div class="dockHead">
+                <div class="img-responsive pull-left">
+                    <h4 style="float:left;">RDS Deployments</h4>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="createiclass" disabled="disabled"><img src="~/Content/Images/connect.png" />Connect</button></li>
+                <li><button class="docListBtn" id="dplysettingsshow" disabled="disabled"><i class="segoeSymbolIcon settingsSymbolIcon"></i>Settings</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="rddeploymentslist" style="height: calc(100vh - 175px);">
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtRDSDeployment" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div class="table-responsive" id="deploymentDiv">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td style="display:none;"><span class="Id"></span></td>
+                                <td>
+                                    <img src="~/Content/Images/deployment_21x21.png" />
+                                    <span class="name"></span>
+                                </td>
+                                <td><span class="FriendlyName"></span></td>
+                                <td style="vertical-align:middle" class="text-right">
+                                    <img src="~/Content/Images/arrowIcon.png" width="20" style="display:none;" class="width20 rightArrIconDeployAdmin" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="3">No Deployments to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="deploymentId">
+                    <thead>
+                        <tr>
+                            <th>Deployment Connection Broker</th>
+                            <th>Friendly Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="spinnerDiv" align="center">
+                    <div id="deploymentName" class="spinner" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_createdplymnt" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width400" id="createdplymnt">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_createdplymnt"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconDeployments"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Connect to RD Deployment</h4>
+                <label>Deployment Details</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <h5 class="listHead">Select to fill details</h5>
+            <ul class="supportList">
+                <li>
+                    <a href="#" id="CBIshow">
+                        <span>01</span>
+                        <label class="ACshowLabel">&nbsp;Connection Broker Information</label>
+                        <img src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon" id="createcbnarrow">
+                        <img id="cbntick" src="~/Content/Images/tick-icon.png" class="acceptIcon arrowIconCls" style="display: none;">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="ACshow">
+                        <span>02</span>
+                        <label class="ACshowLabel">&nbsp;Azure Credentials</label>
+                        <img id="createazarrow" src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                        <img id="aztick" src="~/Content/Images/tick-icon.png" class="acceptIcon arrowIconCls" style="display: none;">
+                    </a>
+                </li>
+            </ul>
+
+            <div class="Errormessage marginTB" style="display:none" id="errormessagedetunfilled">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p id="DplyDetailErrorMsgP">Please fill all the required fields.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dockFooter">
+            <button class="btn btn-default dockFooterElement" id="rdcreate">Save</button>
+        </div>
+
+    </div>
+</td>
+<td class="minimizeWindow" id="min_deploymentdetails" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width400" id="deploymentdetails">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_deploymentdetails"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconDeploymentdetails"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Connection Broker Information</h4>
+                <label>Deployment Details</label>
+            </div>
+        </div>
+
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm" id="CreateFormelementscb">
+                <div class="col-md-12 padLRnone">
+                    <h4 class="margin">Connection Broker Information</h4>
+                    <div class="form-group">
+                        <label for="rdcbFQDN"><span class="requiredAsterisk">*</span> RDS connection broker FQDN</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control" id="rdcbFQDN" maxlength="90" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" placeholder="Connection broker FQDN" style="float:left;">
+                            <span class="erroricon" id="Con_rdcbFQDN" style="display:none; ">
+                                !<span class="tooltiptextConnct">The value should not be empty. eg."broker.contoso.com"</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fndNameDeployment"><span class="requiredAsterisk">*</span> Friendly name</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control" id="fndNameDeployment" maxlength="30" placeholder="Friendly name" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" style="float:left;" />
+                            <span class="erroricon" id="Con_fndNameDeployment" style="display:none; ">
+                                !<span class="tooltiptext">The value should not be empty</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descDeoployment"><span class="requiredAsterisk">*</span> Description</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control" id="descDeoployment" maxlength="200" placeholder="Description" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" style="float:left;" />
+                            <span class="erroricon" id="Con_descDeoployment" style="display:none; ">
+                                !<span class="tooltiptext">The value should not be empty</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="CollectionAdminUsername"><span class="requiredAsterisk">*</span> Collection Admin UserName</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control" id="CollectionAdminUsername" maxlength="200" placeholder="CollectionAdminUserName" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" style="float:left;" />
+                            <span class="erroricon" id="Con_CollectionAdminUsername" style="display:none; ">
+                                !<span class="tooltiptext">The value should not be empty</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CollectionAdminPassword"><span class="requiredAsterisk">*</span> Collection Admin Password</label>
+                        <div class="fake-input">
+                            <input type="password" class="form-control" id="CollectionAdminPassword" maxlength="200" placeholder="CollectionAdminPassword"  style="float:left;" />
+                            <span class="erroricon" id="Con_CollectionAdminPassword" style="display:none; ">
+                                !<span class="tooltiptext">The value should not be empty</span>
+                            </span>
+                        </div>
+                    </div>*@
+
+                </div>
+            </form>
+            <div class="spinnerDiv" align="center">
+                <div id="createspinner" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="Errormessage" style="display:none" id="errormesgcreatedplymnt">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button class="btn btn-default dockFooterElement" id="btnokcbinfo">OK</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_azuredetails" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width400" id="azuredetails">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_azuredetails"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconazuredetails"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Azure Credentials</h4>
+                <label>Deployment Details</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm" id="CreateFormelementsac">
+                <div class="col-md-12 padLRnone marginTop5">
+                    <h4 class="margin">Azure Credentials</h4>
+                    <div class="form-group">
+                        <label><span class="requiredAsterisk">*</span> Username</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control margin" id="AzreLgnName" placeholder="Username"onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 64) || (event.keyCode > 90 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" style="float:left">
+                            <span class="erroricon" id="Conn_AzreLgnName" style="display:none;">
+                                !<span class="tooltiptextConnct">Please keep the username in email format.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="requiredAsterisk">*</span> Password</label>
+                        <div class="fake-input">
+                            <input type="password" placeholder="Password" class="form-control margin" id="AzrPassword" onKeypress="if (event.keyCode == 32) event.returnValue = false;" style="float:left">
+                            <span class="erroricon" id="Conn_AzrPassword" style="display:none;">
+                                !<span class="tooltiptext">The value should not be empty</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="requiredAsterisk">*</span> Azure Subscription ID</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control margin" id="AzreSubID" maxlength="36" placeholder="Azure Subscription ID" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" style="float:left">
+                            <span class="erroricon" id="Conn_AzreSubID" style="display:none;">
+                                !<span class="tooltiptext">The value should not be empty.</span>
+                            </span>
+                            <span class="erroricon" id="AzreSubIDMinLength" style="display:none;">
+                                !<span class="tooltiptextConnct"> Minimum length should be 36 characters.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="requiredAsterisk">*</span> Resource group name</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control margin" id="AzreResrceGrp" maxlength="90" placeholder="Resource group name" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 40) || (event.keyCode > 41 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 95) || (event.keyCode > 95 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" style="float:left">
+                            <span class="erroricon" id="Conn_AzreResrceGrp" style="display:none;">
+                                !<span class="tooltiptextResorceGroupName">
+                             The value should not be empty. Resource Group name can only include alphanumeric characters,periods,
+                              underscores,hyphens and parenthesis and cannot end in a period.
+                            </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="spinnerDiv" align="center">
+                <div id="createspinner" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="Errormessage" style="display:none" id="errormesageac">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="dockFooter" style="height:50px;">
+            <button class="btn btn-default dockFooterElement" id="btnokazinfo">OK</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_dplysettings" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width300" id="dplysettings">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_dplysettings"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="dplysettingsclosebtn"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/setting_50x50.png" class="bladeSettingImg">
+                <h4>Settings</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <h5 class="listHead">Support and Troubleshooting</h5>
+            <ul class="supportList">
+                <li>
+                    <a href="#" id="databaseConfigbtn">
+                        <p>
+                            <img src="~/Content/Images/db_image_ico.png" width="20" class="width20" />Database Configuration
+                            <img src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_dplydashboard" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="dplydashboardLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_dplydashboardCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer" id="dplydashboard">
+        <div class="customConfirmation" id="removeDeploymentConfirmationModal" style="display:none;">
+            <div class="customConfirmPopup">
+                <label>Remove deployment</label>
+                <p>Are you sure you want to remove the deployment  '<span id="deletedeploy"></span>'?</p><br />
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="removeDeploymentConfirmationYes">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="removeDeploymentConfirmationNo">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_dplydashboard"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="dplydashboardCloseBlade"><i class="segoeIcon CancelLegacy icon-white"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/deployment_50x50.png" class="bladeTitleImage">
+                <h4 style="float:left;" id="selectedconnectionbroker">  </h4>
+            </div>
+            <ul class="dockButtonList">
+                <li id="dplyscaleshow"><button class="docListBtn"><i class="segoeIcon cloudIcon"></i>Scale</button></li>
+                <li><button class="docListBtn" id="linkedresources"><i class="segoeIcon linkedresourceicon"></i>Linked Resources</button></li>
+                <li id="collectionRefreshDeploy"><button class="docListBtn"><i class="segoeIcon refreshIcon"></i>Refresh</button></li>
+                <li><button class="docListBtn" id="renameiclass" disabled="disabled"><i class="segoeSymbolIcon editSymbolIcon"></i>Rename</button></li>
+                <li><button class="docListBtn" id="removeiclass" disabled="disabled"><i class="segoeIcon deleteIcon"></i>Remove</button></li>
+                <li><button class="docListBtn" id="auditslogbtnDeployAdmin" disabled="disabled"><img title="Audit Logs" alt="Audit Logs" src="~/Content/Images/auditIcon.png" class="pull-left"/>Audit Logs</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+        <div class="essentialDiv" id="deplydemo">
+            <div class="essentialHead">
+                <h5 class="pull-left"><a href="#" data-toggle="collapse" data-target="#demo">Essentials <i class="segoeIcon upArrowIcon" id="deplyuparrowicon"></i></a></h5>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="essentialContent collapse in" id="essentialContentDeployAdmin">
+                <div class="spinnerDiv" align="center">
+                    <div class="tileLoader"></div>
+                </div>
+                <div class="col-md-12 padLRnone" id="essential_DataDeployAdmin">
+                    <div class="col-md-6 padLRnone">
+                        <div class="col-md-12 padLRnone" my-class="copyLabel">
+                            <p>Resource group</p>
+                            <label id="text_ResourceGroupNameDeployAdmin" class="colorLabel"></label>
+                            <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" style="display:none" />
+                        </div>
+                        <div class="col-md-12 padLRnone" my-class="copyLabel">
+                            <p>Deployment Type </p>
+                            <label id="text_LocationDeployAdmin"></label>
+                            <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" style="display:none;" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 padRnone">
+                        <div class="col-md-12 padLRnone" my-class="copyLabel">
+                            <p>Client URL</p>
+                            <p>
+                                <a href="" id="anchClientURlhref" style="overflow-wrap: break-word;" target="_blank" class="anchorSelect">
+                                    <label id="text_ClientURLDeployAdmin" class="anchorLabel"></label>
+                                </a>
+                                <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" style="display:none;" />
+                            </p>
+                        </div>
+                        <div class="col-md-12 padLRnone" my-class="copyLabel">
+                            <p>SubscriptionID </p>
+                            <label id="text_SubscriptionIDDeployAdmin"></label>
+                            <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" style="display:none;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dockContentBg dockEssential dockcontening-height" id="rdstile">
+            <div class="tileContainer">
+                <div class="col-xs-12 pad20">
+                    <div class="col-xs-6 padLnone">
+                        <div class="tileDivforCollections" id="dplycollections">
+                            <div id="lblData_Collection">
+                                <b>Collections</b>
+                                <a href="#" class="AncImage">
+                                    <img src="~/Content/Images/collection_icon_100x100.png" width="80" height="55" class="CollectionIconCls">
+                                </a>
+                                <p><span class="count" data-bind="text:dplyCollectionCount" id="appCountSpanDeployAdmin"></span>Collection(s)</p>
+                            </div>
+                            <div class="spinnerDiv" align="center">
+                                <div id="tilesNoSpinner_Collection" class="tileLoader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 padRnone padLnone">
+                        <div class="tileDivforVirtualMachines" id="dplyservers">
+                            <div id="lblData_VM">
+                                <b>Virtual Machines</b>
+                                <a href="#" class="AncImage">
+                                    <img src="~/Content/Images/vm_100x100.png">
+                                </a>
+                                <p><span class="count" data-bind="text:dplyServerCount" id="vmServerCount"></span>Virtual Machine(s)</p>
+                            </div>
+                            <div class="spinnerDiv" align="center">
+                                <div id="tilesNoSpinner_VM" class="tileLoader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 ">
+                        <ul data-bind="foreach:NameviewModel">
+                            <li>
+                                <span data-bind="text:Name"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="deleteCollectionFailureModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="deleteCollectionFailureSpan">x</span>
+                    <p>Delete Collection Failed</p>
+                </div>
+            </div>
+            <div id="deleteCollectionSuccessModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="deleteCollectionSuccessSpan">x</span>
+                    <p>Collection Deleted Succesfully</p>
+                </div>
+            </div>
+        </div>
+        <div class="spinnerDiv" align="center">
+            <div id="collectionRemoveSpinner" class="spinner" style="display: none;"></div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_linkedresourcesblade" style="display:none">
+    <a><label class="lblcolldashbrdmin"></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="linkedresourcesbladeLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_closeIconlinkedresources"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer" id="linkedresourcesblade">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_linkedresourcesblade"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconlinkedresources"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/LinkedResource_50x50.png" class="bladeLinkedImg" />
+                <h4>Linked Resources</h4>
+                <label>Linked Resources Details of <span id="friendlynameforll"></span></label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="table-responsive">
+                <div id="linkedresourcemain">
+                    <div class="rowTemplate" style="display:none;">
+                        <table class="dataRow">
+                            <tbody>
+                                <tr>
+                                    <td><span class="Name"></span></td>
+                                    <td><span class="Roles"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="blankRow">
+                            <tbody>
+                                <tr class="nodata">
+                                    <td colspan="3">No Linked Resource to display</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <table class="table" id="linkedresourcestable">
+                        <thead>
+                            <tr>
+                                <th>NAME</th>
+                                <th>ROLES</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="spinnerDiv" align="center">
+                    <div id="linkedResourcespinner" class="spinner" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_renamedplymnt" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width300" id="renamedplymnt">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_renamedplymnt"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconRenameDeployment"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Rename Deployment</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="friendlyname"><span class="requiredAsterisk">*</span> Friendly name</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control" id="friendlyname" maxlength="30" placeholder="Enter Friendly Name" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" style="float:left;">
+                        <span class="erroricon" id="frnderroricon" style="background-color: rgb(232, 17, 35); width:25px; height:23px; font-size:18px; color:#FFFFFF; position:absolute; padding:0px 10px 5px 10px; right:0px; display:none;">
+                            !<span class="tooltiptext">Please provide new friendly name</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descDeployment">Description</label>
+                    <input disabled type="text" class="form-control" id="descDeployment" placeholder="Enter Description">
+                </div>
+            </form>
+            <div class="Errormessage" style="display:none;" id="Errormessagerenamedplymnt">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button class="btn btn-default dockFooterElement" id="rdrename">OK</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_auditlogsid" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer mWidth900" id="auditlogsid" style="display: block;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_auditlogsid"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_auditlogsid" is-maxmimized="no"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="auditlogclosebtn"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/audit-icon.PNG" class="bladeAuditIconImg" />
+                <h4>Audit Logs</h4>
+                <label>Show the audit logs</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter padLRnone" style="height: calc(100vh - 168px);">
+            <label class="listHead listheadLabel"><i class="segoeIcon searchIcon"></i>Customize your Audit Log View</label>
+            @*<h5 class="listHead">
+                Date (dd-mm-yyyy)
+            </h5>
+            <ul id="logFileList"></ul>*@
+            <div class="ErrorLogPad errorLogTop">
+                <div class="col-md-12 padNone">
+                    
+                    <div class="col-md-12 padLRnone margin">
+                        <div class="col-md-3 padLRnone">
+                            <div class="form-group">
+                                <span>From date:</span>
+                                <div class='input-group date' id='datetimepickerFilterFrom'>
+                                    <input type='text' class="form-control" placeholder="From" id="fromdateAL"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 padLRnone marLeft">
+                            <div class="form-group">
+                                <span>To date:</span>
+                                <div class='input-group date' id='datetimepickerFilterTo'>
+                                    <input type='text' class="form-control" placeholder="To"  id="todateAL"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Function:</span>
+                            <form class="search-container">
+                                <input type="text" id="searchFunctionbar" filter="txtErrorTable" placeholder="Search for Function name...">
+                                <a id="searchAnchorEL" href="#"></a>
+                            </form>
+                        </div>
+                        </div>
+                    <div class="col-md-12 padLRnone">
+                        <botton type="button" id="errorLogButtonApply" class="btn btnCommonActive">Apply</botton>
+                        <botton type="button" id="errorLogButtonReset" class="btn btnCommonReset">Reset</botton>                  
+                    </div>
+                </div>
+                </div>
+                <div class="ErrorLogPad">
+
+                <div class="table">
+                    <div id="logList">
+                        <div class="rowTemplate" style="display:none;">
+                            <table class="dataRow">
+                                <tbody>
+                                    <tr>
+                                        <td><span class="Date"></span></td>
+                                        @*<td><span class="DeploymentName"></span></td>*@
+                                        <td><span class="Function"></span></td>
+                                        <td>
+                                            @*<span class="infoIconCls"></span>*@
+                                            @*<span class="warningIconCls"></span>*@
+                                            <span class="errorIconCls"></span>
+                                            @*<span class="successIconCls"></span>*@
+                                            <span class="ErrorText anchorLabel errorLabel width380"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="blankRow">
+                                <tbody>
+                                    <tr class="nodata">
+                                        <td colspan="4">No error logs to display</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <label class="listHead listheadTitle">Result View</label>
+                        <table class="table" id="ErrorLogTable">
+                            <colgroup>
+                                <col width="25%" />
+                                @*<col width="25%" />*@
+                                <col width="25%" />
+                                <col width="50%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Date & Time</th>
+                                    @*<th>Deployment Name</th>*@
+                                    <th>Function</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="spinnerDiv" align="center">
+                    <div id="errorLogSpinner" class="spinner" style="display: none;"></div>
+                </div>
+            </div>
+            <div id="errorMSGContainer">
+                <p class="errorMSGLabel" style="cursor:pointer;">Error Message<i class="segoeIcon CancelLegacy pull-right" id="closemsgerror"></i></p>
+                
+                <p id="onlyErrorText" style=""></p>
+            </div>
+            </div>
+         
+    </div>
+</td>
+
+
+
+<td class="minimizeWindow" id="min_databaseConfigBlade" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width300" id="databaseConfigBlade" style="display: block;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_databaseConfigBlade"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="databaseConfigclosebtn"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/db_image_ico.png" class="bladeDBImg" />
+                <h4>Database configuration</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm">
+                <div id="formelementsdatabaseConfig">
+                    <div class="form-group">
+                        <label for="servername"><span class="requiredAsterisk">*</span> Server name</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control pull-left" id="servername">
+                            <span class="erroricon" id="Exc_servername" style="display:none;">
+                                !<span class="tooltiptext">Please provide server name</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="databaseNm"><span class="requiredAsterisk">*</span>Database name</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control pull-left" id="databaseNm">
+                            <span class="erroricon" id="Exc_databaseNm" style="display:none;">
+                                !<span class="tooltiptext">Please provide database name</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userId"><span class="requiredAsterisk">*</span>User ID</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control pull-left" id="userId">
+                            <span class="erroricon" id="Exc_userId" style="display:none;">
+                                !<span class="tooltiptext">Please provide user id</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><span class="requiredAsterisk">*</span>Password</label>
+                        <div class="fake-input">
+                            <input type="password" class="form-control pull-left" id="dbpassword">
+                            <span class="erroricon" id="Exc_dbpassword" style="display:none;">
+                                !<span class="tooltiptext">Please provide password</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="Errormessage" style="display:none;" id="ErrormessagedatabaseConfigBlade">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="databaseSave" class="btn btn-default dockFooterElement">Save</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_dplyserversshow" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="dplyserverLoader2">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_dplyServersCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer width900" id="dplyserversshow">
+        <div class="customConfirmation" id="removeServerConfirmationModal" style="display:none;">
+            <div class="customConfirmPopup">
+                <label>Remove server</label>
+                <p>Are you sure you want to remove the server? </p>
+                <div class="spinnerDiv" align="center">
+                    <div id="serverRemoveSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="removeServerConfirmationYes">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="removeServerConfirmationNo">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_dplyserversshow"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_dplyserversshow" is-maxmimized="no"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="dplyServersCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div class="img-responsive pull-left">
+                    <h4 class="pull-left">RD Virtual Machines</h4>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="AddRDServerClickDeployeAdmin"><i class="segoeIcon addIcon"></i>Add</button></li>
+                <li><button class="docListBtn" id="RemoveRDServerDeployeAdmin"><i class="segoeIcon deleteIcon"></i>Remove</button></li>
+                <li><button class="docListBtn" id="enablerdserverDeployeAdmin"><i class="segoeIcon linkEnable"></i>Enable</button></li>
+                <li><button class="docListBtn" id="disablerdserverDeployeAdmin"><i class="segoeIcon linkDisable font15"></i>Disable</button></li>
+                <li><button class="docListBtn" id="ImportSHSDeployeAdmin"><i class="segoeIcon importUser"></i>Import SHS</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="rdsserversDeployAdmin">
+            <div class="table-responsive">
+                <div id="serverlistselect">
+                    <div class="rowTemplate" style="display:none;">
+                        <table class="dataRow">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img alt="" title="" src="~/Content/Images/vm_21x21.png" />
+                                        <span class="Name"></span>
+                                    </td>
+                                    <td><span class="Status"></span></td>
+                                    <td><span class="Collection"></span></td>
+                                    <td><span class="Type"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="blankRow">
+                            <tbody>
+                                <tr class="nodata">
+                                    <td colspan="4">No Virtual Machines to display</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <table class="table" id="serverlistselectidDeployAdmin">
+                        <thead>
+                            <tr>
+                                <th>RD Server</th>
+                                <th>Status</th>
+                                <th>Collection</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="RDServerSpinnerDeployAdmin" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="spinnerDiv" align="center">
+                <div id="enableSpinner" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="spinnerDiv" align="center">
+                <div id="disableSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_divImportSHS" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer mAutoWidth300" id="divImportSHS" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_divImportSHS"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconImportSHS"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Import Session Host Server</h4>
+                <label>Session Host Server with red(<span class="red">*</span>) color indicates already added user.</label>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="table-responsive">
+                <label for="browse_file"><span class="red">*</span>Browse csv file</label>
+
+                <input type="file" id="fileUserdeployadmin" class="form-control">
+                <table class="table" id="imported_SHS">
+                    <thead>
+                        <tr>
+                            <th>Session Host Server</th>
+                        </tr>
+                    </thead>
+                    <tbody id="imported_SHS_body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="btnokImportSHS" class="btn btn-default dockFooterElement" disabled>Create All</button>
+            <button id="btnokImportSHSSelected" class="btn btn-default dockFooterElement" disabled>Create Selected</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_deployserversadd" style="display:none;">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer mWidth" id="deployserversadd">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_deployserversadd"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconDeploymentsrdserver"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Add RD Server</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="rdcbaddFQDN"><span class="red">*</span>RDS connection broker FQDN</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control" id="rdcbaddFQDN" placeholder="Connection broker FQDN" maxlength="90" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" style="float:left;">
+                        <span class="erroricon" id="rdcbadderroricon" style="display:none;">
+                            !<span class="tooltiptextDplyVM">The value should not be empty. eg."broker.contoso.com"</span>
+                        </span>
+                       
+                    </div>
+                </div>
+            </form>
+            <div class="Errormessage" id="Errormessagedeployserversadd" style="display:none">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button class="btn btn-default dockFooterElement" id="rdaddserver">Add RD Server</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_dplyburst" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width400" id="dplyburst">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_dplyburst"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="dplyburstclosebtn"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Manage Cloud Scale</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="form-group" id="allInputFields">
+                <div>
+                    <h4 class="margin font12">Scale status</h4>
+                </div>
+                <div class="btn btn-group" id="btnSwitch">
+                    <button id="yesScalestatusDeployAdmin" class="btn">On</button>
+                    <button id="noScalestatusDeployAdmin" class="btn activeCls">Off</button>
+                </div>
+                <div class="spinnerDiv" align="center">
+                    <div id="scaleSaveSpinner" class="spinner" style="display:none;"></div>
+                </div>
+                <div id="formelementsscale">
+                    <h4 class="margin" style="font-size:12px;">Azure Credentials</h4>
+                    <label><span class="requiredAsterisk">*</span> Azure Username</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control margin pull-left" id="scaleName" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 64) || (event.keyCode > 90 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" disabled>
+                        <span class="erroricon" id="Exc_scaleName" style="display:none;">
+                            !<span class="tooltiptextConnct">Please keep the username in email format.</span>
+                        </span>
+                    </div>
+                    <label><span class="requiredAsterisk">*</span> Password</label>
+                    <div class="fake-input">
+                        <input type="password" placeholder="password" class="form-control margin pull-left" id="scalePassword" onkeypress="if (event.keyCode == 32) event.returnValue = false;" disabled>
+                        <span class="erroricon" id="Exc_scalePassword" style="display:none;">
+                            !<span class="tooltiptext">The value should not be empty</span>
+                        </span>
+                    </div>
+                    <label><span class="requiredAsterisk">*</span> Azure subscription ID</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control margin pull-left" id="scaleAzureSubscriptionName" maxlength="36" placeholder="Azure Subscription ID" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" disabled>
+                        <span class="erroricon" id="Exc_scaleAzureSubscriptionName" style="display:none;">
+                            !<span class="tooltiptext">The value should not be empty.</span>
+                        </span>
+                        <span class="erroricon" id="scaleAzureSubscriptionNameMinLength" style="display:none;">
+                            !<span class="tooltiptextConnct">Minimum length should be 36 characters.</span>
+                        </span>
+                    </div>
+                    <label><span class="requiredAsterisk">*</span> Resource group name</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control margin pull-left" id="scaleresourceGroupName" maxlength="90" placeholder="Resource group name" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 40) || (event.keyCode > 41 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 95) || (event.keyCode > 95 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" disabled>
+                        <span class="erroricon" id="Exc_scaleresourceGroupName" style="display:none;">
+                            !<span class="tooltiptextResorceGroupName">The value should not be empty. Resource Group name can only include alphanumeric characters,periods,
+                            underscores,hyphens and parenthesis and cannot end in a period.</span>
+                        </span>
+                    </div>
+                    <br />
+                    <label>Created date(DD/MM/YYYY)</label>
+                    <p><span class="margin" id="scaleCreatedDate"></span></p>
+
+                    <label>Last modified date(DD/MM/YYYY)</label>
+                    <p><span class="margin" id="scaleModifiedDate"></span></p>
+                </div>
+            </div>
+            <div class="Errormessage" style="display:none" id="errorscalemessage">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p id="errorscalemessageText">Please fix the errors on this page before continuing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button href="#" class="btn btn-default dockFooterElement" id="scaleBtnSave" disabled>Save</button>
+        </div>
+    </div>
+</td>
+<script>
+    $(document).ready(function () {
+        $("#errormessagedetunfilled").show();
+
+        $('#datetimepickerFilterFrom').datetimepicker();
+        $('#datetimepickerFilterTo').datetimepicker({
+            useCurrent: true
+        });
+        $("#datetimepickerFilterFrom").on("dp.change", function (e) {
+            $('#datetimepickerFilterTo').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepickerFilterTo").on("dp.change", function (e) {
+            $('#datetimepickerFilterFrom').data("DateTimePicker").maxDate(e.date);
+        });
+    })
+</script>

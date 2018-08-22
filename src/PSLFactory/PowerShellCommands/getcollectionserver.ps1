@@ -1,0 +1,1 @@
+﻿Get-RDSessionHost -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker

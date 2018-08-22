@@ -1,0 +1,1 @@
+﻿Disconnect-RDUser -HostServer $HostServer -UnifiedSessionID $UnifiedSessionID -Force

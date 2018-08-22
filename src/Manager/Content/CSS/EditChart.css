@@ -1,0 +1,148 @@
+﻿#EditChartContainer
+{position:fixed; width:385px; height:100%; background-color:#282D32; top:40px; right:0px; bottom:0px; display:none;
+ }
+.EditChartBody ul {
+    float:left;
+    margin-top:10px;
+}
+#EditChartContainer.FeedBackContent h2{
+        margin-top: 8px;
+}
+
+#typeofconnection,#recordName{
+    color:white !important;
+    font-size: 11px !important;
+}
+.lblstyle{
+     color: white;
+    float: left;
+}
+.EditChartBody ul li{
+    min-width:60px;
+    line-height: 13px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    border: 1px solid #3d4247;
+    margin-right: -1px;
+}
+.inputRadio-hidden {position: absolute;left: -9999px;}
+input[name=chartradio] + label{min-width:60px; cursor:pointer; color:#fff; font-size:12px; padding:3px; margin-bottom:0;}
+input[name=chartradio]:checked + label {
+    background-color:#00bcf2;
+    color:#fff;
+    min-width:60px;
+}
+.checkboxChart{width:100%; float:left;color:white; margin-top: 40px;border-bottom: 1px solid #53575b; }
+
+label#recordName{
+        margin-bottom: 24px;
+}
+label.lblstyle{
+        padding-top: 10px;
+}
+.btnEstiChartOkPosition{
+    position: absolute;
+    width: 100%;
+    bottom: 60px;
+    padding: 0 6%;
+    left: 0;
+    float: left;
+    padding-top: 61px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: #53575b;
+}
+#btnEstiChartOk{
+   width: 90px !important;
+    margin-top: -35px;
+    float: left;
+    background-color: #00bcf2;
+    border: 1px solid #00bcf2;
+    font-size: 12px;
+    color: #fff;
+    padding: 2px 12px 3px 12px !important;
+    height: 23px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    border-top-width: 1px;
+    border-top-style: solid;
+    line-height:18px;
+    border-color: #53575b;
+}
+/*.checkboxChart .btn-group{width:100%; float:left; display:block; margin-bottom:15px;}
+.checkboxChart .btn-group .btn{padding: 1px 4px !important; background:transparent; border-color:#3ba7d9}
+.checkboxChart .btn-group .btn span.glyphicon {opacity: 0; font-size:12px; font-weight:normal;}
+.checkboxChart .btn-group .btn.active span.glyphicon {opacity: 1;}
+.checkboxChart .btn-group > .btn:first-child{ margin-left: 0;margin-right: 10px;}*/
+
+
+
+.checkbox {
+  padding:10px 0 10px 20px; border-top:1px solid #64686b; margin-top:0 !important; margin-bottom:0px !important;}
+  .checkbox label {
+    display: inline-block;
+    position: relative;
+    padding-left: 5px;
+    margin-left:5px;
+  }
+    .checkbox label::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      left: 0;
+      margin-left: -20px;
+      border: 1px solid #64686b;
+      border-radius:0;
+      background-color: #3d4247; }
+    .checkbox label::after {
+      display: inline-block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 0;
+      top: 0;
+      margin-left: -20px;
+      padding-left: 3px;
+      padding-top: 1px;
+      font-size: 11px;
+      color: #fff; }
+  .checkbox input[type="checkbox"] {
+    opacity: 0; }
+    .checkbox input[type="checkbox"]:focus + label::before {
+      outline: thin dotted;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px; }
+    .checkbox input[type="checkbox"]:checked + .CheckMarkLegacy::after {
+        content: "\E001";
+      font-family: 'Segoe MDL2 Assets';
+      color:#fff;
+      font-weight:600;
+      box-shadow: none;
+    text-shadow: none;
+    outline: none;
+       }
+    .checkbox input[type="checkbox"]:disabled + label {
+      opacity: 0.65; }
+      .checkbox input[type="checkbox"]:disabled + label::before {
+        background-color: #eeeeee;
+        cursor: not-allowed;
+      }
+  .checkbox.checkbox-circle label::before {
+    border-radius: 50%; }
+  .checkbox.checkbox-inline {
+    margin-top: 0; }
+
+.checkbox-primary input[type="checkbox"]:checked + label::before {
+  background-color: #428bca;
+  border-color: #428bca; }
+.checkbox-primary input[type="checkbox"]:checked + label::after {
+  color: #fff; }
+.checkbox:hover{background-color: #53575b;}

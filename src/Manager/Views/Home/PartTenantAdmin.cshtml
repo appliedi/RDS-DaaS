@@ -1,0 +1,2773 @@
+﻿<td class="minimizeWindow" id="min_appsuserslist" style="display:none">
+    <a><label></label></a>
+</td>
+<td class="valignTop">
+    <div class="emptyBladeLoader" style="display:none;" id="appsuserslistLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_closeIconRDSCollectionBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer appsuserslistContainer mWidth700" id="appsuserslist">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_appsuserslist"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_appsuserslist" is-maxmimized="no"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="closeIconRDSCollectionBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div class="img-responsive pull-left">
+                    <h4 class="pull-left">RDS Collections</h4>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <ul class="dockButtonList">
+                <li><button id="addCollection" class="docListBtn"><i class="segoeIcon addIcon"></i>Create</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="myviewCollectionDiv" style="height: calc(100vh - 140px);">
+            <div class="rowTemplate" style="display:none;">
+                <table class="dataRow">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/collection_icon_21x21.png" />
+                                <span class="Name"></span>
+                            </td>
+                            <td><span class="CollectionType"></span></td>
+                            <td><span class="Size"></span></td>
+                            <td><span class="Burst"></span></td>
+                            <td><span class="Description"></span></td>
+                            <td class="text-right valignMiddle">
+                                <img src="~/Content/Images/arrowIcon.png" width="20" style="display:none;" class="rightArrIcon width20" />
+                            </td>
+                            <td style="display:none"><span class="NavName"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="blankRow">
+                    <tbody>
+                        <tr class="nodata">
+                            <td colspan="6">No RDS Collection to display</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtRDSCollection" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div id="tblRDSCollection">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>TYPE</th>
+                            <th>SIZE</th>
+                            <th>SCALE</th>
+                            <th>DESCRIPTION</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="collectionLoadSpinner" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="spinnerDiv" align="center">
+                <div id="refreshCollectionSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer rdshomecontainer" id="RDSHomeDiv">
+        <div class="row">
+            <div class="dockSet">
+                <div class="dockHead">
+                    <div class="img-responsive pull-left">
+                        <img src="~/Content/Images/remoteapp-icon.PNG" />
+                    </div>
+                    <div>
+                        <h4>RDS Collection Admin</h4>
+                        <label>Microsoft</label>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="dockContent dockWithFooter">
+                <p>Quickly deploy and manage powerful applications and services. Simply upload your applications image and Microsoft Azure
+                 handles the scale, from provisioning and load balancing to health monitoring for continous availability. 
+                 Your applications are backed by an industry leading 99.9% monthly SLA.</p>
+                <p>Use Azure RemoteApp to:</p>
+                <ul class="defaultList">
+                    <li>Focus on your applications</li>
+                    <li>Build modern cloud architectures</li>
+                    <li>Auto-scale to optimize cost and performance</li>
+                </ul>
+                <div class="mediaIcons">
+                    <a href="#"><img src="~/Content/Images/twitter-icon.PNG" /></a>
+                    <a href="#"><img src="~/Content/Images/fb-icon.PNG" /></a>
+                    <a href="#"><img src="~/Content/Images/in-icon.PNG" /></a>
+                    <a href="#"><img src="~/Content/Images/yammer-icon.PNG" /></a>
+                    <a href="#"><img src="~/Content/Images/googleplus-icon.PNG" /></a>
+                    <a href="#"><img src="~/Content/Images/mail-icon.PNG" /></a>
+                </div>
+                <div class="table-responsive remoteTable">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Publisher</td>
+                                <td>Microsoft</td>
+                            </tr>
+                            <tr>
+                                <td>Useful Links</td>
+                                <td>
+                                    <a href="#">Documentation</a>
+                                    <a href="#">How to deploy Azure RemoteApp</a>
+                                    <a href="#">Pricing Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_CreateCollectionBlade" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="createcollectionLoader" style="display:none;">
+    </div>
+    <div class="dockContainer CreateCollectionBladeContainer" id="CreateCollectionBlade">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_CreateCollectionBlade">
+                    <img class="window-minimize" src="~/Content/Images/minimize.png">
+                </a>
+                <a href="#" id="CreateCollectionBladeCloseIcon"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Create Collection</h4>
+                <label>This wizard guides you through the process of creating a RDS collection.</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div>
+                <form id="BasicConfigForm" class="dockForm">
+                    <div class="form-group" id="subscriptionID">
+                        <label for="subscription"> Subscription</label><br />
+                        <input type="text" id="txtSubscription" disabled class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name"><span class="requiredAsterisk">*</span> &nbsp;Name</label>
+                        <div class="fake-input">
+                            <input type="text" class="form-control pull-left" id="txtName" name="txtName" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) | (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" maxlength="30" placeholder="Enter Collection Name" />
+                            <span class="erroricon" style="display:none;">
+                                !<span class="tooltiptext">The value should not be empty</span>
+                            </span>
+                        </div>
+                        <span class="textvalidation" cust-id="spanValidation" id="nameValidation">Enter Name</span>
+                        <br />
+                    </div>
+                    <div class="form-group" id="subscriptionID">
+                        <br />
+                        <label for="name">Description</label><br />
+                        <textarea rows="3" class="width100P" name="txtDescription" id="txtDescription" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" maxlength="200" placeholder="Add Description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <ul class="remoteCollectionList">
+                    <li>
+                        <a href="#" id="selectapp" class="borderTop">
+                            <img id="serversArrowIcon" src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                            <img id="RDSHrighticondone" src="~/Content/Images/tick-icon.png" class="acceptIcon arrowIconCls" />
+                            <span class="requiredAsterisk">*</span><label class="VMLabel">&nbsp;&nbsp;Virtual Machine(s)</label>
+                            <div class="VMLabel">
+                                <span class="fxc-selector-displayText">&nbsp;&nbsp;&nbsp;&nbsp;Click here to add RD Virtual Machine(s)</span>
+                            </div>
+                            <p id="selectserverCount"></p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="apps">
+                            <img id="appsArrowIcon" src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                            <img class="acceptIcon arrowIconCls" id="AddUserrighticondone" src="~/Content/Images/tick-icon.png" />
+                            <label class="VMLabel">User(s)</label>
+                            <div class="VMLabel">
+                                <span class="fxc-selector-displayText">Click here to add user(s)</span>
+                            </div>
+                            <p id="userCount"></p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <br />
+
+            <div class="spinnerDiv" align="center">
+                <div id="CreateCollectionsSpinner" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="Errormessage" style="display:none">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="dockFooter">
+            <button id="btnCreateCreateCollection" class="btn btn-default dockFooterElement">Create</button>
+            <br />
+            <span class="textvalidation" id="collectionCreationValidation">Please provide all required paremeters</span>
+            <span class="textvalidation" id="collectionCreationSuccessValidation">Collection Created successfully</span>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_appUser" style="display:none">
+    <a><label class="lblcolldashbrdmin"></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="appUserLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#"  id="LoaderClose_appUserCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer appUserContainer appUserCls" id="appUser">
+        <div class="customConfirmation" id="deleteCollectionConfirmationModal" style="display:none;">
+            <div class="customConfirmPopup">
+                <label>Delete Collection</label>
+                <p>Are you sure you want to delete '<span id="deletcollctionconfirmmodal"></span>' collection ?</p>
+                <div class="spinnerDiv" align="center">
+                    <div id="collectionRemoveSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteCollectionConfirmationYes">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="deleteCollectionConfirmationNo">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="dockSet">
+            <div class="dockicons">
+                    <a href="#" class="minclass" id="btnMin_appUser"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                    <a href="#" id="appUserCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/collection_icon_100x100.png" class="bladeTitleImg">
+                <h4 id="selectedCollectionName"></h4>
+                <label>RDS Collections</label>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="settingsshow"><i class="segoeSymbolIcon settingsSymbolIcon"></i>Settings</button></li>
+                <li><button class="docListBtn" id="deletecollection"><i class="segoeIcon deleteIcon"></i>Delete</button></li>
+                <li><button class="docListBtn" id="collectionrefresh"><i class="segoeIcon refreshIcon"></i>Refresh</button></li>
+                <li><button class="docListBtn" id="collectionmonitor" data-toggle="tooltip" data-placement="top"><i class="segoeIcon SpeedHigh font17"></i>Monitor</button></li>
+            </ul>
+        </div>
+        <div class="dockWithFooter" id="essentialajaxget" style="height: calc(100vh - 140px);">
+            <div class="essentialDiv" id="rmappdemo">
+                <div class="essentialHead">
+                    <h5 class="pull-left"><a href="#" data-toggle="collapse" data-target="#demo">Essentials<i class="segoeIcon upArrowIcon" id="rmpuparrowicon"></i></a></h5>
+                    <h4 class="pull-right"><a href="#"></a><a href="#"></a></h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="essentialContent collapse in"  id="essentialContentTenantAdmin">
+                    <div class="spinnerDiv" align="center">
+                        <div class="tileLoader"></div>
+                    </div>
+                    <div class="col-md-12 padLRnone" id="essential_Data">
+                        <div class="col-md-6 padLnone">
+                            <div class="col-md-12 padLRnone" my-class="copyLabel">
+                                <p>Resource group</p>
+                                <label id="text_ResourceGroupName" class="labelColor"></label>
+                                <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" />
+                            </div>
+                            <div class="col-md-12 padLRnone" my-class="copyLabel">
+                                <p>Deployment Type </p>
+                                <label id="text_Location"></label>
+                                <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 padLRnone">
+                            <div class="col-md-12 padLRnone" my-class="copyLabel">
+                                <p>Client URL</p>
+                                <p>
+                                    <a href="" id="anchClientURlhrefTenant" style="white-space: nowrap;" target="_blank" class="anchorSelect">
+                                        <label id="text_ClientURL" class="anchorLabel"></label>
+                                        
+                                    </a>
+                                    <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" />
+                                </p>
+                            </div>
+                            <div class="col-md-12 padLRnone" my-class="copyLabel">
+                                <p>SubscriptionID </p>
+                                <label id="text_SubscriptionID"></label>
+                                <img src="~/Content/Images/copyIcon.png" class="tooltiplink copyTooltip" title="Click to copy" />
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="dockContentBg marTop10">
+                <div class="tileContainer">
+                    <div class="col-xs-12 pad20">
+                        <table width="100%" class="width100P">
+                            <tr>
+                                <td colspan="3">
+                                    <div class="col-xs-12 tileDiv htCls" id="appsdiv">
+                                        <div class="tileLoader" style="display:none;"></div>
+                                        <a href="#">
+                                            <b class="text-left">Apps</b>
+                                            <p class="text-left"><span class="count" id="appCountSpan"></span>Published</p>
+                                            <div class="iconsDiv" id="imagesDiv">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33.3%" class="width33P">
+                                    <div class="tileDiv" id="appUsersTile">
+                                        <a href="#" class="AncImage">
+                                            <b>Users</b>
+                                            <img src="../Content/Images/users_100x100.png" />
+                                            <p><span class="count" id="appUsersSpan"></span>User(s)</p>
+                                        </a>
+                                        <div class="tileLoader" style="display:none;"></div>
+                                    </div>
+                                    <div class="tileDiv" id="appGroupTile">
+                                        <a href="#" class="AncImage">
+                                            <b>Groups</b>
+                                            <img src="../Content/Images/group_50x50.png" />
+                                            <p><span class="count" id="appGroupSpan"></span>Group(s)</p>
+                                        </a>
+                                        <div class="tileLoader" style="display:none;"></div>
+                                    </div>
+                                </td>
+                                <td width="33.3%" class="width33P">
+                                    <div class="tileDiv" id="activesessionshow">
+                                        <div class="tileLoader" style="display:none;"></div>
+                                        <a href="#" class="AncImage">
+                                            <b>Sessions</b>
+                                            <img src="../Content/Images/sessions_100x100.png" />
+                                            <p><span class="count" id="sessionCount"></span>Session(s)</p>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td width="33.2%" class="width32P">
+                                    <div class="tileDiv" id="rdservershow">
+                                        <div class="tileLoader" style="display:none;"></div>
+                                        <a href="#" class="AncImage">
+                                            <b>Virtual Machines</b>
+                                            <img src="../Content/Images/vm_100x100.png" />
+                                            <p><span class="count" id="serverCountSpan"></span>Virtual Machine(s)</p>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="extrawidth"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_divCollectionMonitor" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer serversshowContainer mWidth800" id="divCollectionMonitor" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_divCollectionMonitor"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_divCollectionMonitor" is-maxmimized="no"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="CollectionMonitorCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div class="img-responsive pull-left">
+                    <i class="segoeIcon SpeedHigh"></i>
+                </div>
+                <div>
+                    <h4 id="CollectionMonitorHeader"></h4>
+                    <label>Monitor number of session host active/running of the selected collection.</label>
+                </div>
+                </div>
+            <ul class="dockButtonList"></ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="dockContent dockWithFooter" id="CollectionMonitorBody" style="height: calc(100vh - 140px) !important;">
+            <div>
+                <div class="NofActSHS">
+                    <h5 style="font-weight:bold;">Number of Session Host Servers & Sessions</h5>
+                    <p>
+                        <input type="button" id="editBtn" search="past hour" value="Edit" />
+                    </p>
+                    <div id="NoOfActiveSHS">
+                    </div>
+                    <div class="spinnerDiv" align="center">
+                        <div id="CollectionMonitorSpinner" class="spinner" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_serversshow" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="serversshowLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_ServersCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer serversshowContainer mWidth800" id="serversshow">
+        <div class="customConfirmation" id="removeSessionHostServerConfirmationModal" style="display:none;">
+            <div class="customConfirmPopup">
+                <label>Remove RD Virtual Machine</label>
+                <p>Are you sure you want to delete the server '<span id="removesessionSpan"></span>' ? </p>
+                <div class="spinnerDiv" align="center">
+                    <div id="rdsessionhostserverremoveSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="removeSessionHostServerConfirmationYes">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="removeSessionHostServerConfirmationNo">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_serversshow"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_serversshow" is-maxmimized="no">
+                    <img class="window-maximize" src="~/Content/Images/maximize.png">
+                </a>
+                <a href="#" id="ServersCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div class="img-responsive pull-left">
+                </div>
+                <div>
+                    <h4 class="pull-left">RD Virtual Machines</h4>
+                    <label></label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="AddRDServerClick" disabled><i class="segoeIcon addIcon"></i>Add RD VM</button></li>
+                <li><button class="docListBtn" id="RemoveRDServerclick" disabled><i class="segoeIcon deleteIcon"></i>Remove RD VM</button></li>
+                <li><button class="docListBtn" id="enablerdservertenant" disabled><i class="segoeIcon linkEnable"></i>Enable</button></li>
+                <li><button class="docListBtn" id="disablerdservertenant" disabled><i class="segoeIcon linkDisable font19"></i>Disable</button></li>
+                <li><button class="docListBtn" id="sendmessageVMclick" disabled data-toggle="tooltip" data-placement="top"><i class="segoeIcon msgIcon"></i>Messages</button></li>
+                <li><button class="docListBtn" id="menuMonitorSHS" disabled data-toggle="tooltip" data-placement="top"><i class="segoeIcon SpeedHigh font17"></i>Monitor</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="rdsservers">
+            <div class="table-responsive">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img alt="" title="" src="~/Content/Images/vm_21x21.png" />
+                                    <span class="Name padLeft10"></span>
+                                </td>
+                                <td><span class="Status"></span></td>
+                                <td><span class="Type"></span></td>
+                                <td><span class="Sessions"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="3">No RD Virtual Machine to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="serverlistselectid">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Session</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="RDServerSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_divSHSMonitor" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer serversshowContainer mWidth900" id="divSHSMonitor" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_divSHSMonitor"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_divSHSMonitor" is-maxmimized="no"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+
+                <a href="#" id="SHSMonitorCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div class="img-responsive pull-left">
+                    <i class="segoeIcon SpeedHigh"></i>
+                </div>
+                <div>
+                    <h4 id="SHSMonitorHeader">SHS Monitor</h4>
+                    <label>Monitoring Session Host Server by Sessions, CPU and Memory Utilization, Disk Read/Write, and Network In/Out</label>
+                </div>
+            </div>
+            <ul class="dockButtonList">
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="dockContent dockWithFooter" id="SHSMonitorBody" style="height:calc(100vh - 140px)">
+            <div>
+                <div class="SHSMonitorBody">
+                    <h5 style="font-weight:bold">Active Sessions</h5>
+                    <p>
+                        <input type="button" id="ActiveSHSBtn" search="past hour" value="Edit" />
+                    </p>
+                    <div id="activeSessionMockup">
+                    </div>
+                    <div class="spinnerDiv" align="center">
+                        <div id="activeSessionMockupSpinner" class="spinner" style="display: none;"></div>
+                    </div>
+                    <h5 style="font-weight:bold">CPU Utilization (%)</h5>
+                    <p>
+                        <input type="button" id="CPUutizBtn" search="past hour" value="Edit" />
+                    </p>
+                   <div id="NoOfActivatedSessions">
+                   </div>
+                    <div class="percentageCPUCls">
+                        <lable id="percentageCPUCls">PERCENTAGE CPU</lable><br />
+                        <label id="currentCPUStatus"></label>
+                    </div>
+                    <div class="spinnerDiv" align="center">
+                        <div id="SHSMonitorSpinner" class="spinner" style="display: none;"></div>
+                    </div>
+                    <h5 style="font-weight:bold">Disk read and write (Bytes)</h5>
+                    <p>
+                        <input type="button" id="diskRandWBtn" search="past hour" value="Edit" />
+                    </p>
+                    <div id="DiskReadWriteGraph">
+                    </div>
+                    <div class="spinnerDiv" align="center">
+                        <div id="DiskReadWriteGraphSpinner" class="spinner" style="display: none;"></div>
+                    </div>
+
+                    <h5 style="font-weight:bold">Network in and out (Bytes)</h5>
+                    <p>
+                        <input type="button" id="networkInOutBtn" search="past hour" value="Edit" />
+                    </p>
+                    <div id="NetworkInOutGraph">
+                    </div>
+                    <div class="spinnerDiv" align="center">
+                        <div id="NetworkInOutGraphSpinner" class="spinner" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_sendmessageVM" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer sendmessageContainer" id="sendmessageVM">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_sendmessageVM"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="messageCloseBladeVM"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+
+            <div class="dockHead">
+                <div>
+                    <h4>Send message</h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" aria-labelledby="tab1" id="tab1" aria-hidden="false">
+                    <div class="dockContent tabs-dockContent dockContentulli">
+                        <ul class="remoteCollectionList">
+                            <li>
+                                <span>
+                                    <lable><span class="requiredAsterisk">*</span>Virtual Machine :</lable><br />
+                                    <select class="form-control" id="selectedUserNameVM">
+                                        <option value="0"></option>
+                                        <option value="1">All available servers</option>
+                                    </select>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" aria-labelledby="tab2" id="tab2" aria-hidden="true">
+                    <div class="dockContent tabs-dockContent">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <label><span class="requiredAsterisk">*</span> Title</label>
+            <div class="form-group fake-input">
+                <input type="text" class="form-control titleMsg pull-left" id="msgtitleVM" placeholder="Title">
+                <span class="erroricon" style="display:none;" id="rdservererroricon">
+                    !<span class="tooltiptext">The value should not be empty</span>
+                </span>
+            </div>
+            <label><span class="requiredAsterisk">*</span> Message</label>
+            <textarea class="form-control msg-textarea" rows="5" maxlength="200" id="commentVM" onKeypress="if ((event.keyCode > 32 && event.keyCode < 44) || (event.keyCode > 44 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;"></textarea>
+            <br />
+            <br />
+            <div class="tab_main tab-mainbtn">
+                <button id="delivermessageclickVM" class="btn btn-default dockFooterElement">Send message</button>
+            </div>
+
+            <div class="spinnerDiv" align="center">
+                <div id="sendMessageSpinner" class="spinner" style="display: none;"></div>
+            </div>
+
+            <div class="Errormessage" style="display:none" id="errorvmmessage">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_settings" style="display:none">
+    <a><label class="lblcolldashbrdmin"></label></a>
+</td>
+<td>
+    <div class="settingsLoader" style="display:none;">
+    </div>
+    <div class="dockContainer settingsContainer" id="settings">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_settings"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="settingsccrlosebtn"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/setting_50x50.png" class="bladeSettingImg">
+                <h4>Settings</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <h5 class="listHead">General</h5>
+            <ul class="supportList">
+                <li>
+                    <a href="#" id="brusticon">
+                        <img src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                        <p><img src="~/Content/Images/azure_scale_vm_22x22.png" />Scale</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="ScaleCollectionSettings">
+                        <img src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                        <p><img src="~/Content/Images/collection_config_icon.png" />Collection Settings</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="ScaleClientSettings">
+                        <img src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                        <p><img src="~/Content/Images/usersetting_22x22.png" />Client Settings</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="userprofileicon">
+                        <img src="~/Content/Images/arrowIcon.png" class="arrowIconCls rightArrIcon">
+                        <p><img src="~/Content/Images/profile_disk_22x22.png" />User Profile Disks</p>
+                    </a>
+                </li>
+             </ul>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_brustconfig" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="scaleLoader width400" style="display:none;">
+    </div>
+    <div class="dockContainer brustconfigContainer width450" id="brustconfig" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_brustconfig"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="btnbrustconfigcloseicon"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/azure_scale_vm_50x50.png" class="bladeSettingImg">
+                <h4>Scale settings</h4>
+            </div>
+
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="form-group">
+                <p class="brustconfigCls">Scale status</p>
+                <div class="btn btn-group" id="btnSwitch">
+                    <button id="yesScalestatus" class="btn">On</button>
+                    <button id="noScalestatus" class="btn activeCls">Off</button>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-info panelNoShadow">
+                    <div class="form-group">
+                        <p class="brustconfigCls">Peak usage time</p>
+                    </div>
+                    <div class="panel-body padTopNone padLRnone">
+
+                        @*<div class="Errormessage" style="display: block;margin-top:10px; margin-bottom: 10px;font-size:11px;" id="ScaleInfoMessageDiv">
+                            <div class="errorimagecontainer">
+                                <img src="~/Content/Images/info-icon.PNG" class="exclamationmesgicon" />
+                            </div>
+                            <div class="errormesgcontainer">
+                                <p style="font-size: 12px;">The UTC time is automatically adjusted to Local Time Zone.</p>
+                            </div>
+                        </div>*@
+                        <p><img style="height:15px;margin-bottom:1px;" src="~/Content/Images/infoIcon.png" /> The UTC time is automatically adjusted to Local time zone.</p>
+
+                        <form id="scaleformvalids">
+                            <div class="form-group">
+                                <div class="col-sm-12 padLRnone">
+                                    <label for="" class="control-label">Start time (24HR format HH:MM)</label>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <input type="text" id="peakstarttime" class="col-sm-12 form-control">
+                                    <span class="erroricon" id="Scale_peakstarttime" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <label for="" class="control-label">End time (24HR format HH:MM)</label>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <input type="text" id="peakendtime" class="col-sm-12 form-control">
+                                    <span class="erroricon" id="Scale_peakendtime" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <label for="" class="control-label">Log off wait time (In minutes)</label>
+                                 </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <input type="text" id="logoffwaittime" onkeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 127) || (this.value.length == 0 && event.keyCode == 48) || (event.keyCode == 32)) event.returnValue = false;" class="col-sm-12 form-control" maxlength="4">
+                                    <span class="erroricon" id="Scale_logoffwaittime" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <label for="" class="control-label padLnone">Session threshold per CPU</label>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <input type="text" id="tshpercpu" onkeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 127) || (this.value.length == 0 && event.keyCode == 48) || (event.keyCode == 32)) event.returnValue = false;" class="col-sm-12 form-control" maxlength="4">
+                                    <span class="erroricon" id="Scale_tshpercpu" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <label for="" class="control-label padLnone">Minimum server count</label>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <input type="text" id="minservercount" onkeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 127) || (this.value.length == 0 && event.keyCode == 48) || (event.keyCode == 32)) event.returnValue = false;" class="col-sm-12 form-control" maxlength="4">
+                                    <span class="erroricon" id="Scale_minservercount" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="spinnerDiv" align="center" style="display:none">
+                <div class="tileLoader"></div>
+            </div>
+            <div class="Errormessage" style="display:block" id="CollScaleErrorMsg">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dockFooter">
+            <input type="submit" id="btnScaleSetting" class="btn btn-default dockFooterElement" value="Save" />
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_collectionsettings" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width450" id="collectionsettings" style="display: none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_collectionsettings"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="collectionconfigcloseicon"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/setting_50x50.png" class="bladeSettingImg">
+                <h4>Collection Settings</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="panel-group width410">
+                <div class="panel panel-info panelNoShadow">
+                    <div class="panel-body">
+                        <form>
+                            <div class="col-sm-12 padLRnone">
+                                <div class="form-group">
+                                    <p class="brustconfigCls">Server time-out setting</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 padLRnone">
+                                <label for="" class="control-label">End disconnected session</label>
+                            </div>
+                            <div class="col-sm-12 padLRnone">
+                                <div class="col-sm-8 padLnone">
+                                    <div class="arrow-select">
+                                        <select id="Enddisconnecteddd" name="" class="input-small form-control">
+                                            <option>Never</option>
+                                            <option>Minutes</option>
+                                            <option>Hours</option>
+                                            <option>Days</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-4 padLRnone" style="display:none" id="disconnectedsessionvaluesdiv">
+                                    <div class="arrow-select">
+                                        <select id="disconnectedsessionvalues" name="" class="input-small form-control"></select>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div class="col-sm-12 padLRnone">
+                                <label for="" class="control-label">
+                                    Active session limit
+                                </label>
+                            </div>
+                            <div class="col-sm-12 padLRnone">
+                                <div class="col-sm-8 padLnone">
+                                    <div class="arrow-select">
+                                        <select id="activesessionlimitdd" name="" class="input-small form-control">
+                                            <option>Never</option>
+                                            <option>Minutes</option>
+                                            <option>Hours</option>
+                                            <option>Days</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-4 padLRnone" style="display:none" id="activesessionvaluesdiv">
+                                    <div class="arrow-select">
+                                        <select id="activesessionvalues" name="" class="input-small form-control"></select>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div class="col-sm-12 padLRnone">
+                                <label for="" class="control-label">
+                                    Idle session limit
+                                </label>
+                            </div>
+                            <div class="col-sm-12 padLRnone">
+                                <div class="col-sm-8 padLnone">
+                                    <div class="arrow-select">
+                                        <select id="idlesessionlimitdd" name="" class="input-small form-control">
+                                            <option>Never</option>
+                                            <option>Minutes</option>
+                                            <option>Hours</option>
+                                            <option>Days</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-4 padLRnone" style="display:none" id="idlesessionvaluesdiv">
+                                    <div class="arrow-select">
+                                        <select id="idlesessionvalues" name="" class="input-small form-control"></select>
+                                    </div>
+                                    </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 padLRnone">
+                                        <div class="form-group">
+                                            <p class="brustconfigCls">Session limit reached</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 padLRnone">
+                                        <div class="form-group">
+                                            <input type="radio" id="disconnectsessionradio" name="sessionparam" />Disconnect from the session
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input type="checkbox" id="automaticreconnection" />Enable automatic reconnection
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 padLRnone">
+                                        <div class="form-group">
+                                            <input type="radio" id="endsessionradio" name="sessionparam" />End the session
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 padLRnone">
+                                    <div class="form-group padLRnone">
+                                        <div class="form-group">
+                                            <p class="brustconfigCls">Load balancing</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 padLRnone">
+                                        <label for="" class="control-label">
+                                            Concurrent sessions per server
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-12 padLRnone">
+                                        <input type="text" id="sessionsperserver" onkeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 127) || (this.value.length == 0 && event.keyCode == 48) || (event.keyCode == 32)) event.returnValue = false;" class="col-sm-12 form-control"maxlength="4">
+                                        <span class="erroricon" id="ConcurrentSessions" style="display:none;">
+                                            !<span class="tooltiptext">The value should not be empty</span>
+                                        </span>
+                                        <span class="erroricon" id="ConcurrentSession" style="display:none;">
+                                            !<span class="tooltiptext">This value should not start with 0</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <div class="spinnerDiv" align="center" style="display:none">
+                <div class="tileLoader"></div>
+            </div>
+            <div class="Errormessage" style="display:none" id="errorcollectionsettings">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dockFooter">
+            <input type="submit" id="btnCollectionSettings" class="btn btn-default dockFooterElement" value="Save" />
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_ClientSettings" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer width450" id="ClientSettings" style="display: none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_ClientSettings"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="ScaleClientSettingscloseicon"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/usersettings_50x50.png" class="bladeSettingImg">
+                <h4>Client Settings</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="panel-group width410">
+                <div class="panel panel-info panelNoShadow">
+                        <div class="panel-body padNone">
+                                <form>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 padLRnone">
+                                            <div class="form-group">
+                                                <p class="brustconfigCls">Enable redirection for the following</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input type="checkbox" id="AudioVideoPlayback" />Audio and Video Playback
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" id="AudioRecording" />Audio recording
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" id="SmartCard" />Smart Cards
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" id="PlugAndPlay" />Plug and Play Devices
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" id="Drive" />Drives
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" id="Clipboard" />Clipboard
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 padLRnone">
+                                            <div class="form-group">
+                                                <p class="brustconfigCls marTop5">Printers</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input type="checkbox" id="clientprinterredirection" />Allow client printer redirection
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" id="defaultprintingdevice" />Use the client default printing device
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="checkbox" id="rdeasyprint" />Use the 'Remote Desktop Easy Print' print driver first
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 padLRnone">
+                                            <div class="form-group">
+                                                <p class="brustconfigCls marTop5">Monitors</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 padLRnone">
+                                            
+                                                <label for="" class="control-label">
+                                                    Maximum number of redirected monitors
+                                                </label>
+                                            </div>
+                                        <div class="col-sm-12 padLRnone">
+                                            <input type="text" id="redirectedmonitors" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 127) || (event.keyCode == 32) || (this.value.length == 0 && event.keyCode == 48) || (this.value.length == 0 && event.keyCode >32 && event.keyCode >57 && event.keyCode == 48)) event.returnValue = false;" class="col-sm-12 form-control" maxlength="2" value="1" min="1" max="16">
+                                            <span class="erroricon" id="redirectedmonitorstxt" style="display:none;">
+                                                !<span class="tooltiptext">The value should not be empty</span>
+                                            </span>
+                                            <span class="erroricon" id="redirectedmonitor" style="display:none;">
+                                                !<span class="tooltiptext">This value should not start with 0</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                    </div>
+            </div>
+            <div class="spinnerDiv" align="center" style="display:none">
+                <div class="tileLoader"></div>
+            </div>
+            <div class="Errormessage" style="display:none" id="errorclientsettings">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="dockFooter">
+            <input type="submit" id="btnClientSettings" class="btn btn-default dockFooterElement" value="Save" />
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_userprofileconfig" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="userprofiledisksLoader" style="display:none;">
+    </div>
+    <div class="dockContainer userprofileconfigContainer" id="userprofileconfig">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_userprofileconfig"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="userprofilecloseicon"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/profile_disk_50x50.png" class="bladeSettingImg">
+                <h4>User Profile Disk</h4>
+            </div>
+
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="form-group">
+                <label for="ENABLE USER PROFILE DISKS" class="enableProfile">User profile disks status </label>
+                <div class="btn btn-group" id="btnSwitch">
+                    <button id="yesUSERPROFILEDISKS" class="btn">Enable</button>
+                    <button id="noUSERPROFILEDISKS" class="btn activeCls">Disable</button>
+                </div>
+                <div class="Userprofilereadonly">
+                    <label for="USER PROFILE DISKS LOCATION"><span class="requiredAsterisk">*</span> User profile disks location </label>
+                    <div class="fake-input">
+                        <input id="UserProfileLocationtxt" type="text" class="form-control titleMsg pull-left" onKeypress="if ((event.keyCode >= 32 && event.keyCode < 45) || (event.keyCode > 45 && event.keyCode < 58) || (event.keyCode > 58 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 92) || (event.keyCode > 92 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;"">
+                        <span class="erroricon" id="profiledisklocationicon" style="display:none;">
+                            !<span class="tooltiptext">The value should not be empty</span>
+                        </span>
+                        
+                        <span class="erroricon" id="profiledisklocationicontxt" style="display:none;">
+                            !<span class="tooltiptext">Please Enter Valid Location</span>
+                        </span>
+                    </div>
+                    <label for="MAXIMUMSIZE IN GB"><span class="requiredAsterisk">*</span> Maximum size in GB</label>
+                    <div class="fake-input">
+                        <input id="UserProfileGBtxt" type="text" class="form-control titleMsg pull-left" placeholder="0" onKeypress="if ((event.keyCode == 32) || (event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57) || (this.value.length == 0 && event.keyCode == 48) || (event.keyCode == 46)) event.returnValue = false;" maxlength="7">
+                        <span class="erroricon" id="profilemaximumsize" style="display:none;">
+                            !<span class="tooltiptext">The value should not be empty</span>
+                        </span>
+                        <span class="erroricon" id="profilemaximumsize0" style="display:none;">
+                            !<span class="tooltiptext">The value should not start with 0</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="spinnerDiv" align="center">
+                    <div id="userProfileShowSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="spinnerDiv" align="center">
+                    <div id="collecionConfigSpinner" class="spinner" style="display: none;"></div>
+                </div>
+            </div>
+            <div class="Errormessage" style="display:none" id="errorprofiledisk">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dockFooter">
+            <input type="submit" id="userprofilebtn" class="btn btn-default dockFooterElement" value="Save" />
+        </div>
+
+    </div>
+</td>
+<td>
+    <div class="logsLoader" style="display:none;">
+    </div>
+    <div class="dockContainer auditlogsconfigContainer" id="auditlogsconfig">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="auditlogsclosebtn"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Logs</h4>
+            </div>
+        </div>
+        <div class="dockHead">
+            <label class="dockHeadLabel">Link to the external source will be provided << TBD >> </label>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer updatesappsimagesContainer" id="updatesappsimages">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="UpdatecloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead"  >
+                <h4>Update apps image</h4>
+                <label>Updating an image will require users to be signed out. Configure options below</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <h5>Current image:</h5>
+            <p>seifhost03082016</p>
+            <ul class="remoteCollectionList">
+                <li id="selectappsimagesclick">
+                    <a href="#" class="active">
+                        <div>
+                            <p>STEP 1: SELECT NEW APPS IMAGE</p>
+                            <p id="selectedName">Not yet selected</p>
+                        </div>
+                        <i class="segoeIcon rightArrowIcon"></i>
+                    </a>
+                </li>
+                <li id="signoutuserclick">
+                    <a href="#">
+                        <div>
+                            <p>STEP 2: SIGN OUT UESRs</p>
+                            <p id="selecteduser">Default: 60 mi notification</p>
+                        </div>
+                        <i class="segoeIcon rightArrowIcon"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="dockFooter">
+            <a href="#" class="btn btn-disable">Update</a>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_appsdivshow" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="appsdivshowLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_addDivCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer appsdivshowContainer mAutoWidth600" id="appsdivshow">
+
+        <div class="customConfirmation" id="unpublishappConfirmationModal" style="display: none;">
+            <div class="customConfirmPopup">
+                <label>Unpublish selected app</label>
+                <p>Are you sure you want to unpublish '<span id="unpublishselectedSpan"></span>' ? </p>
+                <div class="spinnerDiv" align="center">
+                    <div id="unpublishAppSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="UnpublishConfirmationYes">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="UnpublishConfirmationNo">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_appsdivshow"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" class="maxclass" id="btnMax_appsdivshow" is-maxmimized="no"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="addDivCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/app_50x50.png" class="bladeAppImg"/>
+                <h4>Apps</h4>
+                <label> APPS:  PUBLISHED</label>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="publishApp123"><i class="segoeIcon publishIcon"></i>Publish</button></li>
+                <li><button class="docListBtn" id="addcustomappsclick"><i class="segoeIcon publishUsingPathIcon "></i>Publish Path</button></li>
+                <li><button class="docListBtn" id="publishDesktopApps"><i class="segoeIcon desktopIcon "></i>Publish Desktop</button></li>
+                <li><button class="docListBtn" id="unpublishselectedapp"><i class="segoeIcon unPublish"></i>Unpublish</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" style="height: calc(100vh - 140px);">
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtAppsFilter" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+
+            <div class="table-responsive" id="appStatusDiv">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td><span class="IconContents"></span></td>
+                                <td style="display:none"><span class="Alias"></span></td>
+                                <td><span class="Name"></span></td>
+                                <td><span class="segoeIcon circledBgAcceptIcon fontGreen"></span><span class="Status"></span></td>
+                                <td><span class="Path"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="4">No Apps to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="appsTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>App</th>
+                            <th>Status</th>
+                            <th>Path</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="spinnerDiv" align="center">
+                    <div id="unpublishSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="spinnerDiv" align="center">
+                    <div id="AppsSpinner" class="spinner" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_adddesktopapp" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="adddesktopappLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_adddesktopapp"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer desktopappcontainer mmWidth450" id="adddesktopapp">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_adddesktopapp"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="adddesktopclose"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead"  >
+                <div class="img-responsive pull-left">
+                    <h4 class="pull-left">Publish Start Menu Programs</h4>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="desktopappsdisplay">
+            <div class="table-responsive">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td><span class="IconContentsImage"></span></td>
+                                <td style="display:none"><span class="IconContents"></span></td>
+                                <td style="display:none"><span class="Alias"></span></td>
+                                <td><span class="Name"></span></td>
+                                <td><span class="Path"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr>
+                                <td colspan="3"><span class="Name">No Apps to display</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="desktopapplistselect">
+                    <table class="table" id="desktopapplistselectid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>App</th>
+                                <th>Path</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="DesktopAppSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="btnokdesktopapp" disabled class="btn btn-default dockFooterElement">OK</button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer selectappsimagesContainer" id="selectappsimages">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#"><i class="glyphicon glyphicon-pushpin icon-white"></i></a>
+                <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="closeIconSelectAppImages"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div>
+                    <h4>Select Apps Image</h4>
+                    <label>RemoteApp apps are deployed using a VHD that includes windows.</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="infoDiv">
+                <div class="infoImg pull-left">
+                    <img src="~/Content/Images/info-icon.PNG" />
+                </div>
+                <div class="infoContent">
+                    <p>Need to create a new custom apps image? Click here for step-by-step instructions</p>
+                </div>
+            </div>
+            <br /><br />
+            <div class="table-responsive addactive act-rmv">
+                <table class="table appImgTable">
+                    <thead>
+                        <tr>
+                            <th>My Images</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach:apps_tab1 ">
+                        <tr data-bind="click: $parent.selectedimagestab,attr:{id:ids}" class="x">
+                            <!----selectiontab-->
+                            <td data-bind="text:appimages"></td>
+                            <td data-bind="text:applocation"></td>
+                            <td data-bind="text:appstatus"></td>
+                            <td data-bind="text:appsubname"></td>
+                            <td data-bind="text:ids" style="display:none"></td>
+                            <!---------id functionality-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive addactive2 act-rmv">
+                <table class="table appImgTable">
+                    <thead>
+                        <tr>
+                            <th>Platform Images</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: apps_tab2">
+                        <tr class="y" data-bind="click: $parent.selectedimagestab2">
+                            <!----------selectiontab2-->
+                            <td data-bind="text:appimages"></td>
+                            <td data-bind="text:applocation"></td>
+                            <td data-bind="text:appstatus"></td>
+                            <td data-bind="text:appsubname"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <a href="#" class="btn btn-disable" id="showselected">Select</a>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer signoutuserContainer" id="signoutuser">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="SignoutCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Sign out users</h4>
+                <label>RemoteApp: selfhostlive</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <h5>Select an option:</h5>
+            <p>Users can continue working while the image updates.After the update, usres must sign out and sign in again.</p>
+            <form id="findcheckedElements">
+                <div class="optionDiv">
+                    <input type="checkbox" name="Give Users 60 minutes after the update" data-bind="checked: wantsSpam"><!----datbind-->
+                    <label id="60users">Give Users 60 minutes after the update</label>
+                    <p>Users will have 60 minutes to save their work before they are automatically singed outoff RemoteApp</p>
+                </div>
+                <div class="optionDiv">
+                    <input type="checkbox" name="Sign users out immediately" data-bind="checked: wantSpam">
+                    <label>Sign users out immediately</label>
+                    <p>Users will be automatically signed out as soon as the update is complete.</p>
+                </div>
+            </form>
+        </div>
+        <div class="dockFooter">
+            <a href="#" class="btn btn-default" id="showselectedanother" data-bind="click:showSelectedoption">Select</a>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_activesession" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="activesessionLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_activesessionCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer activesessionContainer mWidth800" id="activesession">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_activesession">
+                    <img class="window-minimize" src="~/Content/Images/minimize.png">
+                </a>
+                <a href="#" class="maxclass" id="btnMax_activesession" is-maxmimized="no">
+                    <img class="window-maximize" src="~/Content/Images/maximize.png">
+                </a>
+                <a href="#" id="activesessionCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Active Sessions</h4>
+            </div>
+
+            <ul class="dockButtonList">
+                <li><button id="sendmessageshowclick" class="docListBtn" data-toggle="tooltip" data-placement="top" disabled><i class="segoeIcon msgIcon"></i>Messages</button></li>
+                <li><button id="disconnectbtn" class="docListBtn" disabled><i class="segoeIcon disconnectIcon"></i>Disconnect</button></li>
+                <li><button id="disconnectallbtn" class="docListBtn" disabled><i class="segoeIcon disconnectIcon"></i>Disconnect All</button></li>
+                <li><button id="signoutusersbtn" class="docListBtn" disabled><i class="segoeSymbolIcon logOffIcon"></i>Log Off</button></li>
+                <li><button id="logoffalluserbtn" class="docListBtn" disabled><i class="segoeSymbolIcon logOffIcon"></i>Log Off All</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" style="height: calc(99vh - 140px);">
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtSessionFilter" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div class="spinnerDiv" align="center">
+                <div id="disconnectLogoffSpinner" class="spinner" style="display: none;"></div>
+            </div>
+
+
+            <div class="table-responsive" id="divactivesession">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td style="display:none;"><span class="UnifiedSessionID"></span></td>
+                                <td>
+                                <img src="~/Content/Images/sessions_50x50.png" class="sessionImg" />
+                                <span class="UserName"></span></td>
+                                <td><span class="SessionState"></span></td>
+                                <td><span class="LogonTime"></span></td>
+                                <td><span class="HostServer"></span></td>
+                                <td><span class="IdleTime"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="5"><span>No Session to display</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="ActivesSessionCls">
+                    <thead>
+                        <tr>
+                            <th><a href="#"></a>USER NAME</th>
+                            <th><a href="#"></a>SESSION STATE</th>
+                            <th><a href="#"></a>LOG ON TIME</th>
+                            <th><a href="#"></a>SERVER</th>
+                            <th><a href="#"></a>IDLE TIME<span style="font-size:8px; text-transform:lowercase">(in minutes)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="activesessionSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_sendmessage" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer sendmessageContainer" id="sendmessage">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_sendmessage"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="messageCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div>
+                    <h4>Send message</h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" aria-labelledby="tab1" id="tab1" aria-hidden="false">
+                    <div class="dockContent tabs-dockContent dockContentulli">
+                        <ul class="remoteCollectionList">
+                            <li>
+                                <span>
+                                    <lable><span class="requiredAsterisk">*</span>Send message to:</lable><br />
+                                    <select class="form-control" id="selectedUserName">
+                                        <option value="0"></option>
+                                        <option value="1">All available users</option>
+                                    </select>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <label><span class="requiredAsterisk">*</span> Title</label>
+            <div class="form-group">
+                <div class="fake-input">
+                    <input type="text" class="form-control titleMsg pull-left" id="msgtitle" placeholder="Title">
+                    <span class="erroricon" id="sessionmesgerroricon" style="display:none;">
+                        !<span class="tooltiptext">The value should not be empty</span>
+                    </span>
+                </div>
+                <label><span class="requiredAsterisk">*</span> Message</label>
+                <textarea class="form-control msg-textarea" rows="5" maxlength="200" id="comment" onKeypress="if ((event.keyCode > 32 && event.keyCode < 44) || (event.keyCode > 44 && event.keyCode < 46) || (event.keyCode > 46 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;"></textarea>
+
+                <div class="spinnerDiv" align="center">
+                    <div id="sendMessageSpinner" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="tab_main tab-mainbtn">
+                    <button id="delivermessageclick" class="btn btn-default dockFooterElement">Send message</button>
+                </div>
+                <div class="Errormessage" style="display:none" id="errorsessionmesg">
+                    <div class="errorimagecontainer">
+                        <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                    </div>
+                    <div class="errormesgcontainer">
+                        <p>Please fix the errors on this page before continuing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_addcustomapps" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="publishpathLoader" style="display:none;">
+    </div>
+    <div class="dockContainer addcustomappsContainer" id="addcustomapps">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_addcustomapps"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconAddCustomApps"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Publish Using Path</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="name"><span class="requiredAsterisk">*</span> Name</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control pull-left" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode > 90 && event.keyCode < 97)) event.returnValue = false;" id="nameaddCustomeApp">
+                        <span class="erroricon" id="addapperroricon" style="display:none;">
+                            !<span class="tooltiptext">The value should not be empty</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name"><span class="requiredAsterisk">*</span> Path</label>
+                    <div class="fake-input">
+                        <input type="text" class="form-control pull-left" id="pathAddCustomApp" maxlength="240" onkeypress="if ((event.keyCode >= 32 && event.keyCode < 39) || (event.keyCode > 58 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 92) || (event.keyCode > 92 && event.keyCode < 95) || (event.keyCode > 95 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127) || (event.keyCode == 42 ) || (event.keyCode  == 44)) event.returnValue = false;">
+                        <span class="erroricon" id="addapppatherroricon" style="display:none;">
+                            !<span class="tooltiptext">The value should not be empty</span>
+                        </span>
+                        <span class="erroricon" id="addapppatherroricontxt" style="display:none;">
+                            !<span class="tooltiptext">Please Enter Valid Path</span>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            <div class="spinnerDiv" align="center">
+                <div id="addCustomAppSpinner" class="spinner" style="display: none;"></div>
+            </div>
+            <div class="Errormessage" style="display:none" id="erroraddapp">
+                <div class="errorimagecontainer">
+                    <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                </div>
+                <div class="errormesgcontainer">
+                    <p>Please fix the errors on this page before continuing.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="btnOkAddCustomApp" class="btn btn-default dockFooterElement">OK</button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer edidcustomappsContainer" id="edidcustomapps">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="editBladeclose"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Edit custom app</h4>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="name"><span class="requiredAsterisk">*</span> Name</label>
+                    <input type="text" class="form-control" id="nameEdit" maxlength="30" placeholder="Database compare 2013" onKeypress="if ((event.keyCode > 32 && event.keyCode < 48) || (event.keyCode > 57 && event.keyCode < 65) || (event.keyCode > 90 && event.keyCode < 97) || (event.keyCode > 122 && event.keyCode < 127)) event.returnValue = false;" />
+
+                </div>
+                <div class="form-group">
+                    <label for="path">Path</label>
+                    <input disabled type="text" class="form-control" id="path" placeholder="%SYSTEMDRIVE%\Program Files\Micorosoft" />
+                </div>
+            </form>
+            <div class="spinnerDiv" align="center">
+                <div id="editSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button type="submit" class="btn btn-default" id="btnEditCustomOk">OK</button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer activitysessionContainer" id="activitysession">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#"><i class="glyphicon glyphicon-pushpin icon-white"></i></a>
+                <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="closeIconActivity"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Activity</h4>
+                <label>Selfhostlive</label>
+            </div>
+            <ul class="dockButtonList">
+                <li id="downloadusage"><button class="docListBtn active"><i class="segoeSymbolIcon downloadSymbolIcon"></i>Download Usage</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithoutFooter">
+            <div class="placeHolder">
+                <img class="img-responsive" src="~/Content/Images/graph-dummy.PNG" />
+                <div class="graphContainer">
+                    <ul class="graphCount">
+                        <li>
+                            <a href="#" class="graphBlue">
+                                <p>Included Usage</p>
+                                <p class="count"><span>40</span>hrs/user/month</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="graphPink">
+                                <p>Total Overage</p>
+                                <p class="count"><span>0</span>hrs</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <form class="search-container">
+                <input type="text" id="search-bar" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div class="table-responsive">
+                <table class="table appImgTable">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th><a href="#"><i class="segoeIcon upArrowIcon"></i></a>Included</th>
+                            <th><a href="#"><i class="segoeIcon upArrowIcon"></i></a>Overage</th>
+                            <th><a href="#"><i class="segoeIcon upArrowIcon"></i></a>Waived</th>
+                            <th><a href="#"><i class="segoeIcon upArrowIcon"></i></a>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: appsTable">
+                        <tr>
+                            <td data-bind="text:appUser"></td>
+                            <td data-bind="text:Include"></td>
+                            <td data-bind="text:Overage"></td>
+                            <td data-bind="text:Waived"></td>
+                            <td data-bind="text:Total"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer downloadusageshowContainer" id="downloadusageshow">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="downloadUsageCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Download Usage</h4>
+                <label>Selfhostlive</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithoutFooter">
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <select id="yeardrop" class="form-control" data-bind="options: year,value: selectedYear"></select>
+                </div>
+                <div class="form-group">
+                    <label for="month">Month</label>
+                    <select id="monthdrop" class="form-control" data-bind="options: month,value: monthSelect"></select>
+                </div>
+                <div class="form-group">
+                    <a href="#" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">Download</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="dockContainer builduserContainer" id="builduser">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#"><i class="glyphicon glyphicon-pushpin icon-white"></i></a>
+                <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="buildUserCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div>
+                    <h4>Billed Users</h4>
+                    <label>Desktop</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="dockContent dockWithoutFooter">
+            <div class="placeHolder">
+                <img class="img-responsive" src="~/Content/Images/graph-dummy2.PNG" />
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_appUsersTileBlade" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="appUsersTileBladeLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_closeIconappUsersTileBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="dockContainer appUsersTileBladeContainer width450" id="appUsersTileBlade">
+        <div class="customConfirmation" id="deleteCollectionConfirmationModalCreateNewUser" style="display:none;">
+            <div class="customConfirmPopup">
+                <label>Remove user</label>
+                <p>Are you sure you want to delete the user '<span id="deleteUserSpan"></span>' ? </p>
+                <div class="spinnerDiv" align="center">
+                    <div id="collectionRemoveSpinnerCreateNewUser" class="spinner" style="display: none;"></div>
+                </div>
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteCollectionConfirmationYesCreateNewUser">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="deleteCollectionConfirmationNoCreateNewUser">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_appUsersTileBlade"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconappUsersTileBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/users_50x50.png" class="bladeUserImg" />
+                <h4 class="lineht23">Users</h4>
+                <label></label>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="menuAddNewAppUser"><i class="segoeIcon addIcon"></i>Add Users</button></li>
+                <li><button class="docListBtn" id="menuRemoveAppUser"><i class="segoeIcon deleteIcon"></i>Delete</button></li>
+                <li><button class="docListBtn" id="menuImportUsers"><i class="glyphicon glyphicon-open-file"></i>Import Users</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" style="height: calc(99vh - 140px);">
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtUserFilter" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div class="rowTemplate" style="display:none;">
+                <table class="dataRow">
+                    <tbody>
+                        <tr>
+                            <td><span class="Name"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="blankRow">
+                    <tbody>
+                        <tr class="nodata">
+                            <td colspan="1">No Users to display</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive" id="AppUsersDiv">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td><span class="Name"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="3">No Users to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="AppUsersTable">
+                    <thead>
+                        <tr>
+                            <th>Users</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="appusersSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+
+<td class="minimizeWindow" id="min_appGroupTileBlade" style="display:none">
+    <a><label></label></a>
+</td>
+
+<td>
+    <div class="dockContainer appGroupTileBladeContainer width450" id="appGroupTileBlade">
+        <div class="customConfirmation" id="deleteCollectionConfirmationModalCreateNewUserGroup" style="display:none;">
+            <div class="customConfirmPopup" style="top:85px;">
+                <label>Remove Usergroup</label>
+                <p>Are you sure you want to delete the usergroup '<span id="deleteUserGroupSpan"></span>' ? </p>
+                <div class="BtnClsPadding">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteCollectionConfirmationYesCreateNewUserGroup">Yes</button>
+                    <button type="button" class="btn btn-disable" data-dismiss="modal" id="deleteCollectionConfirmationNoCreateNewUserGroup">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_appGroupTileBlade">
+                    <img class="window-minimize" src="~/Content/Images/minimize.png">
+                </a>
+                <a href="#" id="closeIconappGroupTileBlade">
+                    <i class="segoeIcon CancelLegacy"></i>
+                </a>
+            </div>
+            <div class="dockHead">
+                <img src="~/Content/Images/group_50x50.png" class="bladeUserImg width27" />
+                <h4 class="lineht23">User Groups</h4>
+                <label></label>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="menuAddUserGroup" disabled><i class="segoeIcon addIcon"></i>Add UserGroups</button></li>
+                <li><button class="docListBtn" id="menuRemoveAppUserGroup" disabled><i class="segoeIcon deleteIcon"></i>Delete</button></li>
+                @*<li><button class="docListBtn" id="menuImportUserGroup" disabled><i class="glyphicon glyphicon-open-file"></i>Import UserGroups</button></li>*@
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" style="height: calc(100vh - 140px);">
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtUserFilter" placeholder="Search to filter items...">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div class="rowTemplate" style="display:none;">
+                <table class="dataRow">
+                    <tbody>
+                        <tr>
+                            <td><span class="Name"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="blankRow">
+                    <tbody>
+                        <tr class="nodata">
+                            <td colspan="1">No Users to display</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive" id="GroupUsersDiv">
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td><span class="Name"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="3">No User Groups to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="GroupUsersTable">
+                    <thead>
+                        <tr>
+                            <th>User Groups</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="appGroupSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_ImportUserBlade" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer appUsersTileBladeContainer" id="ImportUserBlade" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_ImportUserBlade"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconImportUserBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Import Users</h4>
+                <label class="marbtm5">Please place the users in csv file in "domain\user" format. </label>
+                <label>Users with red(<span class="red">*</span>) color indicates already added user.</label>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="table-responsive">
+                <label for="browse_file"><span class="red">*</span>Browse csv file</label>
+                <input type="file" id="fileUser" class="form-control">
+                <table class="table" id="imported_users">
+                    <thead>
+                        <tr>
+                            <th>Users</th>
+                        </tr>
+                    </thead>
+                    <tbody id="imported_users_body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="btnokImportUserBlade" class="btn btn-default dockFooterElement" disabled>Add all users</button>
+            <button id="btnokImportUserBladeSelected" class="btn btn-default dockFooterElement" disabled>Add Selected users</button>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_AddGroupUsers" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer GroupUsersTileBladeContainer" id="AddGroupUsers" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_AddGroupUsers"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconAddUserGroup"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Add A UserGroup</h4>
+            </div>
+            <ul class="dockButtonList">
+                <li><button class="docListBtn" id="showUsersingroup" disabled><i class="segoeIcon usergroupicon"></i>Show Users in Group</button></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="UserGroupDiv">
+            <div class="rowTemplate" style="display:none;">
+                <table class="dataRow">
+                    <tbody>
+                        <tr>
+                            <td><span class="UserGroupName"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="blankRow">
+                    <tbody>
+                        <tr class="nodata">
+                            <td colspan="1">No User Groups to display</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="AppUserGroupTable">
+                    <thead>
+                        <tr>
+                            <th>User Group</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="loadingusergroupspinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="btnokAddUserGroup" class="btn btn-default dockFooterElement" disabled>Add User Group</button>
+        </div>
+    </div>
+</td>
+
+
+
+<td>
+    <div class="dockContainer GroupUsersTileBladeContainer" id="individualusers" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="closeIconIndividualUserGroup"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Users in the Group</h4>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter" id="IndiUserGroupDiv">
+            <div class="rowTemplate" style="display:none;">
+                <table class="dataRow">
+                    <tbody>
+                        <tr>
+                            <td><span class="IndiUserName"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="blankRow">
+                    <tbody>
+                        <tr class="nodata">
+                            <td colspan="1">No Users in group to display</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="AppIndiUserTable">
+                    <thead>
+                        <tr>
+                            <th>Users In Group</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="loadingindiuserspinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_ImportUserGroupBlade" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="dockContainer appUsersTileBladeContainer" id="ImportUserGroupBlade" style="display:none;">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_ImportUserGroupBlade"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="closeIconImportUserGroupBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Import UserGroups</h4>
+                <label class="marbtm5">Please place the usergroups in csv file in "domain/user" format. </label>
+                <label>Usergroups with red(<span class="red">*</span>) color indicates already added usergroups.</label>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="table-responsive">
+                <label for="browse_file"><span class="red">*</span>Browse csv file</label>
+                <input type="file" id="fileUser" class="form-control">
+                <table class="table" id="imported_users_groups">
+                    <thead>
+                        <tr>
+                            <th>Users</th>
+                        </tr>
+                    </thead>
+                    <tbody id="imported_user_group_body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button id="btnokImportUserGroupBlade" class="btn btn-default dockFooterElement" disabled>Add all usergroups</button>
+            <button id="btnokImportUserGroupBladeSelected" class="btn btn-default dockFooterElement" disabled>Add Selected usergroups</button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="createCollectionContainer dockContainer" id="createCollection">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id=CloseIconCreateCollection><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+
+            <div class="dockHead">
+                <h4>RDS Collection Settings</h4>
+                <label>RDS Collection</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <ul class="remoteCollectionList">
+                <li>
+                    <a href="#" id="selectapp">
+                        <p>Servers</p>
+                        <p id="selectedName">RDSH Servers</p>
+                        <p id="selectserverCount"></p>
+                        <i class="segoeIcon rightArrowIcon" id="serversArrowIcon"></i>
+                        <i class="selectappIcon"><img class="acceptIcon" id="RDSHrighticondone" src="~/Content/Images/tick-icon.png" /></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="apps">
+                        <p>Add Users</p>
+                        <span id="noUser" class="colorRed" style="display:none;">No Users to display.</span>
+                        <p id="userCount"></p>
+                        <i class="selectappIcon">
+                            <img class="acceptIcon" id="AddUserrighticondone" src="~/Content/Images/tick-icon.png" />
+                        </i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="optionalConfiguration">
+                        <p>Optional Configurations</p>
+                        <p>No network selected</p>
+                        <i class="segoeIcon rightArrowIcon"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="spinnerDiv" align="center">
+                <div id="creeateCollectionSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <a href="#" class="btn btn-default dockFooterElement" id="btnOkCreateColln">OK</a>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_selectappimages" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="selectappimagesLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_imageCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="selectappimagesContainer dockContainer mWidth700" id="selectappimages">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_selectappimages"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="imageCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <div>
+                    <h4>Add RD Virtual Machines</h4>
+                    <label>Add RD Virtual Machines to the Collection. You can add more from Collection Details</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="table-responsive">
+                <div class="table-responsive" id="availableRDServer">
+                    <div class="rowTemplate" style="display:none;">
+                        <table class="dataRow">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="../Content/Images/vm_21x21.png" />
+                                        <span class="Name"></span>
+                                    </td>
+                                    <td><span class="Type"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="blankRow">
+                            <tbody>
+                                <tr class="nodata">
+                                    <td colspan="3">No RD Virtual Machines to display</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <table class="table" id="AppsImagesTableId">
+                        <thead>
+                            <tr>
+                                <th>Available Servers</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+                <div class="table-responsive  addactive  act-rmv" id="appPlatformImagesDiv">
+                </div>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="AppImagesSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button class="btn btn-default dockFooterElement" id="btnShowselected" disabled>Add</button>
+            <span class="textvalidation" id="appsImageValidation">Select the image</span>
+        </div>
+    </div>
+</td>
+<td class="minimizeWindow" id="min_appusersdivCreatenewUser" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="adduserLoader" id="appusersdivCreatenewUserLoader" style="display:none;">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_appCloseBladeCreatenewUser"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="appusersdivContainer dockContainer" id="appusersdivCreatenewUser">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_appusersdivCreatenewUser"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="appCloseBladeCreatenewUser"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Add Users</h4>
+                <label></label>
+            </div>
+            <ul class="dockButtonList"></ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="dockContent dockWithFooter">
+            <div class="userMailDiv" id="appsuserdivscreen7CreateNewUser">
+
+                <ul class="userMailList">
+                    <li><a><span><b>User</b></span></a> </li>
+                </ul>
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td><span class="Name"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="3">No Users to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="myTableCreateNewUser">
+                    <tbody></tbody>
+                </table>
+                <p id="userStatusCreateNewUser" style="display:none;">No users to display</p>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="AppUsersSpinnerCreateNewUser" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="dockFooter">
+            <button href="#" class="btn btn-default dockFooterElement" id="appusersokCreateNewUser" disabled>Add</button>
+        </div>
+
+    </div>
+</td>
+<td class="minimizeWindow" id="min_appusersdiv" style="display:none">
+    <a><label></label></a>
+</td>
+<td>
+    <div class="emptyBladeLoader" style="display:none;" id="appusersdivLoader">
+        <div class="dockSetforLaoder">
+            <div class="dockicons">
+                <a href="#" id="LoaderClose_appCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="appusersdivContainer dockContainer" id="appusersdiv">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" class="minclass" id="btnMin_appusersdiv"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#" id="appCloseBlade"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Add Users</h4>
+                <label></label>
+            </div>
+            <ul class="dockButtonList">
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <form class="search-container">
+                <input type="text" id="search-bar" filter="txtAddUserFilter" placeholder="Search to filter items..." data-bind="value: AppUsers, valueUpdate: 'keyup'" autocomplete="off">
+                <a href="#"><i class="segoeIcon searchIcon"></i></a>
+            </form>
+            <div class="userMailDiv" id="appsuserdivscreen7">
+
+                <ul class="userMailList">
+                    <li><a><span><b>User</b></span></a> </li>
+                </ul>
+                <div class="rowTemplate" style="display:none;">
+                    <table class="dataRow">
+                        <tbody>
+                            <tr>
+                                <td><span class="Name"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="blankRow">
+                        <tbody>
+                            <tr class="nodata">
+                                <td colspan="3">No Users to display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table" id="myTable">
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="spinnerDiv" align="center">
+                <div id="AppUsersSpinner" class="spinner" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <button href="#" class="btn btn-default dockFooterElement" id="appusersok" disabled>Add</button>
+            <span class="textvalidation" id="appsUserValidation">Select user(s)</span>
+        </div>
+    </div>
+</td>
+<td>
+    <div id="appuserscontent">
+        <div class="dockContainer">
+            <div class="dockSet">
+                <div class="dockicons">
+                    <a href="#"><i class="segoeIcon CancelLegacy"></i></a>
+                </div>
+                <div class="dockHead">
+                    <h4>App Users</h4>
+                    <label>RemoteApp: Finance002</label>
+                </div>
+                <ul class="dockButtonList">
+                    <li><button class="docListBtn" id="apps2" disabled><i class="segoeIcon addIcon"></i>Add Azure AD</button></li>
+                    <li><button class="docListBtn active" disabled><i class="segoeIcon addIcon"></i>Add MSA</button></li>
+                    <li><button class="docListBtn" data-toggle="tooltip" title="To Be Implemented" disabled><i class="segoeIcon minusIcon"></i>Remove</button></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="dockContent dockWithoutFooter">
+                <form class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search to filter items...">
+                    <a href="#"><i class="segoeIcon searchIcon"></i></a>
+                </form>
+                <div class="userMailDiv">
+                    <ul class="userMailList">
+                        <li><a href="#"><b>User</b></a></li>
+                    </ul>
+                    <select class="usermailselect" multiple="multiple" width="50" data-bind="options: items"> </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-3 dockContainer" id="addAccountContainer">
+            <div class="row">
+                <div class="dockSet">
+                    <div class="dockicons">
+                        <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                        <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                        <a href="#"><i class="segoeIcon CancelLegacy"></i></a>
+                    </div>
+                    <div class="dockHead">
+                        <h4>Add Microsoft Account Users</h4>
+                        <label>RemoteApp: RemoteApp01</label>
+                    </div>
+                </div>
+                <form data-bind="submit: addItem">
+                    <div class="dockContent dockWithFooter">
+                        <div class="form-group">
+                            <label for="name">Enter Email <i class="segoeIcon circledImpIcon"></i></label>
+                            <span> User </span>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" data-bind='value: itemToAdd, valueUpdate: "afterkeydown"'>
+                        </div>
+                    </div>
+                    <div class="dockFooter">
+                        <button href="#" class="btn btn-default btnaddmsa" type="submit" data-bind="enable: itemToAdd().length > 0">ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="deviceSettingsNetworkContainer dockContainer" id="deviceSettingsNetwork">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="closeIconDeviceSettingsNetwork"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Device Settings and Networks Selections</h4>
+                <label>RemoteApp: RemoteApp01</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <div class="tab_main">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tabs-network" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#tab1" aria-controls="tab1" role="tab"  data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">No virtual network<span class="sr-only" aria-hidden='false'>&nbsp;Tab1 is active</span></a>
+                        <span class="sr-only">Tab is currently Active</span>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">Virtual network<span class="sr-only" aria-hidden='true'>&nbsp;Tab is currently Active</span> </a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" aria-labelledby="tab1" id="tab1" aria-hidden="false">
+                        <ul class="remoteCollectionList">
+                            <li>
+                                <a href="#" class="active" id="domainJoin">
+                                    <p>Domain join details</p>
+                                    <p>Enter Domain join details</p>
+                                    <i class="segoeIcon rightArrowIcon"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="virtualnetwork">
+                                    <p>Virtual network</p>
+                                    <p>Select a Virtual network</p>
+                                    <i class="segoeIcon rightArrowIcon"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="subnetUndefined" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">
+                                    <p>Subnet</p>
+                                    <p>Undefined(Undefined)</p>
+                                    <i class="segoeIcon lockIcon"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" aria-labelledby="tab2" id="tab2" aria-hidden="true">
+                        <ul class="remoteCollectionList">
+                            <li>
+                                <a href="#">
+                                    <p>Virtual network</p>
+                                    <p>Select a Virtual network</p>
+                                    <i class="segoeIcon rightArrowIcon"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="active">
+                                    <p>Subnet</p>
+                                    <p>Undefined(Undefined)</p>
+                                    <i class="segoeIcon rightArrowIcon"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dockFooter">
+            <a href="#" class="btn btn-default dockFooterElement" id="btnOKDeviceSettingsandNetwork">OK</a>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="domainJoinDetalsContainer dockContainer" id="domainJoinDetals">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="closeIconDomainJoinDetail"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Domain Join Details</h4>
+                <label>RemoteApp: RemoteApp01</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <h5>Joining a domain from Azure</h5>
+            <p>Ensure the domain controller is reachable from the subnet used from RemoteApp. Also, the service account must have permissions to add computers to the domain, and the Active Directory name must be resolvable from the virtual network DNS. For more info, please visit <a href="#">technical articles</a></p>
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="domain"><span class="red">*</span> Domain <i class="segoeIcon circledImpIcon"></i></label>
+                    <input type="text" class="domainJointxt form-control" id="domain" />
+                </div>
+                <div class="form-group">
+                    <label for="unit">Organizational unit(optional) <i class="segoeIcon circledImpIcon"></i></label>
+                    <input type="text" class="form-control" id="unit" />
+                </div>
+                <div class="form-group">
+                    <label for="username"><span class="red">*</span> User name <i class="segoeIcon circledImpIcon"></i></label>
+                    <input type="text" class="domainJointxt form-control" id="username" />
+                </div>
+                <div class="form-group">
+                    <label for="password"><span class="red">*</span> Password</label>
+                    <input type="password" class="domainJointxt form-control" id="password" placeholder="Enter password here" />
+                </div>
+                <div class="form-group">
+                    <label for="confirmpassword"><span class="red">*</span> Confirm password</label>
+                    <span id="spanConfirmPassword" class=""><input type="text" class="domainJointxt form-control" id="confirmpassword" placeholder="Confirm the password"></span>
+                </div>
+            </form>
+        </div>
+        <div class="dockFooter">
+            <button class="btn btn-disable dockFooterElement" id="btnDomaindetail">Save</button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="chooseNetworkContainer dockContainer" id="chooseNetwork">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="closeIconChooseNetwork"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Choose Virtual Network</h4>
+                <label>RemoteApp: RemoteApp01</label>
+            </div>
+        </div>
+        <div class="dockContent dockWithFooter">
+            <ul class="remoteCollectionList">
+                <li>
+                    <a href="#" class="active" id="createNew">
+                        <p>Create new</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="ARA-image" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">
+                        <p>ARA-image</p>
+                        <p>RG02</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="BugBash" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">
+                        <p>BugBash2</p>
+                        <p>Default-RemoteApp-</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="Latestapp" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">
+                        <p>Latestapps01</p>
+                        <p>RG05</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="scaravent" data-ride="scara-vent" data-toggle="tooltip" data-placement="top" title="TO BE IMPLEMENTED!">
+                        <p>Scara-vnet</p>
+                        <p>Default networking</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="domainDetailsContainer dockContainer" id="domainDetails">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#"><img class="window-minimize" src="~/Content/Images/minimize.png"></a>
+                <a href="#"><img class="window-maximize" src="~/Content/Images/maximize.png"></a>
+                <a href="#" id="closeIcondomainDetails"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>Domain Join Details</h4>
+                <label>RemoteApp: RemoteApp01</label>
+            </div>
+        </div>
+
+        <div class="dockContent dockWithFooter">
+            <form class="dockForm">
+                <div class="form-group">
+                    <label for="name"><span class="red">*</span> Name</label>
+                    <input type="text" class="txtValidate form-control" id="name" placeholder="ContosoRemoteApps">
+                </div>
+                <div class="form-group">
+                    <label for="address"><span class="red">*</span> Address Space</label>
+                    <input type="text" class="txtValidate form-control" id="address" placeholder="10.0.1.0/24">
+                    <p>(0 Addresses)</p>
+                </div>
+                <div class="form-group">
+                    <label for="subnetname"><span class="red">*</span> Subnet Name</label>
+                    <input type="text" class="txtValidate form-control" id="subnet" placeholder="default">
+                </div>
+                <div class="form-group">
+                    <label for="subnetaddress"><span class="red">*</span> Subnet address range <i class="segoeIcon circledImpIcon"></i></label>
+                    <input type="text" class="txtValidate form-control" id="subnetaddress" placeholder="10.0.1.0/24">
+                    <p>(0 Addresses)</p>
+                </div>
+                <div class="form-group">
+                    <label for="pdns">Primary DNS Server</label>
+                    <input type="text" class="form-control" id="pdns" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                    <label for="sdns">Secondary DNS Server</label>
+                    <input type="text" class="form-control" id="sdns" placeholder="Optional">
+                </div>
+            </form>
+        </div>
+        <div class="dockFooter">
+            <button class="btn btn-default" id="btnsaveCreateNewDomain">Save</button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="blankdivContainer dockContainer" id="blankdiv">
+        <div class="dockSet">
+            <div class="dockicons">
+                <a href="#" id="closeIconBlankDiv"><i class="segoeIcon CancelLegacy"></i></a>
+            </div>
+            <div class="dockHead">
+                <h4>To Be Implemented</h4>
+            </div>
+        </div>
+        <div class="dockWithFooter"></div>
+    </div>
+</td>

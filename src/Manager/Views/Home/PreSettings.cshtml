@@ -1,0 +1,302 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pre Settings : Azure RDS Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/CSS/deploymentStyles.css" rel="stylesheet" />
+    @*For new Title*@
+    <link href="~/Content/CSS/Site.css" rel="stylesheet" />
+    <style rel="stylesheet">
+        .erroricon{background-color: rgb(232, 17, 35); width:25px; height:29px; font-size:18px; color:#FFFFFF; position:absolute; padding:2px 10px 5px 10px; right:0px;}
+    </style>
+    <script src="~/Content/JQuery/jquery.min.js"></script>
+    <script src="~/JsonData/data.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            data.ApiUrl = localStorage.getItem("data_ApiUrl");
+            data.loginRedirect = localStorage.getItem("data_loginRedirect");
+
+            $("input[type='text'],input[type='password']").keyup(function () {
+                var curVal = $(this).val();
+                var txtThisID = $(this).attr("id");
+                if (curVal != "") {
+                    $("#Exc_" + txtThisID + "").hide();
+                    $("#" + txtThisID + "").removeClass("redborder");
+                }
+
+            });
+
+            $("#preBtnSave").click(function () {
+                var isValidatedscale = true;
+                $("#presettingElements input[type='text'],#presettingElements input[type='password']").each(function () {
+                    var curVal = $(this).val();
+                    if (curVal == "") {
+                        var txtThisID = $(this).attr("id");
+                        $("#Exc_" + txtThisID + "").show();
+                        $("#" + txtThisID + "").addClass("redborder");
+                        $("#ErrormessagedatabaseConfig").show();
+                        isValidatedscale = false;
+                    }
+
+                });
+
+                if (isValidatedscale) {
+                    var dplynm = $("#deploymentId tr[class='AppImageName'] .name").text().trim();
+                    var servernm = $("#servername").val().trim();
+                    var dbnm = $("#databaseNm").val().trim();
+                    var userid = $("#userId").val().trim();
+                    var pwd = $("#dbpassword").val().trim();
+                    var txtDomainName = "";
+                    var objJsonData = {
+                        "Credential":
+                        {
+                            "serverName": servernm,
+                            "dbName": dbnm,
+                            "userId": userid,
+                            "password": pwd,
+                            "domainName": txtDomainName
+                        }
+                    }
+                    var jsonData = JSON.stringify(objJsonData);
+
+                    $.ajax({
+                        url: data.ApiUrl + "admin/UpdateDBCredentials/"+data.ApiSubscriptionId,
+                        type: "POST",
+                        crossDomain: true,
+                        dataType: "json",
+                        data: jsonData,
+                        beforeSend: function () {
+                            $("#ErrormessagedatabaseConfig").hide();
+                            $("#preBtnSave").attr("disabled", true);
+                            $("#loadingIndicator").show();
+                            $("#loadingIndicator").text("Saving, Please wait...");
+                        },
+
+                        success: function (res) {
+                            if (res == "Success") {
+                                $("#loadingIndicator").show();
+                                $("#loadingIndicator").text("Successfully updated.");
+                                location.href = localStorage.getItem("DashboardPage");
+
+                                //var userName = $("#scaleName").val().trim();
+                                //var password = $("#scalePassword").val().trim();
+                                //var subscriptionName = $("#scaleAzureSubscriptionName").val().trim();
+                                //var resourceGroupName = $("#scaleresourceGroupName").val().trim();
+
+                                //var objCollection =
+                                //    {
+                                //        "commandName": "adminEditDeploymentBurstSettings",
+                                //        "data": {
+                                //            "AdminBurstSettings": {
+                                //                "AzureSubscriptionName": subscriptionName,
+                                //                "CreatedDate": '',
+                                //                "DeploymentFQDN": data.ConnectionBroker,
+                                //                "IsActive": true,  //retutn True if Enable clicked or False if Disabled clicked
+                                //                "LastModifiedDate": '',
+                                //                "PublishPassword": password,
+                                //                "PublishUserName": userName,
+                                //                "ResourceGroupName": resourceGroupName,
+                                //            },
+                                //            "ConnectionBroker": data.ConnectionBroker,
+                                //            "ConnectionBrokerId": data.ConnectionBrokerId
+                                //        }
+                                //    }
+                               // var jsonData = JSON.stringify(objCollection);
+                                //$.ajax({
+                                //    url: data.ApiUrl + "subscriptions/" + data.ApiSubscriptionId + "/processes",
+                                //    type: "POST",
+                                //    crossDomain: true,
+                                //    dataType: "json",
+                                //    data: jsonData,
+                                //    beforeSend: function () {
+                                //    },
+                                //    success: function (res) {
+                                //        $("#loadingIndicator").show();
+                                //        $("#loadingIndicator").text("Successfully updated.");
+                                //        location.href = localStorage.getItem("DashboardPage");
+                                //    },
+                                //    error: function (error) {
+                                //        $("#ErrormessagedatabaseConfig").show();
+                                //        $("#ErrormessagedatabaseConfig .errormesgcontainer p").text("Failed updating azure credentials.");
+                                //    },
+                                //    complete: function () {
+                                //    }
+                                //});
+                            }
+                            else
+                            {
+                                $("#ErrormessagedatabaseConfig").show();
+                                $("#ErrormessagedatabaseConfig .errormesgcontainer p").text(res);
+                            }
+                        },
+                        complete: function () {
+                            $("#loadingIndicator").hide();
+                            $("#preBtnSave").attr("disabled", false);
+                        },
+                        error: function (error) {
+                            $("#ErrormessagedatabaseConfig").show();
+                            $("#ErrormessagedatabaseConfig .errormesgcontainer p").text(error);
+                        }
+                    });
+                }
+
+            });
+
+        });
+
+    </script>
+
+</head>
+<body class="presettingBgColor">
+    <div class="rds-container" id="mainContainer">
+        <div class="row ht100p">
+            <div class="col-md-6">
+                <div class="clear"></div>
+                <div class="col-md-offset-6 col-md-12 padLRnone">
+                    <div class="col-md-3 padLRnone">
+                    </div>
+                        <div class="col-md-6 docTopCls padLRnone">
+                            <div class="col-md-12 padLRnone">
+                                <div class="panneHeader">
+                                    <h1><img class="dbIcon" alt="Database Configuration" title="Database Configuration" width="26" src="~/Content/Images/db_image.png" />Database Configuration</h1>
+                                </div>
+                                <div class="dockContent presettingContent">
+                                    <div id="presettingElements">
+                                        <label><span class="requiredAsterisk">*</span> SERVER NAME</label>
+                                        <div class="fake-input">
+                                            <input type="text" class="form-control margin pull-left" id="servername" placeholder="">
+                                            <span class="erroricon" id="Exc_servername" style="display:none;">
+                                                !<span class="tooltiptext">The value should not be empty</span>
+                                            </span>
+                                        </div>
+
+                                        <label><span class="requiredAsterisk">*</span> DATABASE NAME</label>
+                                        <div class="fake-input">
+                                            <input type="text" class="form-control margin pull-left" id="databaseNm" placeholder="">
+                                            <span class="erroricon" id="Exc_databaseNm" style="display:none">
+                                                !<span class="tooltiptext">The value should not be empty</span>
+                                            </span>
+                                        </div>
+
+                                        <label><span class="requiredAsterisk">*</span> USER ID</label>
+                                        <div class="fake-input">
+                                            <input type="text" class="form-control margin pull-left" id="userId" placeholder="">
+                                            <span class="erroricon" id="Exc_userId" style="display:none;">
+                                                !<span class="tooltiptext">The value should not be empty</span>
+                                            </span>
+                                        </div>
+
+                                        <label><span class="requiredAsterisk">*</span> PASSWORD</label>
+                                        <div class="fake-input">
+                                            <input type="password" class="form-control margin pull-left" id="dbpassword" placeholder="">
+                                            <span class="erroricon" id="Exc_dbpassword" style="display:none;">
+                                                !<span class="tooltiptext">The value should not be empty</span>
+                                            </span>
+                                        </div>
+                                        <p id="loadingIndicator">
+                                        </p>
+                                        <div class="Errormessage" style="display:none;" id="ErrormessagedatabaseConfig">
+                                            <div class="errorimagecontainer">
+                                                <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                                            </div>
+                                            <div class="errormesgcontainer">
+                                                <p>Please fix the errors on this page before continuing.</p>
+                                            </div>
+                                        </div>
+                                       @*<hr class="hrLine" />*@
+
+                                        @*<label><span class="requiredAsterisk">*</span> Domain Name</label>
+                                        <div class="fake-input">
+                                            <input type="text" class="form-control margin pull-left" id="txtDomainName" placeholder="">
+                                            <span class="erroricon" id="Exc_txtDomainName" style="display:none;">
+                                                !<span class="tooltiptext">The value should not be empty</span>
+                                            </span>
+                                        </div>*@
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            @*<div class="col-md-6 padLRnone">
+                    <div class="panneHeader">
+                        <h1><img class="dbIcon" alt="Database Configuration" title="Database Configuration" width="35" src="~/Content/Images/setting.png" />Azure Configuration</h1>
+                    </div>
+                        <div class="dockContent" style="background-color:#fff; overflow-y:hidden; margin:10px 0;">
+
+                            <div id="presettingAzureElements">
+
+                                <label><span class="requiredAsterisk">*</span>USER NAME FOR PUBLISH SETTINGS</label>
+                                <div class="fake-input">
+                                    <input type="text" class="form-control margin pull-left" id="scaleName" placeholder="">
+                                    <span class="erroricon" id="Exc_scaleName" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+
+                                <label><span class="requiredAsterisk">*</span> PASSWORD FOR PUBLISH SETTINGS</label>
+                                <div class="fake-input">
+                                    <input type="text" class="form-control margin pull-left" id="scalePassword" placeholder="">
+                                    <span class="erroricon" id="Exc_scalePassword" style="display:none">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+
+                                <label><span class="requiredAsterisk">*</span> AZURE SUBSCRIPTION NAME</label>
+                                <div class="fake-input">
+                                    <input type="text" class="form-control margin pull-left" id="scaleAzureSubscriptionName" placeholder="">
+                                    <span class="erroricon" id="Exc_scaleAzureSubscriptionName" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+
+                                <label><span class="requiredAsterisk">*</span>RESOURCE GROUP NAME</label>
+                                <div class="fake-input">
+                                    <input type="text" class="form-control margin pull-left" id="scaleresourceGroupName" placeholder="">
+                                    <span class="erroricon" id="Exc_scaleresourceGroupName" style="display:none;">
+                                        !<span class="tooltiptext">The value should not be empty</span>
+                                    </span>
+                                </div>
+
+                                <div class="Errormessage" style="display:none;" id="ErrormessagedatabaseConfig">
+                                    <div class="errorimagecontainer">
+                                        <img src="~/Content/Images/exclamation-button.png" class="exclamationmesgicon" />
+                                    </div>
+                                    <div class="errormesgcontainer">
+                                        <p>Please fix the errors on this page before continuing.</p>
+                                    </div>
+                                </div>
+                                <br />
+                                <p id="loadingIndicator">
+
+                                </p>
+
+                            </div>
+
+
+                        </div>
+                </div>*@
+                            <div class="col-md-12">
+                                <div class="fake-input pull-right marRht5">
+                                    <button href="#" class="btn btn-default" id="preBtnSave">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

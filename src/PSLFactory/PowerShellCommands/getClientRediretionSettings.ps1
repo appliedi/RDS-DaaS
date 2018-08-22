@@ -1,0 +1,1 @@
+Get-RDSessionCollectionConfiguration -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker -Client

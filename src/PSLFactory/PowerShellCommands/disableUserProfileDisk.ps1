@@ -1,0 +1,1 @@
+Set-RDSessionCollectionConfiguration -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker  -DisableUserProfileDisk

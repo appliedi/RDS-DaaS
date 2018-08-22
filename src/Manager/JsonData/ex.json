@@ -1,0 +1,8 @@
+﻿ {
+    "employees" : [
+        
+        { "id": "201", "name": "sayed", "email": "sayed@ptg.com", "phone": "09999999999", "address": "ptg india" },
+        { "id": "202", "name": "shiva", "email": "shiva@ptg.com", "phone": "08899999999", "address": "ptg india" },
+        { "id": "203", "name": "akhil", "email": "akhil@ptg.com", "phone": "09999999999", "address": "ptg india" }
+    ]
+}

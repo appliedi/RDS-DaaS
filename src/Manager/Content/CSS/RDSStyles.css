@@ -1,0 +1,153 @@
+﻿body{
+     position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.rds-container {
+    height: calc(100% - 40px);
+    position: relative;
+    min-height: 0;
+    background-color: #2E80AB;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    transition: margin .2s ease;
+    z-index: 1;
+}
+
+.rdshomecontainer{
+    width:400px;
+}
+
+.appsuserslistContainer{
+    width:100%;
+}
+
+.serversshowContainer{
+    width:400px;
+}
+
+.appUserContainer{
+    width:500px;
+    background-color:#E6E6E6;
+}
+
+.settingsContainer{
+    width:350px;
+}
+
+.brustconfigContainer{
+    width:350px;
+}
+
+.userprofileconfigContainer{
+    width:350px;
+}
+
+.auditlogsconfigContainer{
+    width:350px;
+}
+
+.selectImagesdockContainer{
+    width:350px;
+}
+
+.updatesappsimagesContainer{
+    width:300px;
+}
+
+.appsdivshowContainer{
+    width:450px;
+}
+
+.selectappsimagesContainer{
+    width:400px;
+}
+
+.signoutuserContainer{
+    width:400px;
+}
+
+.activesessionContainer{
+    width:500px;
+}
+
+.sendmessageContainer{
+    width:350px;
+}
+
+.addcustomappsContainer{
+    width:350px;
+}
+
+.edidcustomappsContainer{
+    width:350px;
+}
+
+.activitysessionContainer{
+    width:400px;
+}
+
+.downloadusageshowContainer{
+    width:400px;
+}
+
+.builduserContainer{
+    width:400px;
+}
+
+.appUsersTileBladeContainer{
+    width:450px;
+}
+
+.CreateCollectionBladeContainer{
+    width:400px;
+}
+
+.ConfigureBasicSettingBladeContainer{
+    width:400px;
+}
+
+.createCollectionContainer{
+    width: 400px;
+}
+
+.selectappimagesContainer {
+    width: 400px;
+}
+
+.appusersdivContainer{
+    width: 400px;
+}
+
+.deviceSettingsNetworkContainer{
+    width: 400px;
+}
+
+.domainJoinDetalsContainer{
+    width: 450px;
+}
+
+.blankdivContainer{
+    width: 300px;
+}
+
+.chooseNetworkContainer{
+    width: 400px;
+}
+
+.domainDetailsContainer{
+    width: 450px;
+}
+.desktopappcontainer{
+    width:450px;
+}
+.GroupUsersTileBladeContainer
+{
+    width:430px;
+}

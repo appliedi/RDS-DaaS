@@ -1,0 +1,57 @@
+﻿#FeedBackContainer
+{position:fixed; width:320px; height:100%; background-color:#282D32; top:40px; right:0px; bottom:0px;
+ display:none;}
+.FeedBackContent{height: calc(100vh - 40px); padding: 0 25px 25px; box-sizing: border-box; font-size: 12px;
+    display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column;}
+.feedbackbutton::after{content:'\E170'; font-family:'Segoe MDL2 Assets'; font-size:20px; line-height:22px;}
+.feedBackHead{-webkit-flex: 0 0 auto; flex: 0 0 auto; border-bottom: 1px #7a7a7a solid; padding-bottom: 12px;}
+.feedBackHead h2, h3 {font-size: 18px; line-height: 28px; color: #fff; margin: 0;}
+.feedBackHead h3{margin: 10px 0;font-size: 13px;color: #fff;}
+.feedbackBody{margin-right: -25px; padding-right: 25px; padding-top: 9px; padding-bottom: 20px; color: #c0c0c0;
+     overflow: auto; height:350px;}
+.feedbackBody .feildset {margin-bottom: 9px; cursor: default;}
+.feildset legend {margin-bottom: 9px; font-size: 12px; color: #c0c0c0; border-bottom:0;}
+.feildset label {display: inline-block;}
+.feedbackSmiley {position: absolute; clip: rect(0,0,0,0);}
+.feedbackComments{width: 100%; height: 135px; font-size: 12px; border: 1px solid #c0c0c0; margin-top: 3px;
+    margin-bottom: 15px; color: #c0c0c0; box-sizing: border-box; background-color: transparent; overflow:auto;}
+.feedbackIncludeScreenShot, .feedbackConfirmation{width:100%; display: block; color:#c0c0c0; font-size:12px; 
+   padding-bottom:15px;}
+.feedbackIncludeScreenShot input[type=checkbox], 
+.feedbackConfirmation input[type=checkbox]{float:left; margin-right:5px;}
+.feedbackConfirmation{padding-top:10px; border-bottom: 0px; color:#fff; font-weight:normal; font-size:11px;}
+.feedbackConfirmInfo{padding-left:18px; color:#fff; float:left; font-weight:normal; font-size:11px;}
+.feedbackPrivacyLink{width:100%; padding-left:18px; margin-top:5px; float:left; font-weight:normal; font-size:11px; color:#00bcf2}
+.feedbackPrivacyLink:hover{color:#00bcf2}
+.feedbackSubmit{width:160px !important; margin-top:20px; float:left; background-color: #00bcf2; border:1px solid #00bcf2; 
+    font-size:12px; color:#fff; padding:2px 12px 3px 12px !important; height:23px; -webkit-user-select:none; 
+    -moz-user-select:none; -ms-user-select:none; user-select:none; cursor:pointer; text-align:center;}
+.feedbackConfirmTop{position:absolute; width:100%; bottom:60px; left:0; float: left;}
+.feedbackConfirmMain{float:left; margin:20px; border-top: 1px solid #7a7a7a;}
+.feedClose{position:absolute; top:6px;}
+.input-hidden {position: absolute;left: -9999px;}
+input[type=radio] + label{width:22px; height:22px; cursor:pointer;}
+input[type=radio] + label.happy { 
+    background-image:url('../Images/happyIcon.png');
+    background-position:center center;
+    background-size:22px 22px;
+    background-repeat:no-repeat; 
+}
+input[type=radio]:checked + label.happy {
+    background-image:url('../Images/happyIconActive.png');
+    background-position:center center;
+    background-size:22px 22px;
+    background-repeat:no-repeat; 
+}
+input[type=radio] + label.sad { 
+    background-image:url('../Images/sadIcon.png');
+    background-position:center center;
+    background-size:22px 22px;
+    background-repeat:no-repeat;
+}
+input[type=radio]:checked + label.sad {
+    background-image:url('../Images/sadIconActive.png');
+    background-position:center center;
+    background-size:22px 22px;
+    background-repeat:no-repeat;
+}

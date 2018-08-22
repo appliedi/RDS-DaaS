@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DC0E917-F80F-48CC-BC3D-CC1374DD9C80}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PSLFactory</RootNamespace>
+    <AssemblyName>PSLFactory</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PowerShellCommands\addappbulkusercollection.ps1" />
+    <Content Include="PowerShellCommands\addappcollection.ps1" />
+    <Content Include="PowerShellCommands\addappusercollection.ps1" />
+    <Content Include="PowerShellCommands\addbulkusercollection.ps1" />
+    <Content Include="PowerShellCommands\addCollectionAdmin.ps1" />
+    <Content Include="PowerShellCommands\addCollectionServer.ps1" />
+    <Content Include="PowerShellCommands\addserver.ps1" />
+    <Content Include="PowerShellCommands\adduserapp.ps1" />
+    <Content Include="PowerShellCommands\addusercollection.ps1" />
+    <Content Include="PowerShellCommands\addwappcollection.ps1" />
+    <Content Include="PowerShellCommands\configurecollection.ps1" />
+    <Content Include="PowerShellCommands\disableUserProfileDisk.ps1" />
+    <Content Include="PowerShellCommands\disconnectAllSessions.ps1" />
+    <Content Include="PowerShellCommands\disconnectSelectedSession.ps1" />
+    <Content Include="PowerShellCommands\editCollectionDescription.ps1" />
+    <Content Include="PowerShellCommands\editwappcollection.ps1" />
+    <Content Include="PowerShellCommands\enableUserProfileDisk.ps1" />
+    <Content Include="PowerShellCommands\encryptString.ps1" />
+    <Content Include="PowerShellCommands\encryptString_original.ps1" />
+    <Content Include="PowerShellCommands\getappusercollection.ps1" />
+    <Content Include="PowerShellCommands\getAvailableServers.ps1" />
+    <Content Include="PowerShellCommands\getClientRediretionSettings.ps1" />
+    <Content Include="PowerShellCommands\getCollection.ps1" />
+    <Content Include="PowerShellCommands\getcollectionconfig.ps1" />
+    <Content Include="PowerShellCommands\getcollectionserver.ps1" />
+    <Content Include="PowerShellCommands\getparameters.ps1" />
+    <Content Include="PowerShellCommands\getsessioncollection.ps1" />
+    <Content Include="PowerShellCommands\getsessionhost.ps1" />
+    <Content Include="PowerShellCommands\getSessionHostServerStatus.ps1" />
+    <Content Include="PowerShellCommands\getusergroups.ps1" />
+    <Content Include="PowerShellCommands\getUserProfileDiskSettings.ps1" />
+    <Content Include="PowerShellCommands\getusersandgroups.ps1" />
+    <Content Include="PowerShellCommands\logOffAllSessions.ps1" />
+    <Content Include="PowerShellCommands\logOffSelectedSession.ps1" />
+    <Content Include="PowerShellCommands\newCollection.ps1" />
+    <Content Include="PowerShellCommands\publishdesktop.ps1" />
+    <Content Include="PowerShellCommands\readEssentialInfo.ps1" />
+    <Content Include="PowerShellCommands\removeappcollection.ps1" />
+    <Content Include="PowerShellCommands\removeappusercollection.ps1" />
+    <Content Include="PowerShellCommands\removeCollection.ps1" />
+    <Content Include="PowerShellCommands\removeCollectionServer.ps1" />
+    <Content Include="PowerShellCommands\removeserver.ps1" />
+    <Content Include="PowerShellCommands\removeuserapp.ps1" />
+    <Content Include="PowerShellCommands\removeusercollection.ps1" />
+    <Content Include="PowerShellCommands\savecollectionconfig.ps1" />
+    <Content Include="PowerShellCommands\saveparameters.ps1" />
+    <Content Include="PowerShellCommands\sendmessage.ps1" />
+    <Content Include="PowerShellCommands\sendmessageserver.ps1" />
+    <Content Include="PowerShellCommands\sendmessagesession.ps1" />
+    <Content Include="PowerShellCommands\setClientRedirectionSettings.ps1" />
+    <Content Include="PowerShellCommands\shutdownserver.ps1" />
+    <Content Include="PowerShellCommands\userlogin.ps1" />
+    <Content Include="PowerShellCommands\validateconnectionbroker.ps1" />
+    <Content Include="PowerShellCommands\azureloginvalidation.ps1" />
+    <Content Include="PowerShellCommands\Validatesharedfileloc.ps1" />
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Powershell.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55885</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55885/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

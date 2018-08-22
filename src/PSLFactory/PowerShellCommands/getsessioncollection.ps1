@@ -1,0 +1,2 @@
+﻿$wmidata = Get-WmiObject -Namespace "root\cimv2\rdms" -Query "SELECT * FROM Win32_RDSHCollection" -ComputerName $ConnectionBroker -Authentication PacketPrivacy -ErrorAction SilentlyContinue
+$wmidata | ForEach-Object -Process {[PSCustomObject]@{Alias = $_.Alias;Description = $_.Description;Name = $_.Name}}| Write-Output

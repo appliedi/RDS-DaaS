@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "gwdnsLabelPrefix": {
+      "value": "contoso"
+    },
+    "gwpublicIPAddressName": {
+      "value": "10.0.0.1"
+    },
+    "adDomainName": {
+      "value": "123"
+    },
+    "adminUsername": {
+      "value": "232"
+    },
+    "adminPassword": {
+      "value": "3131"
+    },
+    "imageSKU": {
+      "value": "2016-Datacenter"
+    },
+    "numberOfRdshInstances": {
+      "value": 1
+    },
+    "rdshVmSize": {
+      "value": "Standard_A0"
+    }
+  }
+}

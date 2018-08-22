@@ -1,0 +1,206 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.ico">
+    <title>Update License : Azure RDS Manager</title>
+    <link href="~/Content/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/CSS/updatelicense.css" rel="stylesheet" />
+    <script src="~/JsonData/data.js"></script>
+    <script src="~/Content/JQuery/Jquery1.11.3.min.js"></script>
+    <script>
+        if (localStorage.getItem("UserType").toLowerCase() == "tenantadmin") {
+            window.location.href = "Login";
+        }
+        else {
+            data.ApiUrl = localStorage.getItem("data_ApiUrl");
+            data.loginRedirect = localStorage.getItem("data_loginRedirect");
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top headerBackground">
+        <div class="col-md-12 pull-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="UpdateLicenceDashboard">Dashboard</a></li>
+                <li><a id="UpdateLicencelogin">Logout</a></li>
+            </ul>
+        </div>
+        <div class="container padLRnone">
+            <div class="col-md-12 pull-left text-center padLRnone">
+                <p class="mainTitle">Azure RDS Manager Product License Management</p>
+            </div>
+            <div class="col-md-12 pull-left padLRnone">
+                <ul class="nav navbar-nav navbar-left menuList">
+                    <li id="AzureRDSListItem"><a>Update Your License</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="expiredCls" id="txtAlert">Your trail version has been expired.</h2>
+        <h4 class="extendCls">Extend your trail or purchase a license.</h4>
+        <hr />
+        <div class="col-md-12 pull-left padLRnone" style="margin-top:-40px;">
+            <form class="clientInfoForm posrel">
+                <div class="col-sm-12 padLRnone clientInputfileds">
+                    <div class="col-sm-3 padLRnone">
+                        <label for="" class="control-label">Client ID :</label>
+                    </div>
+                    <div class="col-sm-9 padLRnone">
+                        <input type="text" id="clientID" class="col-sm-12 form-control" readonly>
+                    </div>
+                    <div class="col-sm-12 padLRnone">
+                        <p>Send this <b>Client ID</b> to the vendor to get a License Key or Extended Trail Key.</p>
+                    </div>
+                    <hr />
+                </div>
+                <div class="col-sm-12 padLRnone clientInputfileds">
+                    <div class="col-sm-3 padLRnone">
+                        <label for="" class="control-label">Extended Trail Key :</label>
+                    </div>
+                    <div class="col-sm-9 padLRnone">
+                        <input type="text" id="extendedTrailID" class="col-sm-12 form-control">
+                    </div>
+                </div>
+                <div class="col-sm-12 padLRnone orCls">
+                    <div class="col-sm-3 padLRnone">&nbsp;</div>
+                    <div class="col-sm-9 padLRnone"><label class="ORclsLabel double background"><span>OR</span></label></div>
+                </div>
+                <div class="col-sm-12 padLRnone clientInputfileds">
+                    <div class="col-sm-3 padLRnone">
+                        <label for="" class="control-label">License Key :</label>
+                    </div>
+                    <div class="col-sm-9 padLRnone">
+                        <input type="text" id="licenceKeyID" class="col-sm-12 form-control">
+                    </div>
+                </div>
+               
+                <div class="loginspinner" id="updatelicensespinner" style="display:none;">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="col-sm-12 padLRnone" id="errormessageUL" style="display:none">
+                    <p>Please provide either Extended Trail Key or License Key.</p>
+                </div>
+                <div class="col-sm-12 padLRnone" id="successMsg" style="display:none">
+                    <p>Application updated successfully. Recommended to logout and login to the application once again to resume the service.</p>
+                </div>
+                <div class="col-sm-12 padLRnone" id="failureMsg" style="display:none">
+                    <p>Failed updating Key. Please refresh the page and try again.</p>
+                </div>
+                <div class="col-sm-12 padLRnone marginTB">
+                    <input type="button" class="btn-primary updateSubmit pull-right" value="Update" id="keysubmit" />
+                </div>
+            </form>
+        </div>
+    </div><br /><br />
+    <script>
+        $(document).ready(function () {
+
+
+            var strIsValid = localStorage.getItem("IsValid");
+            if (strIsValid == "true") {
+                $("#txtAlert").text(localStorage.getItem("Notification"));
+            }
+            else {
+                $("#txtAlert").text("Your trail version has been expired.");
+            }
+
+            function LoadClientID() {
+                $.ajax({
+                    url: data.ApiUrl + "admin/GetClientData/MyID/",
+                    type: "GET",
+                    crossDomain: true,
+                    dataType: "json",
+                    beforeSend: function () {
+                        $("#clientID").val("");
+                    },
+                    success: function (res) {
+                        $("#clientID").val(res.clientID);
+                        $("#extendedTrailID").val(res.ExtendedTrial);
+                        $("#licenceKeyID").val(res.Licensed);
+
+                    },
+                    complete: function () {
+
+                    },
+                    error: function (error) {
+                        //alert("failed loading clientID");
+                    }
+                });
+
+            };
+            LoadClientID();
+
+            var keyFieldparam = "";
+            var keyValueparam = "";
+            var Isnotfilledboth;
+
+            $("#keysubmit").click(function () {
+                $("#successMsg").hide();
+                $("#failureMsg").hide();
+                var extVal = $("#extendedTrailID").val().trim();
+                var licVal = $("#licenceKeyID").val().trim();
+
+                var objcollection =
+                                          {
+                                              "Productstatus":
+                                                 {
+                                                     "ExtendedTrialKey": "ExtendedTrial",
+                                                     "ExtendedTrialValue": extVal,
+                                                     "LicensedKey": "Licensed",
+                                                     "LicensedValue": licVal,
+                                                 }
+                                          }
+                var jsonData = JSON.stringify(objcollection);
+                $.ajax({
+                    url: data.ApiUrl + "admin/UpdateProduct/MyID",
+                    type: "POST",
+                    crossDomain: true,
+                    dataType: "json",
+                    data: jsonData,
+                    beforeSend: function () {
+                        $("#updatelicensespinner").show();
+                        $("#successMsg").hide();
+                        $("#failureMsg").hide();
+                        $("#errormessageUL").hide();
+                    },
+                    success: function (res) {
+                        $("#successMsg").show();
+                    },
+                    error: function (error) {
+                        $("#failureMsg").show();
+                    },
+                    complete: function () {
+                        $("#updatelicensespinner").hide();
+
+                    }
+                });
+            });
+
+            $("#UpdateLicenceDashboard").click(function () {
+                window.location.href = "Dashboard";
+            });
+            $("#UpdateLicencelogin").click(function () {
+                window.location.href = "Login";
+            });
+            $("#AzureRDSListItem").click(function () {
+                window.location.href = "UpdateLicense";
+            });
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+﻿
+@{
+    ViewBag.Title = "List Deployments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="TopSection">
+    <i class="glyphicon glyphicon-gift"></i>  No deployment found for this customer. Add a new RDS deployment now.
+    <input type="button" class="btn btn-sm btn-default" value="Not Now" />
+    <input type="button" id="btnAddDeployment" class="btn btn-sm btn-primary" value="Add Deployment" />
+
+</h5>
+<h3 class="AvailableCust" ><span id="Name">@ViewBag.CompanyName</span> : Available RDS deployments</h3>
+<input type="hidden" id="hfCustId" value="@ViewBag.CustomerID" />
+<div class="row">
+    <div class="col-md-12 action-buttons NoLeftPad">
+        <a href="#" id="openAddDeployment"><i class="icon icon-plus"></i> Add</a>
+        <button id="OpenCreateSHSImage" disabled><i class="icon icon-server"></i> Add SHS from image</button>
+
+
+    </div><input type="hidden" id="hfTokentId" value="@ViewBag.atoken" />
+    <div class="col-md-12" style="margin-top:20px;">
+        <div class="blockUI" id="">
+
+        </div>
+        <div id="onlyLoaderDepllist" class="onlyLoader">
+            <img src="~/Content/imgs/loading.gif" style="margin-left:45%; margin-top:200px; width:100px;" />
+        </div>
+        <table id="tblDeployment" class="table DeploymentListTable table-hover" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Subscription ID</th>
+                    <th>Name </th>
+                    <th>Resource Group</th>
+                    <th> Active </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="right-slide" id="dicAddDeployment">
+    <div class="row data-field">
+        <div class="col-md-12">
+            <h3>Provision RDS Deployment</h3>
+        </div>
+
+        <div class="blockUI" id="blockUIwithLoader">
+
+        </div>
+        <div id="onlyLoaderDepl" class="onlyLoader">
+            <img src="~/Content/imgs/loading.gif" style="margin-left:45%; margin-top:200px; width:100px;" />
+        </div>
+        <div class="col-md-12">
+            <form>
+                <div class="form-group">
+
+                    <label for="dropdownSub">Subscriptions<span class="Redclr">* </span></label>
+                    <select class="form-control" id="dropdownSub">
+                        @{
+                            var subs = ViewBag.Subscriptions;
+                            foreach (var sub in subs.Items)
+                            {
+                                <option value="@sub.Id">@sub.FriendlyName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group AlignRight">
+                    <span>Or,</span> <input type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#createAnewSubscription" data-whatever="createAnewSubscription" value="Create a new subscription" />
+                </div>
+
+                <div class="form-group">
+                    <label for="dropdownRG">Resource group <span class="Redclr">* </span></label>
+                    <select class="form-control" id="dropdownRG"></select>
+                </div>
+                <div class="form-group AlignRight" >
+                    <span>Or,</span> <input type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#createAnewResourceName" data-whatever="createAnewResourceName" value="Create a new resource group" id="BtnCreateAnewResourceName" />
+                </div>
+                <p id="IsResourceValid" class="ErrorMsgHidden">Please Select a Subscription with resource group</p>
+
+                <div class="form-group">
+                    <label for="txtDeploymentname">Deployment name <span class="Redclr">* </span></label>
+                    <input type="text" class="form-control" id="txtDeploymentname" placeholder="contoso">
+                </div>
+
+                <div class="form-group" style="margin-bottom:0px;">
+                    <input type="radio" name="rdDomain" id="rdDomain_new" value="0" checked>
+                    <label for="rdDomain_new" class="NewDomain">Create a new Domain/AD for this deployment</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="rdDomain" id="rdDomain_existing" value="1">
+                    <label for="rdDomain_existing" class="ExistingDomainAD">Use an existing Domain/AD for this deployment</label>
+                </div>
+                <div class="form-group">
+                    <label for="txtDomainName"><span class="newexistingtext">New</span> Domain name <span class="Redclr">* </span></label>
+                    <input type="text" class="form-control" id="txtDomainName" placeholder="contoso.com">
+                </div>
+                <div class="form-group newDomain">
+                    <label for="txtIPAddress">IP Address</label>
+                    <input type="text" class="form-control" id="txtIPAddress" placeholder="10.0.0.1" onKeypress="if ((event.keyCode >= 0 && event.keyCode < 45) || (event.keyCode > 58 && event.keyCode < 127) ||(event.keyCode == 47)) event.returnValue = false;" value="10.0.0.1">
+                </div>
+                <div class="form-group existingDomain DispalyHidden">
+                    <label for="txtIPAddress">Existing AD VNET name <span class="Redclr">* </span></label>
+                    <input type="text" class="form-control" id="txtVNetName" placeholder="MyVnet" onKeypress="if ((event.keyCode >= 0 && event.keyCode < 64) || (event.keyCode > 90 && event.keyCode < 96) ||(event.keyCode == 123 && event.keyCode < 127)) event.returnValue = false;">
+                </div>
+                <div class="form-group existingDomain DispalyHidden">
+                    <label for="txtIPAddress">Existing AD Subnet name <span class="Redclr">* </span></label>
+                    <input type="text" class="form-control" id="txtSubnetName" placeholder="MySubnet" onKeypress="if ((event.keyCode >= 0 && event.keyCode < 64) || (event.keyCode > 90 && event.keyCode < 96) ||(event.keyCode == 123 && event.keyCode < 127)) event.returnValue = false;">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtAdminUsername"><span class="newexistingtext">New</span> Domain Admin user name <span class="Redclr">* </span></label>
+                    <input type="text" class="form-control" id="txtAdminUsername" placeholder="vmadmin">
+                </div>
+                <div class="form-group">
+                    <label for="txtAdminpassword"><span class="newexistingtext">New</span> Domain Admin password<span class="Redclr">* </span></label>
+                    <input type="password" class="form-control" id="txtAdminpassword" placeholder="Welcome@123">
+                </div>
+
+                <div class="form-group" style="margin-bottom:0;">
+                    <input type="radio" name="createSHS" id="radioFreshSHS" value="CreateFreshSHS" checked>
+                    <label for="radioFreshSHS" style="margin-left: 10px; position: relative; top: -2px;">Create new Session Host Servers in this environment</label>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <input type="radio" name="createSHS" id="radioSHSImage" value="CreateSHSByImage">
+                    <label for="radioSHSImage" style="margin-left: 10px; position: relative; top: -2px;">Select an existing VM Image to create Session Host Servers</label>
+                </div>
+                <div class="form-group">
+                    <span class="icon icon-info"></span>
+                    <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource" target="_blank" class="NoteTxtLink">
+                        Click here to get the instruction on how to create VM Image.
+                    </a>
+                </div>
+
+                <div class="form-group DispalyHidden" id="AzureVmImage">
+                    <label for="AzureVmImages">Select an VM Image</label>
+                    <select class="form-control" id="AzureVmImages"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtNoOfRDSH">Number of RD Session Host Server(s) <span class="Redclr">* </span></label>
+                    <input type="text" class="form-control" id="txtNoOfRDSH" placeholder="2" onKeypress="if ((event.keyCode >= 0 && event.keyCode < 45) || (event.keyCode > 58 && event.keyCode < 127)) event.returnValue = false;" maxlength="4">
+                </div>
+
+                <div class="form-group">
+                    <label for="dropdownWindowsServer">Windows server <span class="Redclr">* </span></label>
+                    <select class="form-control" id="dropdownWindowsServer">
+                        <option value="2016-Datacenter" selected="">Windows Server 2016 - Datacenter</option>
+                        <option value="2012-R2-Datacenter">Windows Server 2012 - R2</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="dropdownVMSizes">VM size <span class="Redclr">* </span></label>
+                    <select class="form-control" id="dropdownVMSizes">                    </select>
+                </div>
+                <p id="IsVmSizesAvailable" class="ErrorMsgHidden">Please select the resource name with VM sizes</p>
+
+            </form>
+            <div class="alert alert-warning DispalyHidden" id="FailedDeplyError">
+                <strong>Warning!</strong> Failed to create a Deployment.
+            </div>
+            <div class="alert alert-success DispalyHidden" id="SuccessDeplyError">
+                <strong>Success!</strong> Deployment Created successfully.
+            </div>
+            <p id="ErrorMsgDeploy" class="ErrorMsgHidden"> Please enter all the mandatory fields</p>
+            <p id="InvalidIPAddressP" class="ErrorMsgHidden">Please enter valid IP Address</p>
+        </div>
+    </div>
+    <div class="row action-field">
+        <div class="col-md-12">
+            <input type="button" class="btn btn-sm btn-success" value="Submit" id="CreateDeploymentBtn" />
+            <input type="button" class="btn btn-sm btn-default" id="btnCancel" value="Cancel" />
+        </div>
+    </div>
+</div>
+<div class="right-slide" id="CreateSHSfromImageDiv">
+    <div class="row data-field">
+        <div class="col-md-12">
+            <h3>Create SHS from Image</h3>
+        </div>
+        <div id="blockUIwithLoaderSHS" class="blockUI">
+            <img src="~/Content/imgs/loading.gif" style="margin-left:45%; margin-top:200px; width:100px;" />
+        </div>
+        <div id="onlyLoaderDeplSHS" class="onlyLoader">
+            <img src="~/Content/imgs/loading.gif" style="margin-left:45%; margin-top:200px; width:100px;" />
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="TxtSubscriptionID">Subscription ID <span class="Redclr">* </span></label>
+                <input type="text" class="form-control" id="TxtSubscriptionID" disabled>
+            </div>
+            <div class="form-group">
+                <label for="TxtDeplyName">Deployment Name <span class="Redclr">* </span></label>
+                <input type="text" class="form-control" id="TxtDeplyName" disabled>
+            </div>
+            <div class="form-group">
+                <label for="SHSRG">Resource Group<span class="Redclr">* </span></label>
+                <select class="form-control" id="SHSRG"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="ShsAdminUserName">VM Admin user name  <span class="Redclr">* </span></label>
+                <input type="text" class="form-control" id="ShsAdminUserName">
+            </div>
+            <div class="form-group">
+                <label for="ShsAdminpassword">Admin Password <span class="Redclr">* </span></label>
+                <input type="password" class="form-control" id="ShsAdminpassword">
+            </div>
+            <div class="form-group">
+                <label for="AzureSHSVMSizes">Select Azure VM Size<span class="Redclr">* </span></label>
+                <select class="form-control" id="AzureSHSVMSizes"></select>
+
+            </div>
+            <div class="form-group">
+                <label for="txtSHSIPAddress">IP Address</label>
+                <input type="text" class="form-control" id="txtSHSIPAddress" placeholder="10.0.0.1" onKeypress="if ((event.keyCode >= 0 && event.keyCode < 45) || (event.keyCode > 58 && event.keyCode < 127) ||(event.keyCode == 47)) event.returnValue = false;" value="10.0.0.1">
+            </div>
+            <div class="form-group" id="AzureVmImage">
+                <label for="AzureVmImages">Select Azure VM Image<span class="Redclr">* </span></label>
+                <select class="form-control" id="SHSAzureVmImages"></select>
+            </div>
+            <div class="form-group">
+                <span class="icon icon-info"></span>
+                <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource" target="_blank" class="NoteTxtLink">
+                    Click here to get the instruction on how to create VM Image.
+                </a>
+            </div>
+            <div class="form-group">
+                <label for="txtNoOfRDSH">Number of RD SH <span class="Redclr">* </span></label>
+                <input type="text" class="form-control" id="ShstxtNoOfRDSH" placeholder="2" onKeypress="if ((event.keyCode >= 0 && event.keyCode < 45) || (event.keyCode > 58 && event.keyCode < 127)) event.returnValue = false;" maxlength="4">
+            </div>
+            <p id="VMImageSHSError" class="ErrorMsgHidden"> Please select the Deployment/Subscription with VM images</p>
+            <p id="AzureVmImages" class="ErrorMsgHidden"> Please select the Azure VM image</p>
+            <p id="NoOfSHSError" class="ErrorMsgHidden"> Please fill the Number of SHS field</p>
+            <p id="ValidSHSRG" class="ErrorMsgHidden"> Please select the valid Resource Name</p>
+            <p id="ValidVMSize" class="ErrorMsgHidden"> Please select the valid VM Size</p>
+            <p id="ValidErrorTxtbx" class="ErrorMsgHidden" All the fields are mandatory</p>
+            <div class="alert alert-warning DispalyHidden" id="FailedSHSImageError">
+                <strong>Warning!</strong> Failed to create a SHS from Image.
+            </div>
+            <div class="alert alert-success DispalyHidden" id="SuccessSHSImageError">
+                <strong>Success!</strong> SHS Using Image Created successfully.
+            </div>
+
+        </div>
+    </div>
+    <div class="row action-field">
+        <div class="col-md-12">
+            <input type="button" class="btn btn-sm btn-success" value="Submit" id="CreateSHSfromImageBtn" />
+            <input type="button" class="btn btn-sm btn-default" id="btnCancelSHS" value="Cancel" />
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createAnewSubscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Create a subscription</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select an Offer</label>
+                        <select class="form-control borderRadius0" id="dropdownOffer">
+                            @{
+                                <option value="0">select and offer</option>
+                                List<RDSProvision.Models.Offers> offers = ViewBag.AllOffers;
+                                foreach (RDSProvision.Models.Offers offer in offers)
+                                {
+                                    <option value="@offer.offerId" desc="@offer.description">@offer.offerName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p><b>What is this for ?</b> : <span id="lblDescription"></span></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtSubscriptionName">Subscription Name (Friendly name)</label>
+                        <input type="text" class="form-control borderRadius0" id="txtSubscriptionName" placeholder="Contoso Subscription">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-sm btn-success" id="btnCreateSubscription" value="Create" />
+                <input type="button" class="btn btn-sm btn-default" id="btnCancell" data-dismiss="modal" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="createAnewResourceName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="CreateRGClosebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Create a Resource Group</h4>
+            </div>
+            <div class="modal-body">
+                <div id="blockUIwithLoader" class="blockUI">
+                    <img src="~/Content/imgs/loading.gif" style="margin-left:45%; margin-top:200px; width:100px;" />
+                </div>
+                <div id="onlyLoader" class="onlyLoader">
+                    <img src="~/Content/imgs/loading.gif" style="margin-left:45%; margin-top:200px; width:100px;" />
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Subscription</label>
+                        <input type="text" disabled class="form-control" for="exampleFormControlSelect1" id="Subscription" />
+                        <input type="hidden" class="form-control" for="exampleFormControlSelect1" id="SubscriptionID" />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtSubscriptionName">Resource Group name</label>
+                        <input type="text" class="form-control borderRadius0" id="TxtResourceName" placeholder="ContosoRG">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Location</label>
+                        <select class="form-control borderRadius0" id="LocationSelect"></select>
+                    </div>
+                </form>
+                <p id="ErrorMsgLocation" class="ErrorMsgHidden"> Please select a subscription with location   </p>
+                <p id="ErrorMsgTxt" class="ErrorMsgHidden"> Resource Name cant be empty </p>
+
+                <div class="alert alert-warning DispalyHidden" id="FailedError">
+                    <strong>Warning!</strong> Failed to create a Resource Name.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-sm btn-success" id="btnCreateResource" value="Create" />
+                <input type="button" class="btn btn-sm btn-default" id="btnCancell" data-dismiss="modal" value="Cancel" />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    var accessToken = $("#hfTokentId").val();
+    sessionStorage.setItem('Access_Token', accessToken);
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Home/GetAllDeployments",
+            type: "GET",
+            crossDomain: true,
+            headers: {
+                'Authorization': sessionStorage.getItem('Access_Token')
+            },
+            beforeSend: function () {
+                $("#tblDeployment tbody").hide();
+                $("#onlyLoaderDepllist").show();
+                $("#blockUI").show();
+            },
+            complete: function () {
+                $("#tblDeployment tbody").show();
+                $('#tblDeployment').DataTable();
+                event.preventDefault();
+            },
+            success: function (res) {
+                if (res.length > 0) {
+                    for (i = 0; i < res.length; i++) {
+                        $("#tblDeployment tbody").append("<tr><td><span>" + res[i].SubscriptionID + "</span></td><td><span>" + res[i].Name + "</span></td><td><span>" + res[i].ResourceGroupName + "</span></td><td><span>Active</span></td></tr>");
+                    }
+                }
+                $("#onlyLoaderDepllist").hide();
+                $("#blockUI").hide();
+            },
+            error: function () {
+                $("#onlyLoaderDepllist").hide();
+                $("#blockUI").hide();
+            }
+        });
+        
+        if ((sessionStorage.getItem("companyName1") == $("#Name").text()) || (sessionStorage.getItem("CompanyName") == $("#Name").text())) {
+            $("#CustomersList li a").each(function () {
+                var curval = $(this).text().trim();
+                if ((sessionStorage.getItem("companyName1") == curval) || (sessionStorage.getItem("CompanyName") == curval)) {
+                    $(this).css("background-color", "rgb(238, 238, 238)").css("color", "#2a6496");
+                    $("#customerName").text(curval)
+                    if (curval.length <= 0) {
+                        $("#ListdeploymentsBC").hide();
+                    } else {
+                        $("#ListdeploymentsBC").show();
+                    }
+                }
+            });
+        };
+    });
+</script>

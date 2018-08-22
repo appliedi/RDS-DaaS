@@ -1,0 +1,1 @@
+Remove-RDSessionCollection -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker -Force

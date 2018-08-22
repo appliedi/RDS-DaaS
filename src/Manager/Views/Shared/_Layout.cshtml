@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Azure RDS Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.ico">
+    
+    <link href="~/Content/CSS/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/TitleBarStyle.css" rel="stylesheet" />
+    <link href="~/Content/CSS/feedback.css" rel="stylesheet" />
+    <link href="~/Content/CSS/EditChart.css" rel="stylesheet" />
+    <link href="~/Content/CSS/FontSetup.css" rel="stylesheet" />
+    <script src="~/Content/JQuery/jquery.min.js"></script>
+    @*<script src="~/Content/JQuery/bootstrap.min.js"></script>*@
+    <script src="~/Content/JQuery/TitlebarScript.js"></script>
+    <script src="~/Content/JQuery/AuthLib.js"></script>
+    <script src="~/Content/JQuery/feedback.js"></script>
+    <script src="~/Content/JQuery/EditChart.js"></script>
+ 
+<script type="text/javascript">
+    function GoToHome()
+        {
+            window.location.href = localStorage.getItem("DashboardPage");
+        }
+        function logout()
+        {
+            RemoveAuthCookie();
+            localStorage.setItem("LoginName", "null");
+            window.location.href = '@Url.Action("Login")'
+        }
+       $(document).ready(function () {
+           if (localStorage.getItem("UserType").toLowerCase() == "tenantadmin")
+            {
+               $("#bladeid_appsuserslist").show();
+               $("#bladeid_divRrdDeployment").remove();
+            }
+           else if (localStorage.getItem("UserType").toLowerCase() == "deploymentadmin")
+            {
+                $("#bladeid_appsuserslist").remove();
+                $("#bladeid_divRrdDeployment").show();
+            }
+           $("#loggerInUserLoginName").text(localStorage.getItem("LoginName").split('\\')[1]);
+           $("#loggerInUserEmailID").text(localStorage.getItem("LoginName"));
+            //$("#loggerInUserEmailID").text(localStorage.getItem("LoginName") + "@@"+localStorage.getItem("DomainName"));
+       });
+    </script>
+
+    <link href="~/Content/CSS/Loader.css" rel="stylesheet" />
+    <link href="~/Content/CSS/deploymentStyles.css" rel="stylesheet" />
+    <link href="~/Content/CSS/FontSetup.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bootstrap-formhelpers.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Site.css" rel="stylesheet" />
+    <link href="~/Content/CSS/deployeadmin.css" rel="stylesheet" />
+    <link href="~/Content/CSS/RDSStyles.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bootstrap-timepicker.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <script src="~/Content/JQuery/knockout-3.4.0.js"></script>
+    <script src="~/Content/JQuery/jquery-1.10.2.min.js"></script>
+    <script src="~/JsonData/data.js"></script>
+    <script src="~/Content/JQuery/deployadmin.js"></script>
+    <script src="~/Content/JQuery/RemoteAppCollection.js"></script>
+    <script src="~/Content/JQuery/simple-excel.js"></script>
+
+    <!--Charts Plugins -->
+    
+    @*<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>*@
+    @*<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>*@
+    <script src="~/Content/JQuery/amcharts.js"></script>
+    <script src="~/Content/JQuery/serial.js"></script>
+    <script src="~/Content/JQuery/export.min.js"></script>
+    <link href="~/Content/CSS/export.css" rel="stylesheet" />
+    <script src="~/Content/JQuery/light.js"></script>
+    
+    <!--DateTime Picker Plugins -->
+    <script src="~/Content/JQuery/Jquery1.11.3.min.js"></script>
+    <script src="~/Content/JQuery/bootstrap3.3.5.min.js"></script>
+    <script src="~/Content/JQuery/bootstrap-formhelpers.min.js"></script>
+    <script src="~/Content/JQuery/moment.min.js"></script>
+    <script src="~/Content/JQuery/bootstrap-datetimepicker.min.js"></script>
+
+    @* input mask plug in *@
+    @*<script src="https://code.jquery.com/jquery-2.2.4.js"></script>*@
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    
+</head>
+<body>
+    <div class="top-bar">
+        <div class="app-title">
+            <a href="#" onclick="GoToHome()">Azure RDS Manager</a>
+        </div>
+        <div class="app-breadcrumb">
+            <a href="#" id="bladeid_appsuserslist" onclick="NavigateToBlade('appsuserslist')">RDS Collection</a>
+            <a href="#" id="bladeid_divRrdDeployment" onclick="NavigateToBlade('divRrdDeployment')">RDS Deployment</a>
+        </div>
+        <div class="app-right-section width200">
+            <button class="profile-drop-menu-opener width100P">
+                <div class="user-picture pull-right"><img src="https://portal.azure.com/Content/static/MsPortalImpl/AvatarMenu/AvatarMenu_defaultAvatarSmall.png" /></div>
+                <div class="user-name pull-right">
+                    <p class="email" id="loggerInUserEmailID"></p>
+                    <p class="name" id="loggerInUserLoginName"></p>
+                </div>
+            </button>
+            <div class="drop-menu">
+                <ul type="none">
+                    <li>
+                        <a href="#" onclick="logout()">
+                            <div class="option-name">Signout</div>
+                            <div class="option-icon option-icon-red"><svg viewBox="0 0 15 15" class="msportalfx-svg-placeholder" role="presentation" focusable="false" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M12.133 3.033a.995.995 0 1 0-1.408 1.408 4.543 4.543 0 0 1 1.336 3.225 4.544 4.544 0 0 1-1.336 3.225A4.547 4.547 0 0 1 7.5 12.227a4.54 4.54 0 0 1-3.224-1.336A4.544 4.544 0 0 1 2.94 7.666a4.543 4.543 0 0 1 1.336-3.225.995.995 0 1 0-1.408-1.408 6.537 6.537 0 0 0-1.92 4.633 6.535 6.535 0 0 0 1.92 4.633A6.537 6.537 0 0 0 7.5 14.218h.004a6.53 6.53 0 0 0 4.628-1.919 6.534 6.534 0 0 0 1.919-4.633 6.534 6.534 0 0 0-1.918-4.633zM7.5 8.662c.55 0 .996-.446.996-.996V1.655a.996.996 0 0 0-1.992 0v6.011c0 .55.446.996.996.996z"></path></g></svg></div>
+                        </a>
+                    </li>
+                    @*<li id="updatelicRedirection">
+                        <a href="#" class="option-name">
+                            Update License
+                            <div class="option-icon">
+                                <svg viewBox="0 0 15 15" class="msportalfx-svg-placeholder" role="presentation" focusable="false" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"><g><path d="M8.883.942v1.586h3.118L6.314 8.214a.792.792 0 1 0 1.121 1.122l5.545-5.545v2.833h1.586V.942H8.883z"></path><path d="M12.01 6.064a.316.316 0 0 0-.344.068l-.946.946a.316.316 0 0 0-.092.223v3.746c0 .601-.489 1.09-1.09 1.09H3.272c-.601 0-1.09-.489-1.09-1.09V6.07c0-.601.489-1.09 1.09-1.09h4.762a.315.315 0 0 0 .223-.092l.946-.946a.316.316 0 0 0-.223-.539H3.272A2.67 2.67 0 0 0 .605 6.07v4.977a2.67 2.67 0 0 0 2.667 2.667h6.266a2.67 2.67 0 0 0 2.667-2.667V6.355a.319.319 0 0 0-.195-.291z"></path></g></svg>
+                            </div>
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+
+        @*<div class="app-right-section" id="Feedback-Bar">
+            <button id="btnFeedbackButton" class="feedback-drop-menu-opener borderCls">
+                <span class="feedbackbutton"></span>
+            </button>
+        </div>*@
+
+        <div class="app-right-section" id="Notification-Bar">
+            <button id="btnNotificationTray" class="notification-drop-menu-opener borderCls">
+                <div class="user-picture" style="padding-top:1px;">
+                    <span class="notificationbell">
+                        <span id="trayNotificationCount" style="display:none;">9</span>
+                    </span>
+                </div>
+            </button>
+            <input type="hidden" id="hfCountMinus" value="0" />
+        </div>
+
+        <div id="InstantNotification-Container-Actual"></div>
+
+        <div id="InstantNotification-Container-ProgressAlert">
+            <div class="instant-notification">
+                <div class="paddingCls">
+                    <span class="closeNotificationIcon progressAlertClose">
+                    </span>
+                    <table width="100%" class="width100P">
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/refresh_flat_small_icon.jpg" width="20" class="width20" />
+                            </td>
+                            <td id="ActionTitle">
+                                Publishing Virtual Machine
+                            </td>
+                            <td class="text-right" id="ActionTime">
+                                10:30 AM &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div style="height:5px; margin-top:10px; background-image: url(data:image/jpeg;base64,R0lGODlhBgAFAKIAAHqFk3iDkXaBjXaBj3R+jWJseFxkcP4BAiH/C05FVFNDQVBFMi4wAwEAAAAh+QQFBwAHACwAAAAABgAFAAADD2hFEFUBkGJEowUIPAYHCQAh+QQFBwAHACwAAAAABgAFAAADDlhWdLEHkFJcUFGoOvZJACH5BAUHAAcALAAAAAAGAAUAAAMNGGV1tw0Q5lQUyw2YAAAh+QQFBwAHACwAAAAABgAFAAADDnhRVkfMgahCO0cUOVgCACH5BAUHAAcALAAAAAAGAAUAAAMNeBdlBaQ95pRUop5REgAh+QQFBwAHACwAAAAABgAFAAADDVh3UXaAONWMEnPlMxIAOw==); background-color: #5c6570;background-repeat: repeat-x;width: 100%;">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="InstantNotification-Container-SuccessAlert">
+            <div class="instant-notification">
+                <div class="paddingCls">
+                    <span class="closeNotificationIcon successAlertClose">
+                    </span>
+                    <table style="width:100%;">
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/tick-noti.png" width="20" class="width20" />
+                            </td>
+                            <td id="ActionTitle">
+                                Publishing Virtual Machine
+                            </td>
+                            <td class="text-right" id="ActionTime">
+                                10:30 AM &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" id="ActionText">
+                                Virtual machine "CDSDS-12SD-DSDS" published successful.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="InstantNotification-Container-ErrorAlert">
+            <div class="instant-notification" id="ErrorAlert">
+                <div class="paddingCls">
+                    <span class="closeNotificationIcon errorAlertClose">
+                    </span>
+                    <table width="100%" class="width100P">
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/failed_icon.gif" width="20" class="width20" />
+                            </td>
+                            <td id="ActionTitle">
+                                Failed publishing
+                            </td>
+                            <td class="text-right" id="ActionTime">
+                                10:30 AM &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" id="ActionText">
+                                Virtual machine "CDSDS-12SD-DSDS" failed.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="PushNotificationItem-progress_item" style="display:none;">
+            <table width="100%" class="width100P">
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/refresh_flat_small_icon.jpg" width="20" class="width20" />
+                    </td>
+                    <td id="ActionTitle">
+                        Publishing Virtual Machine
+                    </td>
+                    <td class="text-right" id="ActionTime">
+                        10:30 AM &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div style="height:5px; margin-top:10px; background-image: url(data:image/jpeg;base64,R0lGODlhBgAFAKIAAHqFk3iDkXaBjXaBj3R+jWJseFxkcP4BAiH/C05FVFNDQVBFMi4wAwEAAAAh+QQFBwAHACwAAAAABgAFAAADD2hFEFUBkGJEowUIPAYHCQAh+QQFBwAHACwAAAAABgAFAAADDlhWdLEHkFJcUFGoOvZJACH5BAUHAAcALAAAAAAGAAUAAAMNGGV1tw0Q5lQUyw2YAAAh+QQFBwAHACwAAAAABgAFAAADDnhRVkfMgahCO0cUOVgCACH5BAUHAAcALAAAAAAGAAUAAAMNeBdlBaQ95pRUop5REgAh+QQFBwAHACwAAAAABgAFAAADDVh3UXaAONWMEnPlMxIAOw==); background-color: #5c6570;background-repeat: repeat-x;width: 100%;">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="PushNotificationItem-success_item" style="display:none;">
+            <table width="100%" class="width100P">
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/tick-noti.png" width="20" class="width20" />
+                    </td>
+                    <td id="ActionTitle">
+                        Successfully published
+                    </td>
+                    <td class="text-right" id="ActionTime">
+                        10:30 AM &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="ActionText">
+                        Virtual machine "CDSDS-12SD-DSDS" published successful.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="PushNotificationItem-error_item" style="display:none;">
+            <table width="100%" class="width100P">
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/failed_icon.gif" width="20" class="width20" />
+                    </td>
+                    <td id="ActionTitle">
+                        Failed publishing
+                    </td>
+                    <td class="text-right" id="ActionTime">
+                        10:30 AM &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="ActionText">
+                        Virtual machine "CDSDS-12SD-DSDS" failed.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="notification-drop-menu" style="display:none;">
+            <ul type="none" id="PushNotification-Container-Actual" class="pad30">
+                <li id="noNotification">
+                    <p class="text-center font12">No new notifications from this session</p>
+                </li>
+
+            </ul>
+        </div>
+
+        <div id="FeedBackContainer">
+            <div class="FeedBackContent">
+                <div class="feedBackHead">
+                    <div class="dockicons feedClose">
+                        <a href="#" id="feedbackClose"><i class="segoeIcon CancelLegacy"></i></a>
+                    </div>
+                    <h2>Send us feedback</h2>
+                    <h3>Thank you for taking the time to give us feedback about the Azure RDS Manager.</h3>
+                </div>
+                <div class="feedbackBody">
+                    <fieldset class="feildset">
+                        <legend>Are you satisfied with your experience?</legend>
+                        <input type="radio" name="emotion" id="Happy" class="input-hidden" />
+                        <label for="Happy" class="happy marRht3"></label>
+                        <input type="radio" name="emotion" id="Sad" class="input-hidden" />
+                        <label for="Sad" class="sad"></label>
+                    </fieldset>
+                    <textarea class="feedbackComments" id="feedBackText" maxlength="5000" placeholder="Tell us about your experience..."></textarea>
+                    <label class="feedbackIncludeScreenShot">
+                        <input type="checkbox" id="screenShotcheckbox">Include a screenshot
+                    </label>
+                </div>
+            </div>
+            <div class="feedbackConfirmTop">
+                <div class="feedbackConfirmMain">
+                    <label class="feedbackConfirmation">
+                        <input type="checkbox" id="yesCheckbox">Yes, it's OK to email you about your feedback.
+                        <span class="feedbackConfirmInfo">All feedback is reviewed but we may not be able to respond to all comments.</span>
+                    </label>
+                    <button type="button" id="btnFeedback" class="feedbackSubmit">Submit feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="EditChartContainer">
+            <div class="FeedBackContent">
+                <div class="feedBackHead">
+                    <div class="dockicons feedClose">
+                        <a href="#" id="EditChartClose"><i class="segoeIcon CancelLegacy"></i></a>
+                    </div>
+                    <h2>Customize chart</h2>
+                    <label id="typeofconnection"></label>
+                    <label id="recordName"></label>
+                </div>
+                <label class="lblstyle">Time Range</label>
+                <div class="EditChartBody positionR">
+                    <ul role="radiogroup" class="radiogroup">
+                        <li id="hourClickLi">
+                            <input type="radio" name="chartradio" id="Hour" checked="checked" class="inputRadio-hidden" />
+                            <label for="Hour">past hour</label>
+                        </li>
+                        <li id="todayClickLi">
+                            <input type="radio" name="chartradio" id="Today" class="inputRadio-hidden" />
+                            <label for="Today">today</label>
+                        </li>
+                        <li id="weekClickLi">
+                            <input type="radio" name="chartradio" id="Week" class="inputRadio-hidden" />
+                            <label for="Week">past week</label>
+                        </li>
+                        @*<li id="customClickLi">
+                            <input type="radio" name="chartradio" id="Custom" class="inputRadio-hidden" />
+                            <label for="Custom">custom</label>
+                        </li>*@
+                    </ul>
+                    
+                    <div class="checkboxChart">
+                        <div class="checkbox" id="activeSessiondiv">
+                            <input id="checkbox2" type="checkbox" name="checkboxgroup" value="activeSession">
+                            <label for="checkbox2" class="CheckMarkLegacy">
+                                Active session
+                            </label>
+                        </div>
+                        <div class="checkbox" id="cpuUtilizationdiv">
+                            <input id="checkbox1" type="checkbox" name="checkboxgroup" value="cpuUtilization">
+                            <label for="checkbox1" class="CheckMarkLegacy">
+                                CPU utilization
+                            </label>
+                        </div>
+                        <div class="checkbox" id="readandWritediv">
+                            <input id="checkbox3" type="checkbox" name="checkboxgroup" value="readandWrite">
+                            <label for="checkbox3" class="CheckMarkLegacy">
+                                Read and write
+                            </label>
+                        </div>
+                        <div class="checkbox" id="networkINOutdiv">
+                            <input id="checkbox4" type="checkbox" name="checkboxgroup" value="networkINOut">
+                            <label for="checkbox4" class="CheckMarkLegacy">
+                                Network in and out
+                            </label>
+                        </div>
+                        <div class="checkbox" id="collectionleveldiv">
+                            <input id="checkbox5" type="checkbox" name="checkboxgroup" value="collectionlevel">
+                            <label for="checkbox5" class="CheckMarkLegacy">
+                                Active Session Host Server
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="calenderDiv" style="display:none;">
+                        <div class="col-md-12 padLRnone">
+                            <div class="col-md-6 padLRnone">
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepickerFrom'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 padRnone">
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepickerTo'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btnEstiChartOkPosition">
+                <button type="button" id="btnEstiChartOk" class="">OK</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    @RenderBody()
+
+    <script src="~/Content/JQuery/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try
+            {
+                data.ApiUrl = localStorage.getItem("data_ApiUrl");
+                data.loginRedirect = localStorage.getItem("data_loginRedirect");
+                data.ConnectionBroker = localStorage.getItem("CB");
+
+                if (localStorage.getItem("IsValid") == null || localStorage.getItem("IsValid") == "null" || localStorage.getItem("IsValid") == "false") {
+                    window.location.href = '@Url.Action("Login")';
+                }
+                if (localStorage.getItem("LoginName") == null || localStorage.getItem("LoginName") == "null") {
+                    window.location.href = '@Url.Action("Login")';
+                }
+                if (localStorage.getItem("UserType") == null || localStorage.getItem("UserType") == "null" || localStorage.getItem("UserType") == "fail") {
+                    window.location.href = '@Url.Action("Login")';
+                }
+            }
+            catch(er)
+            {
+                window.location.href = '@Url.Action("Login")';
+            }
+          
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#updatelicRedirection").click(function () {
+                location.href = "UpdateLicense";
+               
+            })
+            $("#customClickLi").click(function () {
+                $("#calenderDiv").show();
+            });
+            $("#hourClickLi, #todayClickLi, #weekClickLi").click(function () {
+                $("#calenderDiv").hide();
+            });
+        });
+        $(function () {
+            $('#datetimepickerFrom').datetimepicker();
+            $('#datetimepickerTo').datetimepicker({
+                useCurrent: false 
+            });
+            $("#datetimepickerFrom").on("dp.change", function (e) {
+                $('#datetimepickerTo').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepickerTo").on("dp.change", function (e) {
+                $('#datetimepickerFrom').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.pageloader{
+    height : 100%;
+    width : 100%;
+    background-color : grey;
+}
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-repeat: no-repeat,no-repeat;
+    background-position: center center,center 40%;
+    background-color: #2E80AB;
+    background-image: url('../Images/azure_spinner_loader.gif');
+}
+
+.tileLoader {
+    width: 70px;
+    height: 30px;
+    background-image: url('../Images/loading.gif');
+    background-position: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background-size:150px;
+
+}
+
+
+.spinner
+{
+    background-size:150px;
+}
+

@@ -1,0 +1,1 @@
+Set-RDSessionCollectionConfiguration -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker -ClientDeviceRedirectionOptions $ClientDeviceRedirectionOptions -ClientPrinterRedirected $ClientPrinterRedirected -ClientPrinterAsDefault $ClientPrinterAsDefault -RDEasyPrintDriverEnabled $RDEasyPrintDriverEnabled -MaxRedirectedMonitors $MaxRedirectedMonitors

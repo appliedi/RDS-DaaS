@@ -1,0 +1,1 @@
+﻿ Set-RDRemoteDesktop -CollectionName $CollectionName -ConnectionBroker $ConnectionBroker -ShowInWebAccess $true -Force
